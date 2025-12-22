@@ -51,9 +51,9 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #2d4c3e; /* Suppis Green */
-  --primary-foreground: #ffffff;
-  --secondary: #c5a880; /* Suppis Accent Goldish */
+    --primary: #4A583E; /* Suppis Reference Green */
+    --primary-foreground: #ffffff;
+    --secondary: #d4c3b0; /* More delicate gold/sand */
   --secondary-foreground: #ffffff;
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
