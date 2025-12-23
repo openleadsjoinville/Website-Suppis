@@ -538,7 +538,7 @@ export default function LandingPage() {
         
         {/* Decorative Icons on Hero */}
         <DecorativeIcon 
-          className="w-[500px] top-10 -left-20" 
+          className="w-[500px] top-60 -left-20" 
           rotation={135} 
           opacity={0.15} 
           y={yHeroLeft}
@@ -603,17 +603,11 @@ export default function LandingPage() {
               </div>
 
               <div className="space-y-12 relative">
-                {/* Extra floating icon for modern feel */}
-                <DecorativeIcon 
-                  className="w-32 -top-20 -right-10" 
-                  rotation={15} 
-                  opacity={0.1} 
-                  y={yIntroFloating}
-                />
               <div className="space-y-6">
                 <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs">Processo de Elite</span>
                 <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight">
-                  Sem tempo para a <br/> reforma perfeita?
+                  Sem tempo para planejar <br /> a reforma do seu imóvel?
+
                 </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
                   Oferecemos soluções completas unindo gestão, cronograma e execução integrada. 
