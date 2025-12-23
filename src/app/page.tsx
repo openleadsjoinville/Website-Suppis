@@ -105,6 +105,7 @@ const HeroVideo = () => {
 
   useEffect(() => {
     if (videoRef.current) {
+      videoRef.current.muted = true
       videoRef.current.play().catch(() => {
         // Silently handle autoplay rejection
       })
@@ -118,8 +119,7 @@ const HeroVideo = () => {
       loop
       muted
       playsInline
-      preload="auto"
-      className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] opacity-60"
+      className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] opacity-60 pointer-events-none"
     >
       <source src={HERO_VIDEO_URL} type="video/mp4" />
     </video>
