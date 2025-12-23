@@ -442,7 +442,7 @@ export default function LandingPage() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-64 h-32"
+          className="relative w-48 h-24"
         >
           <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
           <motion.div 
@@ -466,7 +466,7 @@ export default function LandingPage() {
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center">
-            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-64 h-14' : 'w-80 h-24'}`}>
+            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-48 h-10' : 'w-64 h-16'}`}>
               <Image 
                 src={LOGO_URL} 
                 alt="Suppis Logo" 
@@ -505,7 +505,7 @@ export default function LandingPage() {
           <button className="absolute top-6 right-6" onClick={() => setMobileMenuOpen(false)}>
             <X className="w-8 h-8 text-[#4A583E]" />
           </button>
-          <div className="w-80 h-24 relative mb-8">
+          <div className="w-64 h-16 relative mb-8">
             <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
           </div>
           {['Início', 'Suppis Integra', 'Serviços', 'Sobre Nós', 'Fale Conosco'].map((item) => (
@@ -838,8 +838,8 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-16 mb-24">
             <div className="col-span-1 md:col-span-1">
-              <div className="relative w-80 h-24 mb-8">
-                <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain brightness-0 invert" />
+              <div className="relative w-64 h-16 mb-8">
+                <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain object-left brightness-0 invert" />
               </div>
               <p className="text-zinc-400 text-xs leading-relaxed mb-10 font-light">
                 Redefinindo o luxo através do design consciente e execução impecável. Sua visão, nossa maestria.
