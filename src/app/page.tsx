@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
@@ -21,6 +21,7 @@ import {
 // Constants
 const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/LOGO-SUPPIS-resized-1766456353173.webp?width=8000&height=8000&resize=contain"
 const GEOMETRIC_ICON_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Design-sem-nome-29-1766456393024.png?width=8000&height=8000&resize=contain"
+const HERO_VIDEO_URL = "https://suppis2.openleads.com.br/wp-content/uploads/2025/12/video-1766457434494.mp4"
 
 const DecorativeIcon = ({ className = "", rotation = 0, opacity = 0.4, y = 0 }: { className?: string, rotation?: number, opacity?: number, y?: any }) => (
   <motion.div 
@@ -81,8 +82,321 @@ const HeroVideo = () => {
       playsInline
       className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] opacity-60"
     >
-      <source src="/hero-video.mp4" type="video/mp4" />
+      <source src={HERO_VIDEO_URL} type="video/mp4" />
     </video>
+  )
+}
+
+const SuppisIntegraDiagram = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  const drawLines = useCallback(() => {
+    const container = containerRef.current
+    const canvas = canvasRef.current
+    if (!container || !canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const centerCircle = container.querySelector('#centerCircle') as HTMLElement
+    const items = container.querySelectorAll('.service-circle') as NodeListOf<HTMLElement>
+    if (!centerCircle || items.length === 0) return
+
+    const dpr = window.devicePixelRatio || 1
+    const rect = container.getBoundingClientRect()
+    
+    canvas.width = rect.width * dpr
+    canvas.height = rect.height * dpr
+    canvas.style.width = rect.width + 'px'
+    canvas.style.height = rect.height + 'px'
+    ctx.scale(dpr, dpr)
+
+    ctx.clearRect(0, 0, rect.width, rect.height)
+
+    ctx.strokeStyle = 'rgba(165, 165, 155, 0.6)'
+    ctx.lineWidth = 1.2
+
+    const centerRect = centerCircle.getBoundingClientRect()
+    const centerX = centerRect.left - rect.left + centerRect.width / 2
+    const centerY = centerRect.top - rect.top + centerRect.height / 2
+    const centerRadius = centerRect.width / 2
+
+    items.forEach(item => {
+      const itemRect = item.getBoundingClientRect()
+      
+      const itemX = itemRect.left - rect.left + itemRect.width / 2
+      const itemY = itemRect.top - rect.top + itemRect.height / 2
+      const itemRadius = itemRect.width / 2
+
+      const angle = Math.atan2(itemY - centerY, itemX - centerX)
+
+      const startX = centerX + Math.cos(angle) * centerRadius
+      const startY = centerY + Math.sin(angle) * centerRadius
+
+      const endX = itemX - Math.cos(angle) * itemRadius
+      const endY = itemY - Math.sin(angle) * itemRadius
+
+      ctx.beginPath()
+      ctx.moveTo(startX, startY)
+      ctx.lineTo(endX, endY)
+      ctx.stroke()
+    })
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => {
+      setTimeout(drawLines, 50)
+    }
+
+    window.addEventListener('resize', handleResize)
+    
+    // Initial draw
+    setTimeout(drawLines, 500) // Give it some time to layout
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [drawLines])
+
+  return (
+    <section className="py-20 bg-white overflow-hidden">
+      <div className="container mx-auto px-6">
+        <h2 className="text-4xl md:text-5xl font-medium text-[#4A583E] tracking-tighter text-center mb-16">
+          Conheça o Suppis Integra, uma solução completa de ponta a ponta
+        </h2>
+        
+        <style dangerouslySetInnerHTML={{ __html: `
+          @font-face {
+              font-family: 'DeMonte';
+              src: url('https://suppis2.openleads.com.br/wp-content/uploads/2025/12/DeMonte-Regular-1.ttf') format('truetype');
+              font-weight: 400;
+              font-style: normal;
+              font-display: swap;
+          }
+
+          @font-face {
+              font-family: 'DeMonte';
+              src: url('https://suppis2.openleads.com.br/wp-content/uploads/2025/12/DeMonte-Bold.otf') format('opentype');
+              font-weight: 700;
+              font-style: normal;
+              font-display: swap;
+          }
+
+          .suppis-wrapper {
+              width: 100% !important;
+              max-width: 100% !important;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: 'DeMonte', Georgia, serif;
+              font-style: normal;
+              padding: 40px 20px;
+              margin: 0;
+              box-sizing: border-box;
+          }
+
+          .suppis-container {
+              position: relative;
+              width: 100% !important;
+              max-width: 100% !important;
+              aspect-ratio: 1.4 / 1;
+          }
+
+          .suppis-container #linesCanvas {
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              z-index: 1;
+              pointer-events: none;
+          }
+
+          .suppis-container .center-circle {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 28%;
+              aspect-ratio: 1 / 1;
+              background: radial-gradient(ellipse at 40% 40%, #4D5D4A, #3D4D3A 40%, #2E3E2E 100%);
+              border-radius: 50%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              box-shadow: 
+                  0 0 0 clamp(8px, 1.2vw, 14px) rgba(200, 200, 190, 0.45),
+                  0 0 0 clamp(10px, 1.5vw, 18px) rgba(180, 180, 170, 0.2);
+              z-index: 10;
+              overflow: hidden;
+              transition: transform 0.4s ease, box-shadow 0.4s ease;
+          }
+
+          .suppis-container .center-circle:hover {
+              transform: translate(-50%, -50%) scale(1.03);
+              box-shadow: 
+                  0 0 0 clamp(10px, 1.4vw, 16px) rgba(200, 200, 190, 0.5),
+                  0 0 0 clamp(14px, 2vw, 22px) rgba(180, 180, 170, 0.25),
+                  0 10px 40px rgba(0,0,0,0.15);
+          }
+
+          .suppis-container .center-content {
+              z-index: 2;
+              text-align: center;
+          }
+
+          .suppis-container .center-title {
+              font-family: 'DeMonte', Georgia, serif;
+              font-size: clamp(32px, 5vw, 52px);
+              font-weight: 700;
+              font-style: normal;
+              color: #fff;
+              line-height: 1.05;
+          }
+
+          .suppis-container .center-subtitle {
+              font-family: 'DeMonte', Georgia, serif;
+              font-size: clamp(14px, 1.9vw, 22px);
+              font-weight: 400;
+              font-style: normal;
+              color: rgba(255,255,255,0.9);
+              letter-spacing: 1px;
+              margin-top: clamp(6px, 1vw, 12px);
+          }
+
+          .suppis-container .service-item {
+              position: absolute;
+              display: flex;
+              align-items: center;
+              gap: clamp(10px, 1.5vw, 18px);
+              cursor: pointer;
+          }
+
+          .suppis-container .service-circle {
+              width: clamp(65px, 9vw, 95px);
+              aspect-ratio: 1 / 1;
+              background: #FAFAFA;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              box-shadow: 
+                  0 0 0 clamp(5px, 0.7vw, 8px) rgba(190, 190, 180, 0.5),
+                  0 0 0 clamp(7px, 1vw, 11px) rgba(200, 200, 190, 0.25);
+              flex-shrink: 0;
+              transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+              overflow: hidden;
+          }
+
+          .suppis-container .service-item:hover .service-circle {
+              transform: scale(1.1);
+              box-shadow: 
+                  0 0 0 clamp(6px, 0.9vw, 10px) rgba(77, 93, 74, 0.35),
+                  0 0 0 clamp(10px, 1.4vw, 15px) rgba(77, 93, 74, 0.18),
+                  0 8px 25px rgba(0,0,0,0.12);
+          }
+
+          .suppis-container .service-circle img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transition: all 0.35s ease;
+          }
+
+          .suppis-container .service-label {
+              font-family: 'DeMonte', Georgia, serif;
+              font-size: clamp(13px, 1.7vw, 19px);
+              font-weight: 400;
+              font-style: normal;
+              color: #3A4A3A;
+              line-height: 1.3;
+              transition: all 0.3s ease;
+          }
+
+          .suppis-container .item-marcenaria { top: 8%; left: 32%; flex-direction: row-reverse; }
+          .suppis-container .item-marcenaria .service-label { text-align: right; }
+          .suppis-container .item-iluminacao { top: 8%; right: 10%; }
+          .suppis-container .item-gesso { top: 32%; right: 2%; }
+          .suppis-container .item-marmoraria { bottom: 32%; right: 2%; }
+          .suppis-container .item-pisos { bottom: 8%; right: 18%; }
+          .suppis-container .item-metais { bottom: 8%; left: 28%; flex-direction: row-reverse; }
+          .suppis-container .item-metais .service-label { text-align: right; }
+          .suppis-container .item-cortinas { bottom: 32%; left: 2%; flex-direction: row-reverse; }
+          .suppis-container .item-cortinas .service-label { text-align: right; }
+          .suppis-container .item-eletrica { top: 32%; left: 2%; flex-direction: row-reverse; }
+          .suppis-container .item-eletrica .service-label { text-align: right; }
+
+          @media (max-width: 900px) {
+              .suppis-container { aspect-ratio: 1.2 / 1; }
+              .suppis-container .center-circle { width: 30%; }
+              .suppis-container .service-label { font-size: clamp(11px, 2vw, 16px); }
+          }
+
+          @media (max-width: 600px) {
+              .suppis-wrapper { padding: 15px 5px; }
+              .suppis-container { aspect-ratio: 1 / 1.1; }
+              .suppis-container .center-circle { width: 32%; }
+              .suppis-container .service-circle { width: clamp(50px, 14vw, 70px); }
+              .suppis-container .service-label { font-size: clamp(10px, 2.8vw, 14px); max-width: 70px; }
+              .suppis-container .service-item { gap: clamp(5px, 1.2vw, 10px); }
+              .suppis-container .item-marcenaria { top: 4%; left: 28%; }
+              .suppis-container .item-iluminacao { top: 4%; right: 5%; }
+              .suppis-container .item-gesso { top: 28%; right: 0%; }
+              .suppis-container .item-marmoraria { bottom: 28%; right: 0%; }
+              .suppis-container .item-pisos { bottom: 4%; right: 12%; }
+              .suppis-container .item-metais { bottom: 4%; left: 22%; }
+              .suppis-container .item-cortinas { bottom: 28%; left: 0%; }
+              .suppis-container .item-eletrica { top: 28%; left: 0%; }
+          }
+        ` }} />
+
+        <div className="suppis-wrapper">
+          <div className="suppis-container" id="suppis-container" ref={containerRef}>
+            <canvas id="linesCanvas" ref={canvasRef}></canvas>
+
+            <div className="center-circle" id="centerCircle">
+              <div className="center-content">
+                <div className="center-title">Suppis<br/>Integra</div>
+                <div className="center-subtitle">Método Exclusivo</div>
+              </div>
+            </div>
+
+            <div className="service-item item-marcenaria">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" onLoad={drawLines} /></div>
+              <span className="service-label">Marcenaria</span>
+            </div>
+            <div className="service-item item-iluminacao">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" onLoad={drawLines} /></div>
+              <span className="service-label">Iluminação</span>
+            </div>
+            <div className="service-item item-gesso">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" onLoad={drawLines} /></div>
+              <span className="service-label">Gesso</span>
+            </div>
+            <div className="service-item item-marmoraria">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" onLoad={drawLines} /></div>
+              <span className="service-label">Marmoraria</span>
+            </div>
+            <div className="service-item item-pisos">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" onLoad={drawLines} /></div>
+              <span className="service-label">Pisos e<br/>Revestimentos</span>
+            </div>
+            <div className="service-item item-metais">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" onLoad={drawLines} /></div>
+              <span className="service-label">Metais</span>
+            </div>
+            <div className="service-item item-cortinas">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" onLoad={drawLines} /></div>
+              <span className="service-label">Cortinas e<br/>Persianas</span>
+            </div>
+            <div className="service-item item-eletrica">
+              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" onLoad={drawLines} /></div>
+              <span className="service-label">Elétrica</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -148,7 +462,7 @@ export default function LandingPage() {
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center">
-            <div className="relative w-40 h-12">
+            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-48 h-12' : 'w-72 h-20'}`}>
               <Image 
                 src={LOGO_URL} 
                 alt="Suppis Logo" 
@@ -187,7 +501,7 @@ export default function LandingPage() {
           <button className="absolute top-6 right-6" onClick={() => setMobileMenuOpen(false)}>
             <X className="w-8 h-8 text-[#4A583E]" />
           </button>
-          <div className="w-48 h-16 relative mb-8">
+          <div className="w-64 h-20 relative mb-8">
             <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
           </div>
           {['Início', 'Suppis Integra', 'Serviços', 'Sobre Nós', 'Fale Conosco'].map((item) => (
@@ -328,6 +642,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* New Section: Integra Visual Diagram */}
+      <SuppisIntegraDiagram />
 
       {/* Section 2: Integra - Complex Curved Transitions */}
       <section id="suppis integra" className="relative py-32 bg-[#4A583E] text-white rounded-[100px] md:rounded-[250px] mx-4 md:mx-10 my-10 overflow-hidden shadow-2xl">
@@ -494,7 +811,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-16 mb-24">
             <div className="col-span-1 md:col-span-1">
-              <div className="relative w-40 h-12 mb-8">
+              <div className="relative w-64 h-20 mb-8">
                 <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain brightness-0 invert" />
               </div>
               <p className="text-zinc-400 text-xs leading-relaxed mb-10 font-light">
