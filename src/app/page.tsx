@@ -561,7 +561,7 @@ export default function LandingPage() {
                   Falar com um especialista
                   <ArrowRight className="ml-3 w-4 h-4" />
                 </Button>
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white hover:text-[#4A583E] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
+                <Button variant="outline" className="border-white/20 text-[#4A583E] hover:bg-transparent hover:opacity-60 px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
                   Conheça a Suppis
                 </Button>
               </div>
