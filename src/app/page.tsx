@@ -15,7 +15,11 @@ import {
   Home,
   Hammer,
   Layout as LayoutIcon,
-  DraftingCompass
+  DraftingCompass,
+  Lightbulb,
+  Pencil,
+  Settings,
+  Key
 } from 'lucide-react'
 
 // Constants
@@ -646,77 +650,69 @@ export default function LandingPage() {
       {/* New Section: Integra Visual Diagram */}
       <SuppisIntegraDiagram />
 
-      {/* Section 2: Integra - Complex Curved Transitions */}
-      <section id="suppis integra" className="relative py-32 bg-[#4A583E] text-white rounded-[100px] md:rounded-[250px] mx-4 md:mx-10 my-10 overflow-hidden shadow-2xl">
-        {/* Abstract Background Shapes */}
-        <DecorativeIcon 
-          className="w-[800px] -top-40 -right-40" 
-          rotation={180} 
-          opacity={0.08} 
-          y={yIntegraTop}
-        />
-        <DecorativeIcon 
-          className="w-[600px] -bottom-40 -left-20" 
-          rotation={0} 
-          opacity={0.08} 
-          y={yIntegraBottom}
-        />
-
-        {/* Floating Logo Watermark */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] opacity-[0.03] pointer-events-none">
-          <Image src={LOGO_URL} alt="Suppis Watermark" width={1000} height={400} className="w-full grayscale brightness-0 invert" />
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-24 max-w-3xl mx-auto">
-            <h2 className="text-5xl md:text-7xl font-medium mb-8 tracking-tighter">
-              Suppis Integra
+      {/* Section 2: Nosso Processo - Modern Card Grid */}
+      <section id="suppis integra" className="py-32 bg-[#faf9f6] relative overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-24 max-w-4xl mx-auto">
+            <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-6 block">Nosso Processo</span>
+            <h2 className="text-5xl md:text-7xl font-medium text-[#4A583E] tracking-tighter leading-[0.95] mb-10">
+              Como vamos fazer o seu projeto juntos
             </h2>
-            <div className="w-16 h-px bg-[#d4c3b0] mx-auto mb-8" />
-            <p className="text-zinc-300 text-xl font-light leading-relaxed">
-              Do planejamento estrutural à decoração final. Uma jornada contínua de cuidado, estética e entrega excepcional.
+            <p className="text-zinc-500 text-xl font-light leading-relaxed max-w-2xl mx-auto">
+              Aqui seu projeto sai do papel. Marcenaria sob medida e interiores completos com quem entende cada etapa.
             </p>
           </div>
 
-          <div className="grid gap-32 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {[
               {
-                title: "Concepção Estratégica",
-                desc: "Definimos cada detalhe e fluxo para garantir que o projeto seja tão funcional quanto deslumbrante.",
-                image: "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&q=80&w=800",
-                icon: <DraftingCompass className="w-5 h-5" />
+                title: "Planejamento",
+                desc: "Reunião inicial para entender suas necessidades, estilo e orçamento.",
+                icon: <Lightbulb className="w-8 h-8" />,
+                dark: true
               },
               {
-                title: "Execução de Marcenaria",
-                desc: "Sua visão materializada com precisão cirúrgica em nossa marcenaria própria de alto padrão.",
-                image: "https://images.unsplash.com/photo-1620626011761-9963d7521476?auto=format&fit=crop&q=80&w=1200",
-                icon: <LayoutIcon className="w-5 h-5" />,
-                reverse: true
+                title: "Desenvolvimento",
+                desc: "Criação do projeto de marcenaria personalizado e definição de acabamentos.",
+                icon: <Pencil className="w-8 h-8" />,
+                dark: false
+              },
+              {
+                title: "Execução",
+                desc: "Fabricação e instalação coordenada com gestão profissional de cronograma.",
+                icon: <Settings className="w-8 h-8" />,
+                dark: true
+              },
+              {
+                title: "Entrega",
+                desc: "Acompanhamento final, ajustes e entrega completa do ambiente pronto.",
+                icon: <Key className="w-8 h-8" />,
+                dark: false
               }
             ].map((item, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 100 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                className={`grid md:grid-cols-2 gap-16 items-center ${item.reverse ? 'md:flex-row-reverse' : ''}`}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
+                className={`p-12 rounded-[2.5rem] flex flex-col items-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+                  item.dark 
+                    ? 'bg-[#4A583E] text-white' 
+                    : 'bg-white text-[#4A583E] shadow-sm border border-black/[0.03]'
+                }`}
               >
-                <div className={`relative aspect-[3/2] md:aspect-square rounded-[3rem] overflow-hidden group ${item.reverse ? 'md:order-2' : ''}`}>
-                  <Image src={item.image} alt={item.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-110 grayscale-[0.2]" />
-                  <div className="absolute inset-0 bg-[#4A583E]/20 group-hover:bg-transparent transition-colors duration-500" />
+                <div className={`w-20 h-20 rounded-full flex items-center justify-center mb-10 ${
+                  item.dark ? 'bg-white/10' : 'bg-[#4A583E]/5'
+                }`}>
+                  {item.icon}
                 </div>
-                <div className={`${item.reverse ? 'md:order-1' : ''}`}>
-                  <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center mb-8">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-4xl font-medium mb-6 tracking-tighter">{item.title}</h3>
-                  <p className="text-zinc-300 text-lg font-light leading-relaxed mb-10">{item.desc}</p>
-                  <Button variant="link" className="text-[#d4c3b0] p-0 text-xs uppercase tracking-[0.3em] font-medium group">
-                    Descobrir
-                    <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-3" />
-                  </Button>
-                </div>
+                <h3 className="text-3xl font-medium mb-6 tracking-tight">{item.title}</h3>
+                <p className={`text-lg leading-relaxed font-light ${
+                  item.dark ? 'text-white/80' : 'text-zinc-500'
+                }`}>
+                  {item.desc}
+                </p>
               </motion.div>
             ))}
           </div>
