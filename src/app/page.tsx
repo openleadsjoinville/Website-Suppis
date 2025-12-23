@@ -22,10 +22,10 @@ import {
 const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/LOGO-SUPPIS-resized-1766456353173.webp?width=8000&height=8000&resize=contain"
 const GEOMETRIC_ICON_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Design-sem-nome-29-1766456393024.png?width=8000&height=8000&resize=contain"
 
-const DecorativeIcon = ({ className = "", rotation = 0, opacity = 0.4 }) => (
-  <div 
+const DecorativeIcon = ({ className = "", rotation = 0, opacity = 0.4, y = 0 }: { className?: string, rotation?: number, opacity?: number, y?: any }) => (
+  <motion.div 
     className={`absolute pointer-events-none ${className}`}
-    style={{ transform: `rotate(${rotation}deg)`, opacity }}
+    style={{ transform: `rotate(${rotation}deg)`, opacity, y }}
   >
     <Image 
       src={GEOMETRIC_ICON_URL}
@@ -34,7 +34,7 @@ const DecorativeIcon = ({ className = "", rotation = 0, opacity = 0.4 }) => (
       height={400}
       className="w-full h-auto"
     />
-  </div>
+  </motion.div>
 )
 
 const HeroVideo = () => {
@@ -44,27 +44,32 @@ const HeroVideo = () => {
     const video = videoRef.current
     if (!video) return
 
-    // Attempting reverse playback via seeking since negative playbackRate is poorly supported
-    let interval: any
+    let interval: NodeJS.Timeout | null = null
     
     const playBackwards = () => {
-      if (video.currentTime <= 0.1) {
+      if (video.paused) return
+      if (video.currentTime <= 0.05) {
         video.currentTime = video.duration
       } else {
-        video.currentTime -= 0.04 // Roughly 24fps
+        // Seeking backwards. 0.033 is ~30fps
+        video.currentTime -= 0.033
       }
     }
 
-    // Only apply if the user explicitly wants "backwards" and the video is loaded
-    video.onloadedmetadata = () => {
-      // interval = setInterval(playBackwards, 40)
+    const startReverse = () => {
+      if (interval) clearInterval(interval)
+      interval = setInterval(playBackwards, 33)
     }
 
-    // For now, let's just play it normally as background videos in reverse are very resource intensive
-    // and often don't work well with compression. 
-    // If the user has a specific reversed file, that would be better.
+    if (video.readyState >= 1) {
+      startReverse()
+    } else {
+      video.onloadedmetadata = startReverse
+    }
     
-    return () => clearInterval(interval)
+    return () => {
+      if (interval) clearInterval(interval)
+    }
   }, [])
 
   return (
@@ -84,17 +89,45 @@ const HeroVideo = () => {
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const { scrollYProgress } = useScroll()
   
   const yRange = useTransform(scrollYProgress, [0, 1], [0, 200])
+  const opacityRange = useTransform(scrollYProgress, [0, 0.2], [1, 0])
 
   useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000)
+    
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(timer)
+    }
   }, [])
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-[200] bg-[#faf9f6] flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative w-64 h-32"
+        >
+          <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
+          <motion.div 
+            className="absolute -bottom-4 left-0 right-0 h-[1px] bg-[#4A583E]/20"
+            initial={{ width: 0 }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
+          />
+        </motion.div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-[#faf9f6] text-zinc-900 selection:bg-[#4A583E] selection:text-white font-light overflow-x-hidden">
@@ -169,8 +202,18 @@ export default function LandingPage() {
         </div>
         
         {/* Decorative Icons on Hero */}
-        <DecorativeIcon className="w-[500px] -top-20 -left-20" rotation={135} opacity={0.15} />
-        <DecorativeIcon className="w-[400px] bottom-40 -right-20" rotation={-45} opacity={0.1} />
+        <DecorativeIcon 
+          className="w-[500px] -top-20 -left-20" 
+          rotation={135} 
+          opacity={0.15} 
+          y={useTransform(scrollYProgress, [0, 1], [0, 100])}
+        />
+        <DecorativeIcon 
+          className="w-[400px] bottom-40 -right-20" 
+          rotation={-45} 
+          opacity={0.1} 
+          y={useTransform(scrollYProgress, [0, 1], [0, -150])}
+        />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
@@ -222,13 +265,25 @@ export default function LandingPage() {
                   className="object-cover grayscale-[0.3]"
                 />
               </motion.div>
-              {/* Overlapping Curve Decoration */}
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#4A583E] rounded-full flex items-center justify-center overflow-hidden">
-                 <DecorativeIcon className="w-64" rotation={45} opacity={0.3} />
+                {/* Overlapping Curve Decoration */}
+                <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#4A583E] rounded-full flex items-center justify-center overflow-hidden">
+                   <DecorativeIcon 
+                     className="w-64" 
+                     rotation={45} 
+                     opacity={0.3} 
+                     y={useTransform(scrollYProgress, [0, 1], [0, -50])}
+                   />
+                </div>
               </div>
-            </div>
 
-            <div className="space-y-12">
+              <div className="space-y-12 relative">
+                {/* Extra floating icon for modern feel */}
+                <DecorativeIcon 
+                  className="w-32 -top-20 -right-10" 
+                  rotation={15} 
+                  opacity={0.1} 
+                  y={useTransform(scrollYProgress, [0, 1], [0, -80])}
+                />
               <div className="space-y-6">
                 <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs">Processo de Elite</span>
                 <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight">
@@ -266,10 +321,25 @@ export default function LandingPage() {
       </section>
 
       {/* Section 2: Integra - Complex Curved Transitions */}
-      <section className="relative py-32 bg-[#4A583E] text-white rounded-[100px] md:rounded-[250px] mx-4 md:mx-10 my-10 overflow-hidden shadow-2xl">
+      <section id="suppis integra" className="relative py-32 bg-[#4A583E] text-white rounded-[100px] md:rounded-[250px] mx-4 md:mx-10 my-10 overflow-hidden shadow-2xl">
         {/* Abstract Background Shapes */}
-        <DecorativeIcon className="w-[800px] -top-40 -right-40" rotation={180} opacity={0.08} />
-        <DecorativeIcon className="w-[600px] -bottom-40 -left-20" rotation={0} opacity={0.08} />
+        <DecorativeIcon 
+          className="w-[800px] -top-40 -right-40" 
+          rotation={180} 
+          opacity={0.08} 
+          y={useTransform(scrollYProgress, [0, 1], [0, 200])}
+        />
+        <DecorativeIcon 
+          className="w-[600px] -bottom-40 -left-20" 
+          rotation={0} 
+          opacity={0.08} 
+          y={useTransform(scrollYProgress, [0, 1], [0, -200])}
+        />
+
+        {/* Floating Logo Watermark */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] opacity-[0.03] pointer-events-none">
+          <Image src={LOGO_URL} alt="Suppis Watermark" width={1000} height={400} className="w-full grayscale brightness-0 invert" />
+        </div>
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-24 max-w-3xl mx-auto">
@@ -328,8 +398,15 @@ export default function LandingPage() {
       </section>
 
       {/* Section 3: Vantagens - Modern Card Grid */}
-      <section className="py-32 bg-[#faf9f6]">
-        <div className="container mx-auto px-6">
+      <section id="serviços" className="py-32 bg-[#faf9f6] relative overflow-hidden">
+        {/* Decorative elements for Section 3 */}
+        <DecorativeIcon 
+          className="w-96 -top-20 -right-20" 
+          rotation={45} 
+          opacity={0.03} 
+          y={useTransform(scrollYProgress, [0, 1], [0, 100])}
+        />
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-24">
             <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs mb-4 block">Diferenciais</span>
             <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter">
