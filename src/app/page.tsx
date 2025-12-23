@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
+import Lenis from 'lenis'
 import { 
   ArrowRight, 
   Instagram, 
@@ -135,7 +136,7 @@ const SuppisIntegraDiagram = () => {
   }, [drawLines])
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section id="suppis-integra" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl md:text-5xl font-medium text-[#4A583E] tracking-tighter text-center mb-16">
           Conheça o Suppis Integra, <br/> uma solução completa de ponta a ponta
@@ -396,6 +397,15 @@ export default function LandingPage() {
   const opacityRange = useTransform(scrollYProgress, [0, 0.2], [1, 0])
 
   useEffect(() => {
+    const lenis = new Lenis()
+    
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+    
+    requestAnimationFrame(raf)
+
     const timer = setTimeout(() => setIsLoading(false), 2000)
     
     const handleScroll = () => {
@@ -405,6 +415,7 @@ export default function LandingPage() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
       clearTimeout(timer)
+      lenis.destroy()
     }
   }, [])
 
@@ -450,15 +461,20 @@ export default function LandingPage() {
           </div>
 
           <div className="hidden md:flex items-center gap-10">
-            {['Início', 'Suppis Integra', 'Serviços', 'Sobre Nós'].map((item) => (
+            {[
+              { label: 'Início', href: '#home' },
+              { label: 'Suppis Integra', href: '#suppis-integra' },
+              { label: 'Serviços', href: '#servicos' },
+              { label: 'Nossos Diferenciais', href: '#diferenciais' }
+            ].map((item) => (
               <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
+                key={item.label} 
+                href={item.href} 
                 className={`text-[11px] uppercase tracking-[0.3em] font-medium transition-all hover:opacity-50 ${
                   isScrolled ? 'text-zinc-600' : 'text-zinc-100'
                 }`}
               >
-                {item}
+                {item.label}
               </a>
             ))}
             <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-8 h-10 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300">
@@ -481,21 +497,27 @@ export default function LandingPage() {
           <div className="w-64 h-16 relative mb-8">
             <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
           </div>
-          {['Início', 'Suppis Integra', 'Serviços', 'Sobre Nós', 'Fale Conosco'].map((item) => (
+          {([
+            { label: 'Início', href: '#home' },
+            { label: 'Suppis Integra', href: '#suppis-integra' },
+            { label: 'Serviços', href: '#servicos' },
+            { label: 'Nossos Diferenciais', href: '#diferenciais' },
+            { label: 'Fale Conosco', href: '#' }
+          ]).map((item) => (
             <a 
-              key={item} 
-              href="#" 
+              key={item.label} 
+              href={item.href} 
               onClick={() => setMobileMenuOpen(false)}
               className="text-2xl font-medium text-[#4A583E] tracking-tighter"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
       )}
 
       {/* Hero Section - Immersive with Curve Bottom */}
-      <section className="relative h-[100vh] flex items-center overflow-hidden">
+      <section id="home" className="relative h-[100vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0 bg-black">
           <HeroVideo />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
@@ -610,7 +632,7 @@ export default function LandingPage() {
       <SuppisIntegraDiagram />
 
       {/* Section 2: Nosso Processo - Modern Card Grid */}
-      <section id="suppis integra" className="py-32 bg-[#faf9f6] relative overflow-hidden">
+      <section id="servicos" className="py-32 bg-[#faf9f6] relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="text-center mb-24 max-w-4xl mx-auto">
             <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-6 block">Nosso Processo</span>
@@ -693,7 +715,7 @@ export default function LandingPage() {
       </section>
 
       {/* Section 3: Vantagens - Modern Card Grid */}
-      <section id="serviços" className="py-32 bg-[#eef1da] relative overflow-hidden">
+      <section id="diferenciais" className="py-32 bg-[#eef1da] relative overflow-hidden">
         {/* Decorative elements for Section 3 */}
         <DecorativeIcon 
           className="w-96 -top-20 -right-20" 
@@ -855,10 +877,10 @@ export default function LandingPage() {
             <div>
               <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Mapa do Site</h4>
               <ul className="space-y-4 text-sm font-medium text-white/80 uppercase tracking-widest">
-                <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Serviços</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Processos</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Atelier</a></li>
+                <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
+                <li><a href="#suppis-integra" className="hover:text-white transition-colors">Suppis Integra</a></li>
+                <li><a href="#servicos" className="hover:text-white transition-colors">Serviços</a></li>
+                <li><a href="#diferenciais" className="hover:text-white transition-colors">Nossos diferenciais</a></li>
               </ul>
             </div>
             
