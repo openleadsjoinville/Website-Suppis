@@ -92,6 +92,15 @@ export default function LandingPage() {
   const [isLoading, setIsLoading] = useState(true)
   const { scrollYProgress } = useScroll()
   
+  // Parallax transforms - MUST be defined at top level
+  const yHeroLeft = useTransform(scrollYProgress, [0, 1], [0, 100])
+  const yHeroRight = useTransform(scrollYProgress, [0, 1], [0, -150])
+  const yIntroCircle = useTransform(scrollYProgress, [0, 1], [0, -50])
+  const yIntroFloating = useTransform(scrollYProgress, [0, 1], [0, -80])
+  const yIntegraTop = useTransform(scrollYProgress, [0, 1], [0, 200])
+  const yIntegraBottom = useTransform(scrollYProgress, [0, 1], [0, -200])
+  const yVantagens = useTransform(scrollYProgress, [0, 1], [0, 100])
+  
   const yRange = useTransform(scrollYProgress, [0, 1], [0, 200])
   const opacityRange = useTransform(scrollYProgress, [0, 0.2], [1, 0])
 
@@ -206,13 +215,13 @@ export default function LandingPage() {
           className="w-[500px] -top-20 -left-20" 
           rotation={135} 
           opacity={0.15} 
-          y={useTransform(scrollYProgress, [0, 1], [0, 100])}
+          y={yHeroLeft}
         />
         <DecorativeIcon 
           className="w-[400px] bottom-40 -right-20" 
           rotation={-45} 
           opacity={0.1} 
-          y={useTransform(scrollYProgress, [0, 1], [0, -150])}
+          y={yHeroRight}
         />
 
         <div className="container mx-auto px-6 relative z-10">
@@ -271,7 +280,7 @@ export default function LandingPage() {
                      className="w-64" 
                      rotation={45} 
                      opacity={0.3} 
-                     y={useTransform(scrollYProgress, [0, 1], [0, -50])}
+                     y={yIntroCircle}
                    />
                 </div>
               </div>
@@ -282,7 +291,7 @@ export default function LandingPage() {
                   className="w-32 -top-20 -right-10" 
                   rotation={15} 
                   opacity={0.1} 
-                  y={useTransform(scrollYProgress, [0, 1], [0, -80])}
+                  y={yIntroFloating}
                 />
               <div className="space-y-6">
                 <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs">Processo de Elite</span>
@@ -327,13 +336,13 @@ export default function LandingPage() {
           className="w-[800px] -top-40 -right-40" 
           rotation={180} 
           opacity={0.08} 
-          y={useTransform(scrollYProgress, [0, 1], [0, 200])}
+          y={yIntegraTop}
         />
         <DecorativeIcon 
           className="w-[600px] -bottom-40 -left-20" 
           rotation={0} 
           opacity={0.08} 
-          y={useTransform(scrollYProgress, [0, 1], [0, -200])}
+          y={yIntegraBottom}
         />
 
         {/* Floating Logo Watermark */}
@@ -404,7 +413,7 @@ export default function LandingPage() {
           className="w-96 -top-20 -right-20" 
           rotation={45} 
           opacity={0.03} 
-          y={useTransform(scrollYProgress, [0, 1], [0, 100])}
+          y={yVantagens}
         />
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-24">
