@@ -51,43 +51,8 @@ const DecorativeIcon = ({
 )
 
 const HeroVideo = () => {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    let interval: NodeJS.Timeout | null = null
-    
-    const playBackwards = () => {
-      if (video.paused) return
-      if (video.currentTime <= 0.05) {
-        video.currentTime = video.duration
-      } else {
-        // Seeking backwards. 0.033 is ~30fps
-        video.currentTime -= 0.033
-      }
-    }
-
-    const startReverse = () => {
-      if (interval) clearInterval(interval)
-      interval = setInterval(playBackwards, 33)
-    }
-
-    if (video.readyState >= 1) {
-      startReverse()
-    } else {
-      video.onloadedmetadata = startReverse
-    }
-    
-    return () => {
-      if (interval) clearInterval(interval)
-    }
-  }, [])
-
   return (
     <video
-      ref={videoRef}
       autoPlay
       loop
       muted
@@ -538,7 +503,7 @@ export default function LandingPage() {
         
         {/* Decorative Icons on Hero */}
         <DecorativeIcon 
-          className="w-[500px] top-40 -left-20" 
+          className="w-[500px] top-10 -left-20" 
           rotation={135} 
           opacity={0.15} 
           y={yHeroLeft}
