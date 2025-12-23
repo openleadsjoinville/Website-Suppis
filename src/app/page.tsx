@@ -774,6 +774,9 @@ export default function LandingPage() {
 
       {/* Testimonials - Refined Light Section with Contrast */}
       <section className="relative pt-40 pb-72 bg-transparent z-30">
+        {/* Background preenchimento verde para sobreposição */}
+        <div className="absolute inset-x-0 bottom-0 h-[400px] bg-[#4A583E] pointer-events-none" />
+        
         <div className="absolute inset-x-0 top-0 bottom-32 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-2xl" />
         
         <div className="container mx-auto px-6 relative z-10">
