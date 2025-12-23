@@ -466,7 +466,7 @@ export default function LandingPage() {
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center">
-            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-48 h-12' : 'w-72 h-20'}`}>
+            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-64 h-14' : 'w-80 h-24'}`}>
               <Image 
                 src={LOGO_URL} 
                 alt="Suppis Logo" 
@@ -505,7 +505,7 @@ export default function LandingPage() {
           <button className="absolute top-6 right-6" onClick={() => setMobileMenuOpen(false)}>
             <X className="w-8 h-8 text-[#4A583E]" />
           </button>
-          <div className="w-64 h-20 relative mb-8">
+          <div className="w-80 h-24 relative mb-8">
             <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
           </div>
           {['Início', 'Suppis Integra', 'Serviços', 'Sobre Nós', 'Fale Conosco'].map((item) => (
@@ -772,31 +772,62 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Testimonials - Immersive Dark Transition */}
-      <section className="relative py-40 overflow-hidden">
-        <div className="absolute inset-0 bg-[#4A583E] rounded-t-[100px] md:rounded-t-[250px]" />
+      {/* Testimonials - Refined Light Section with Contrast */}
+      <section className="relative py-40 overflow-hidden bg-[#faf9f6]">
+        <div className="absolute inset-0 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[250px] shadow-sm" />
         
-        {/* Curved Overlay for smooth blending */}
-        <div className="absolute top-0 left-0 right-0 h-40 bg-[#faf9f6] z-0" />
-
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
-            <div className="relative w-24 h-24 mx-auto mb-12 opacity-50">
-               <Image src={GEOMETRIC_ICON_URL} alt="Suppis Icon" fill className="object-contain" />
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-20">
+              <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-6 block">Depoimentos</span>
+              <h2 className="text-4xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight mb-10">
+                O que dizem sobre <br/> a experiência Suppis
+              </h2>
             </div>
-            <h2 className="text-4xl md:text-5xl font-light text-white italic leading-tight mb-16 tracking-tight">
-              &ldquo;A Suppis não apenas entregou um projeto, eles personificaram meu estilo de vida em cada centímetro da minha casa. A precisão da marcenaria é algo que nunca vi antes.&rdquo;
-            </h2>
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-white/10 p-1 backdrop-blur-md">
-                <div className="w-full h-full rounded-full overflow-hidden relative grayscale">
-                  <Image src="https://i.pravatar.cc/150?u=1" alt="Avatar" fill className="object-cover" />
-                </div>
-              </div>
-              <div>
-                <p className="text-white font-medium text-lg tracking-wide uppercase">Carlos Eduardo Matos</p>
-                <p className="text-[#d4c3b0] text-[10px] uppercase tracking-[0.2em] mt-1">Médico & Cliente Suppis</p>
-              </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  text: "A Suppis transformou meu apartamento em um refúgio de paz. O acabamento da marcenaria é algo que nunca vi antes em anos de mercado.",
+                  author: "Mariana Silveira",
+                  role: "Arquiteta & Cliente",
+                  img: "https://i.pravatar.cc/150?u=mariana"
+                },
+                {
+                  text: "Gestão completa que me permitiu focar no meu trabalho enquanto meu novo escritório era montado. Entrega impecável e dentro do prazo.",
+                  author: "Ricardo Fonseca",
+                  role: "Empresário",
+                  img: "https://i.pravatar.cc/150?u=ricardo"
+                },
+                {
+                  text: "O método Suppis Integra eliminou todas as minhas dores de cabeça com a obra. Ter tudo centralizado é o verdadeiro luxo moderno.",
+                  author: "Ana Paula Costa",
+                  role: "Cliente Residencial",
+                  img: "https://i.pravatar.cc/150?u=ana"
+                }
+              ].map((testimonial, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: i * 0.2 }}
+                  className="bg-white p-10 rounded-[3rem] shadow-sm border border-black/[0.02] flex flex-col justify-between"
+                >
+                  <p className="text-[#4A583E] text-lg font-light italic leading-relaxed mb-8">
+                    &ldquo;{testimonial.text}&rdquo;
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-full overflow-hidden grayscale">
+                      <Image src={testimonial.img} alt={testimonial.author} width={56} height={56} className="object-cover" />
+                    </div>
+                    <div>
+                      <p className="text-[#4A583E] font-medium text-sm uppercase tracking-wide">{testimonial.author}</p>
+                      <p className="text-zinc-400 text-[9px] uppercase tracking-[0.2em] mt-1">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
@@ -807,7 +838,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-16 mb-24">
             <div className="col-span-1 md:col-span-1">
-              <div className="relative w-64 h-20 mb-8">
+              <div className="relative w-80 h-24 mb-8">
                 <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain brightness-0 invert" />
               </div>
               <p className="text-zinc-400 text-xs leading-relaxed mb-10 font-light">
