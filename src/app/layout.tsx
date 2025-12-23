@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Suppis Soluções de Interiores - O seu imóvel nas mãos certas",
   description: "Especialistas em projeto de interiores e marcenaria com execução integrada.",
-  icons: {
-    icon: "https://suppis2.openleads.com.br/wp-content/uploads/2025/12/ico-suppis.svg",
-  },
+    icons: {
+      icon: "/favicon.svg",
+    },
 };
 
 export default function RootLayout({
