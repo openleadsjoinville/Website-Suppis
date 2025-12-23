@@ -378,7 +378,7 @@ const SuppisIntegraDiagram = () => {
               .suppis-container .item-pisos { bottom: 1%; left: 50%; transform: translateX(-50%); flex-direction: column; }
               .suppis-container .item-metais { bottom: 25%; left: -2%; flex-direction: column; }
               .suppis-container .item-cortinas { top: 22%; left: -2%; flex-direction: column; }
-              .suppis-container .item-eletrica { top: 12%; left: 50%; transform: translateX(-50%); flex-direction: column; }
+              .suppis-container .item-eletrica { top: 1%; left: 50%; transform: translateX(-50%); flex-direction: column; }
           }
         ` }} />
 
