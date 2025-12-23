@@ -1,13 +1,11 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { 
   ArrowRight, 
-  CheckCircle2, 
-  ChevronDown, 
   Instagram, 
   Linkedin, 
   Menu, 
@@ -20,24 +18,68 @@ import {
   DraftingCompass
 } from 'lucide-react'
 
-// Constants - Matching the reference image and updated globals
-const PRIMARY_GREEN = "#4A583E" // Sophisticated Green from image
-const SECONDARY_GOLD = "#d4c3b0" // Delicate gold/sand
+// Constants
+const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/LOGO-SUPPIS-resized-1766456353173.webp?width=8000&height=8000&resize=contain"
+const GEOMETRIC_ICON_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Design-sem-nome-29-1766456393024.png?width=8000&height=8000&resize=contain"
 
-const DecorativeSemicircle = ({ className = "", rotation = 0, opacity = 0.2 }) => (
-  <svg 
-    viewBox="0 0 200 100" 
+const DecorativeIcon = ({ className = "", rotation = 0, opacity = 0.4 }) => (
+  <div 
     className={`absolute pointer-events-none ${className}`}
     style={{ transform: `rotate(${rotation}deg)`, opacity }}
   >
-    <path 
-      d="M 200 100 A 100 100 0 0 0 0 100 L 200 100 Z" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="1"
+    <Image 
+      src={GEOMETRIC_ICON_URL}
+      alt="Decorative element"
+      width={400}
+      height={400}
+      className="w-full h-auto"
     />
-  </svg>
+  </div>
 )
+
+const HeroVideo = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // Attempting reverse playback via seeking since negative playbackRate is poorly supported
+    let interval: any
+    
+    const playBackwards = () => {
+      if (video.currentTime <= 0.1) {
+        video.currentTime = video.duration
+      } else {
+        video.currentTime -= 0.04 // Roughly 24fps
+      }
+    }
+
+    // Only apply if the user explicitly wants "backwards" and the video is loaded
+    video.onloadedmetadata = () => {
+      // interval = setInterval(playBackwards, 40)
+    }
+
+    // For now, let's just play it normally as background videos in reverse are very resource intensive
+    // and often don't work well with compression. 
+    // If the user has a specific reversed file, that would be better.
+    
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <video
+      ref={videoRef}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] opacity-60"
+    >
+      <source src="/hero-video.mp4" type="video/mp4" />
+    </video>
+  )
+}
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -63,9 +105,14 @@ export default function LandingPage() {
         }`}
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className={`text-2xl font-medium tracking-tighter ${isScrolled ? 'text-[#4A583E]' : 'text-white'}`}>
-              Suppis<span className="text-secondary">.</span>
+          <div className="flex items-center">
+            <div className="relative w-40 h-12">
+              <Image 
+                src={LOGO_URL} 
+                alt="Suppis Logo" 
+                fill 
+                className={`object-contain transition-all duration-500 ${isScrolled ? '' : 'brightness-0 invert'}`}
+              />
             </div>
           </div>
 
@@ -74,14 +121,14 @@ export default function LandingPage() {
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
-                className={`text-[13px] uppercase tracking-widest font-medium transition-all hover:opacity-50 ${
+                className={`text-[11px] uppercase tracking-[0.3em] font-medium transition-all hover:opacity-50 ${
                   isScrolled ? 'text-zinc-600' : 'text-zinc-100'
                 }`}
               >
                 {item}
               </a>
             ))}
-            <Button size="sm" className="bg-[#4A583E] hover:bg-[#4A583E]/90 text-white rounded-full px-8 h-10 text-xs uppercase tracking-widest">
+            <Button size="sm" className="bg-[#4A583E] hover:bg-[#4A583E]/90 text-white rounded-full px-8 h-10 text-[10px] uppercase tracking-[0.2em]">
               Fale Conosco
             </Button>
           </div>
@@ -98,12 +145,15 @@ export default function LandingPage() {
           <button className="absolute top-6 right-6" onClick={() => setMobileMenuOpen(false)}>
             <X className="w-8 h-8 text-[#4A583E]" />
           </button>
+          <div className="w-48 h-16 relative mb-8">
+            <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
+          </div>
           {['Início', 'Suppis Integra', 'Serviços', 'Sobre Nós', 'Fale Conosco'].map((item) => (
             <a 
               key={item} 
               href="#" 
               onClick={() => setMobileMenuOpen(false)}
-              className="text-3xl font-medium text-[#4A583E] tracking-tighter"
+              className="text-2xl font-medium text-[#4A583E] tracking-tighter"
             >
               {item}
             </a>
@@ -113,20 +163,14 @@ export default function LandingPage() {
 
       {/* Hero Section - Immersive with Curve Bottom */}
       <section className="relative h-[100vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0 scale-105">
-          <Image
-            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=2000"
-            alt="Suppis Interior Design"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/40 backdrop-grayscale-[0.2]" />
+        <div className="absolute inset-0 z-0 bg-black">
+          <HeroVideo />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
         </div>
         
-        {/* Decorative Semicircles on Hero */}
-        <DecorativeSemicircle className="w-[400px] -top-20 -left-20 text-white" rotation={135} opacity={0.3} />
-        <DecorativeSemicircle className="w-[300px] bottom-40 -right-20 text-white" rotation={-45} opacity={0.2} />
+        {/* Decorative Icons on Hero */}
+        <DecorativeIcon className="w-[500px] -top-20 -left-20" rotation={135} opacity={0.15} />
+        <DecorativeIcon className="w-[400px] bottom-40 -right-20" rotation={-45} opacity={0.1} />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
@@ -143,11 +187,11 @@ export default function LandingPage() {
                 Sofisticação e gestão inteligente para seu lar.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
-                <Button className="bg-[#4A583E] hover:bg-[#4A583E]/90 text-white px-10 py-8 rounded-full text-sm uppercase tracking-widest shadow-2xl transition-transform hover:scale-105">
+                <Button className="bg-[#4A583E] hover:bg-[#4A583E]/90 text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] shadow-2xl transition-transform hover:scale-105">
                   Falar com um especialista
                   <ArrowRight className="ml-3 w-4 h-4" />
                 </Button>
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/5 px-10 py-8 rounded-full text-sm uppercase tracking-widest backdrop-blur-xl">
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white/5 px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] backdrop-blur-xl">
                   Conheça a Suppis
                 </Button>
               </div>
@@ -179,8 +223,8 @@ export default function LandingPage() {
                 />
               </motion.div>
               {/* Overlapping Curve Decoration */}
-              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#4A583E] rounded-full flex items-center justify-center text-white/20">
-                 <DecorativeSemicircle className="w-40 text-white" rotation={45} opacity={0.5} />
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#4A583E] rounded-full flex items-center justify-center overflow-hidden">
+                 <DecorativeIcon className="w-64" rotation={45} opacity={0.3} />
               </div>
             </div>
 
@@ -224,8 +268,8 @@ export default function LandingPage() {
       {/* Section 2: Integra - Complex Curved Transitions */}
       <section className="relative py-32 bg-[#4A583E] text-white rounded-[100px] md:rounded-[250px] mx-4 md:mx-10 my-10 overflow-hidden shadow-2xl">
         {/* Abstract Background Shapes */}
-        <DecorativeSemicircle className="w-[600px] -top-10 -right-40 text-white" rotation={180} opacity={0.05} />
-        <DecorativeSemicircle className="w-[500px] -bottom-20 -left-20 text-white" rotation={0} opacity={0.05} />
+        <DecorativeIcon className="w-[800px] -top-40 -right-40" rotation={180} opacity={0.08} />
+        <DecorativeIcon className="w-[600px] -bottom-40 -left-20" rotation={0} opacity={0.08} />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-24 max-w-3xl mx-auto">
@@ -272,7 +316,7 @@ export default function LandingPage() {
                   </div>
                   <h3 className="text-4xl font-medium mb-6 tracking-tighter">{item.title}</h3>
                   <p className="text-zinc-300 text-lg font-light leading-relaxed mb-10">{item.desc}</p>
-                  <Button variant="link" className="text-[#d4c3b0] p-0 text-sm uppercase tracking-[0.3em] font-medium group">
+                  <Button variant="link" className="text-[#d4c3b0] p-0 text-xs uppercase tracking-[0.3em] font-medium group">
                     Descobrir
                     <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-3" />
                   </Button>
@@ -338,7 +382,9 @@ export default function LandingPage() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <DecorativeSemicircle className="w-[200px] mx-auto mb-12 text-[#d4c3b0]" rotation={0} opacity={0.6} />
+            <div className="relative w-24 h-24 mx-auto mb-12 opacity-50">
+               <Image src={GEOMETRIC_ICON_URL} alt="Suppis Icon" fill className="object-contain" />
+            </div>
             <h2 className="text-4xl md:text-5xl font-light text-white italic leading-tight mb-16 tracking-tight">
               &ldquo;A Suppis não apenas entregou um projeto, eles personificaram meu estilo de vida em cada centímetro da minha casa. A precisão da marcenaria é algo que nunca vi antes.&rdquo;
             </h2>
@@ -350,7 +396,7 @@ export default function LandingPage() {
               </div>
               <div>
                 <p className="text-white font-medium text-lg tracking-wide uppercase">Carlos Eduardo Matos</p>
-                <p className="text-[#d4c3b0] text-xs uppercase tracking-[0.2em] mt-1">Médico & Cliente Suppis</p>
+                <p className="text-[#d4c3b0] text-[10px] uppercase tracking-[0.2em] mt-1">Médico & Cliente Suppis</p>
               </div>
             </div>
           </div>
@@ -362,10 +408,10 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-16 mb-24">
             <div className="col-span-1 md:col-span-1">
-              <div className="text-3xl font-medium tracking-tighter mb-8">
-                Suppis<span className="text-[#d4c3b0]">.</span>
+              <div className="relative w-40 h-12 mb-8">
+                <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain brightness-0 invert" />
               </div>
-              <p className="text-zinc-400 text-sm leading-relaxed mb-10 font-light">
+              <p className="text-zinc-400 text-xs leading-relaxed mb-10 font-light">
                 Redefinindo o luxo através do design consciente e execução impecável. Sua visão, nossa maestria.
               </p>
               <div className="flex gap-6">
@@ -376,16 +422,16 @@ export default function LandingPage() {
             
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#d4c3b0] mb-10">Navegação</h4>
-              <ul className="space-y-4 text-sm font-light text-zinc-400">
-                <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
+              <ul className="space-y-4 text-[11px] font-light text-zinc-400 uppercase tracking-widest">
                 <li><a href="#" className="hover:text-white transition-colors">Projetos</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Processos</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Atelier</a></li>
               </ul>
             </div>
             
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#d4c3b0] mb-10">Conectar</h4>
-              <ul className="space-y-4 text-sm font-light text-zinc-400">
+              <ul className="space-y-4 text-[11px] font-light text-zinc-400 uppercase tracking-widest">
                 <li className="flex items-center gap-3"><MessageCircle size={14} /> +55 47 99924-7199</li>
                 <li>contato@suppis.com.br</li>
               </ul>
@@ -393,14 +439,14 @@ export default function LandingPage() {
             
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#d4c3b0] mb-10">Atelier</h4>
-              <p className="text-sm font-light text-zinc-400 leading-relaxed">
+              <p className="text-[11px] font-light text-zinc-400 leading-relaxed uppercase tracking-widest">
                 Rua Doutor Marinho Lobo, Sala 23<br/>
                 Joinville, Santa Catarina, BR
               </p>
             </div>
           </div>
           
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.2em] text-white/20">
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.3em] text-white/20">
             <p>© 2025 Suppis Soluções. Crafted for excellence.</p>
             <div className="flex gap-8">
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
