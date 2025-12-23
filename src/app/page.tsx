@@ -773,8 +773,8 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials - Refined Light Section with Contrast */}
-      <section className="relative py-40 overflow-hidden bg-[#faf9f6]">
-        <div className="absolute inset-0 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[250px] shadow-sm" />
+      <section className="relative py-40 overflow-hidden bg-[#faf9f6] z-30">
+        <div className="absolute inset-0 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-sm" />
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
@@ -833,54 +833,75 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer - Minimal & Modern */}
-      <footer className="bg-[#4A583E] text-white pt-20 pb-12">
+      {/* Footer - XYZ Inspired Layout */}
+      <footer className="bg-[#4A583E] text-white pt-40 pb-12 -mt-32 relative z-20">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-4 gap-16 mb-24">
-            <div className="col-span-1 md:col-span-1">
-              <div className="relative w-64 h-16 mb-8">
-                <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain object-left brightness-0 invert" />
-              </div>
-              <p className="text-zinc-400 text-xs leading-relaxed mb-10 font-light">
-                Redefinindo o luxo através do design consciente e execução impecável. Sua visão, nossa maestria.
-              </p>
-              <div className="flex gap-6">
-                <a href="#" className="opacity-40 hover:opacity-100 transition-opacity"><Instagram className="w-5 h-5" /></a>
-                <a href="#" className="opacity-40 hover:opacity-100 transition-opacity"><Linkedin className="w-5 h-5" /></a>
-              </div>
+          {/* Top Row: Logo & Socials */}
+          <div className="flex flex-col md:flex-row md:items-center gap-10 mb-20">
+            <div className="relative w-72 h-20">
+              <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain object-left brightness-0 invert" />
             </div>
             
+            <div className="flex gap-4">
+              {[
+                { icon: <Instagram className="w-5 h-5" />, href: "#" },
+                { icon: <Linkedin className="w-5 h-5" />, href: "#" },
+                { icon: <MessageCircle className="w-5 h-5" />, href: "#" }
+              ].map((social, i) => (
+                <a 
+                  key={i} 
+                  href={social.href} 
+                  className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all border border-white/5"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Grid: Info Columns */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-24">
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#d4c3b0] mb-10">Navegação</h4>
-              <ul className="space-y-4 text-[11px] font-light text-zinc-400 uppercase tracking-widest">
-                <li><a href="#" className="hover:text-white transition-colors">Projetos</a></li>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Mapa do Site</h4>
+              <ul className="space-y-4 text-[11px] font-medium text-white/80 uppercase tracking-widest">
+                <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Serviços</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Processos</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Atelier</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#d4c3b0] mb-10">Conectar</h4>
-              <ul className="space-y-4 text-[11px] font-light text-zinc-400 uppercase tracking-widest">
-                <li className="flex items-center gap-3"><MessageCircle size={14} /> +55 47 99924-7199</li>
-                <li>contato@suppis.com.br</li>
-              </ul>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Funcionamento</h4>
+              <p className="text-[11px] font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+                Segunda à Sexta<br/>
+                08h às 18h30
+              </p>
             </div>
             
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#d4c3b0] mb-10">Atelier</h4>
-              <p className="text-[11px] font-light text-zinc-400 leading-relaxed uppercase tracking-widest">
-                Rua Doutor Marinho Lobo, Sala 23<br/>
-                Joinville, Santa Catarina, BR
+              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Endereço</h4>
+              <p className="text-[11px] font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+                Rua Doutor Marinho Lobo, 23<br/>
+                Centro, Joinville - SC<br/>
+                CEP: 89201-020
               </p>
+            </div>
+            
+            <div>
+              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Contato</h4>
+              <ul className="space-y-3 text-[11px] font-medium text-white/80 uppercase tracking-widest">
+                <li>+55 47 99924-7199</li>
+                <li>contato@suppis.com.br</li>
+              </ul>
             </div>
           </div>
           
           <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.3em] text-white/20">
             <p>© 2025 Suppis Soluções. Crafted for excellence.</p>
             <div className="flex gap-8">
-              <a href="#" className="hover:text-white transition-colors">Privacy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms</a>
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
             </div>
           </div>
         </div>
