@@ -488,7 +488,7 @@ export default function LandingPage() {
                 {item}
               </a>
             ))}
-            <Button size="sm" className="bg-[#4A583E] hover:bg-[#4A583E]/90 text-white rounded-full px-8 h-10 text-[10px] uppercase tracking-[0.2em]">
+            <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-8 h-10 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300">
               Fale Conosco
             </Button>
           </div>
@@ -557,11 +557,11 @@ export default function LandingPage() {
                 Sofisticação e gestão inteligente para seu lar.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
-                <Button className="bg-[#4A583E] hover:bg-[#4A583E]/90 text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] shadow-2xl transition-transform hover:scale-105">
+                <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
                   Falar com um especialista
                   <ArrowRight className="ml-3 w-4 h-4" />
                 </Button>
-                <Button variant="outline" className="border-white/20 text-white hover:bg-white/5 px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] backdrop-blur-xl">
+                <Button variant="outline" className="border-white/20 text-white hover:bg-white hover:text-[#4A583E] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
                   Conheça a Suppis
                 </Button>
               </div>
