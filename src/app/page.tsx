@@ -115,80 +115,103 @@ const HeroVideo = () => {
 }
 
 const SuppisIntegraDiagram = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-
-  const drawLines = useCallback(() => {
-    const container = containerRef.current
-    const canvas = canvasRef.current
-    if (!container || !canvas) return
-
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    const centerCircle = container.querySelector('#centerCircle') as HTMLElement
-    const items = container.querySelectorAll('.service-circle') as NodeListOf<HTMLElement>
-    if (!centerCircle || items.length === 0) return
-
-    const dpr = window.devicePixelRatio || 1
-    const rect = container.getBoundingClientRect()
-    
-    canvas.width = rect.width * dpr
-    canvas.height = rect.height * dpr
-    canvas.style.width = rect.width + 'px'
-    canvas.style.height = rect.height + 'px'
-    ctx.scale(dpr, dpr)
-
-    ctx.clearRect(0, 0, rect.width, rect.height)
-
-    ctx.strokeStyle = 'rgba(165, 165, 155, 0.6)'
-    ctx.lineWidth = 1.2
-
-    const centerRect = centerCircle.getBoundingClientRect()
-    const centerX = centerRect.left - rect.left + centerRect.width / 2
-    const centerY = centerRect.top - rect.top + centerRect.height / 2
-    const centerRadius = centerRect.width / 2
-
-    items.forEach(item => {
-      const itemRect = item.getBoundingClientRect()
-      
-      const itemX = itemRect.left - rect.left + itemRect.width / 2
-      const itemY = itemRect.top - rect.top + itemRect.height / 2
-      const itemRadius = itemRect.width / 2
-
-      const angle = Math.atan2(itemY - centerY, itemX - centerX)
-
-      const startX = centerX + Math.cos(angle) * centerRadius
-      const startY = centerY + Math.sin(angle) * centerRadius
-
-      const endX = itemX - Math.cos(angle) * itemRadius
-      const endY = itemY - Math.sin(angle) * itemRadius
-
-      ctx.beginPath()
-      ctx.moveTo(startX, startY)
-      ctx.lineTo(endX, endY)
-      ctx.stroke()
-    })
-  }, [])
-
   useEffect(() => {
-    const handleResize = () => {
-      setTimeout(drawLines, 50)
-    }
+    function drawLines() {
+      const container = document.getElementById('suppis-container');
+      const canvas = document.getElementById('linesCanvas') as HTMLCanvasElement;
+      if (!container || !canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+      const centerCircle = document.getElementById('centerCircle');
+      const items = container.querySelectorAll('.service-circle');
+      if (!centerCircle || items.length === 0) return;
 
-    window.addEventListener('resize', handleResize)
-    
-    // Initial draw
-    setTimeout(drawLines, 500)
+      const dpr = window.devicePixelRatio || 1;
+      const rect = container.getBoundingClientRect();
+      
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      ctx.scale(dpr, dpr);
 
-    if (document.fonts) {
-      document.fonts.ready.then(() => {
-          setTimeout(drawLines, 100);
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      ctx.strokeStyle = 'rgba(165, 165, 155, 0.6)';
+      ctx.lineWidth = 1.2;
+
+      const centerRect = centerCircle.getBoundingClientRect();
+      const centerX = centerRect.left - rect.left + centerRect.width / 2;
+      const centerY = centerRect.top - rect.top + centerRect.height / 2;
+      const centerRadius = centerRect.width / 2;
+
+      items.forEach(item => {
+        const itemRect = item.getBoundingClientRect();
+        
+        const itemX = itemRect.left - rect.left + itemRect.width / 2;
+        const itemY = itemRect.top - rect.top + itemRect.height / 2;
+        const itemRadius = itemRect.width / 2;
+
+        const angle = Math.atan2(itemY - centerY, itemX - centerX);
+
+        const startX = centerX + Math.cos(angle) * centerRadius;
+        const startY = centerY + Math.sin(angle) * centerRadius;
+
+        const endX = itemX - Math.cos(angle) * itemRadius;
+        const endY = itemY - Math.sin(angle) * itemRadius;
+
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
       });
     }
 
-    return () => window.removeEventListener('resize', handleResize)
-  }, [drawLines])
+    function waitForImages() {
+      const images = document.querySelectorAll('.suppis-container .service-circle img');
+      let loadedCount = 0;
+      
+      images.forEach(img => {
+        const image = img as HTMLImageElement;
+        if (image.complete) {
+          loadedCount++;
+        } else {
+          image.addEventListener('load', () => {
+            loadedCount++;
+            if (loadedCount === images.length) {
+              setTimeout(drawLines, 50);
+            }
+          });
+        }
+      });
+      
+      if (loadedCount === images.length) {
+        setTimeout(drawLines, 100);
+      }
+    }
+
+    // Run initial logic
+    waitForImages();
+    setTimeout(drawLines, 200);
+
+    let resizeTimeout: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(drawLines, 50);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        setTimeout(drawLines, 100);
+      });
+    }
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <section id="suppis-integra" className="py-20 bg-white overflow-hidden">
@@ -452,142 +475,79 @@ const SuppisIntegraDiagram = () => {
         ` }} />
 
         <div className="suppis-wrapper">
-          <div className="suppis-container" id="suppis-container" ref={containerRef}>
-            <canvas id="linesCanvas" ref={canvasRef}></canvas>
+          <div className="suppis-container" id="suppis-container">
+            <canvas id="linesCanvas"></canvas>
 
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={scaleIn}
-              className="center-circle" 
-              id="centerCircle"
-            >
+            <div className="center-circle" id="centerCircle">
               <div className="center-content">
                 <div className="center-title">Suppis<br/>Integra</div>
                 <div className="center-subtitle">Método Exclusivo</div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Marcenaria */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={0}
-              className="service-item item-marcenaria"
-            >
+            <div className="service-item item-marcenaria">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" />
               </div>
               <span className="service-label">Marcenaria</span>
-            </motion.div>
+            </div>
 
             {/* Iluminação */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={1}
-              className="service-item item-iluminacao"
-            >
+            <div className="service-item item-iluminacao">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" />
               </div>
               <span className="service-label">Iluminação</span>
-            </motion.div>
+            </div>
 
             {/* Gesso */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={2}
-              className="service-item item-gesso"
-            >
+            <div className="service-item item-gesso">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" />
               </div>
               <span className="service-label">Gesso</span>
-            </motion.div>
+            </div>
 
             {/* Marmoraria */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={3}
-              className="service-item item-marmoraria"
-            >
+            <div className="service-item item-marmoraria">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" />
               </div>
               <span className="service-label">Marmoraria</span>
-            </motion.div>
+            </div>
 
             {/* Pisos e Revestimentos */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={4}
-              className="service-item item-pisos"
-            >
+            <div className="service-item item-pisos">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" />
               </div>
               <span className="service-label">Pisos e<br/>Revestimentos</span>
-            </motion.div>
+            </div>
 
             {/* Metais */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={5}
-              className="service-item item-metais"
-            >
+            <div className="service-item item-metais">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" />
               </div>
               <span className="service-label">Metais</span>
-            </motion.div>
+            </div>
 
             {/* Cortinas e Persianas */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={6}
-              className="service-item item-cortinas"
-            >
+            <div className="service-item item-cortinas">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" />
               </div>
               <span className="service-label">Cortinas e<br/>Persianas</span>
-            </motion.div>
+            </div>
 
             {/* Elétrica */}
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              custom={7}
-              className="service-item item-eletrica"
-            >
+            <div className="service-item item-eletrica">
               <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" onLoad={drawLines} />
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" />
               </div>
               <span className="service-label">Elétrica</span>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
