@@ -104,11 +104,38 @@ const HeroVideo = () => {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true
-      videoRef.current.play().catch(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // Força as propriedades de autoplay no DOM para garantir compatibilidade mobile
+    video.muted = true
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
+    
+    const playVideo = () => {
+      video.play().catch(() => {
         // Silently handle autoplay rejection
       })
+    }
+
+    playVideo()
+
+    // Fallback: inicia o vídeo na primeira interação caso o autoplay seja bloqueado pelo sistema
+    const handleInteraction = () => {
+      playVideo()
+      window.removeEventListener('touchstart', handleInteraction)
+      window.removeEventListener('scroll', handleInteraction)
+      window.removeEventListener('mousedown', handleInteraction)
+    }
+
+    window.addEventListener('touchstart', handleInteraction)
+    window.addEventListener('scroll', handleInteraction)
+    window.addEventListener('mousedown', handleInteraction)
+
+    return () => {
+      window.removeEventListener('touchstart', handleInteraction)
+      window.removeEventListener('scroll', handleInteraction)
+      window.removeEventListener('mousedown', handleInteraction)
     }
   }, [])
 
@@ -119,6 +146,7 @@ const HeroVideo = () => {
       loop
       muted
       playsInline
+      preload="auto"
       className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] opacity-60 pointer-events-none"
     >
       <source src={HERO_VIDEO_URL} type="video/mp4" />
