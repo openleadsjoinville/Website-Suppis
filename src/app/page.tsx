@@ -773,8 +773,8 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials - Refined Light Section with Contrast */}
-      <section className="relative py-40 overflow-hidden bg-[#faf9f6] z-30">
-        <div className="absolute inset-0 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-sm" />
+      <section className="relative py-40 bg-transparent z-30">
+        <div className="absolute inset-x-0 top-0 bottom-24 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-2xl" />
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
