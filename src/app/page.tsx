@@ -28,6 +28,55 @@ const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/ima
 const GEOMETRIC_PATH = "M354.05,388.54c-12.44,18.39-29.6,32.07-49.81,40.63-20.87,8.84-43.41,11.52-65.77,7.21-14.5-2.8-28.11-7.75-40.94-14.95-20.09-11.27-35.57-28.57-44.63-49.74-9.5-21.46-12.29-44.91-7.86-68.01,1.86-10.15,4.82-19.54,8.78-29l43.01.36c-1.35-17.42,1.85-33.94,8.42-50.2l-125.92-2.87c-10.62-23.7-12.3-50.42-4.2-75.3,3.93-12.29,9.43-23.63,16.58-34.31,13.2-19.92,32.12-34.68,54.43-43.16,36.12-13.72,72.21-8.16,105.1,10.82,26.57,15.96,42.49,40.27,49.56,70.34,27.05-2.74,52.67,3.96,75.75,17.09,19.64,11.34,34.76,28.43,43.63,49.3,9.19,20.99,12.05,43.83,7.96,66.43-1.98,11.19-5.3,21.67-9.8,31.83l-42.2-.94c1.72,26.62-7.43,52.63-22.1,74.47ZM222.62,194.41c18.63-24.53,46.69-39.76,76.92-43.83-6.79-29.29-22.36-53-47.56-68.65-13.08-7.98-27.17-13.5-42.22-16.71-21.78-4.64-43.86-2.49-64.49,5.64-21.42,8.44-39.56,22.76-52.36,41.94-22.02,33.29-29.05,70.63-12.74,107.99l125.66,2.81c4.52-10.57,9.84-20.09,16.79-29.19ZM366.45,276.47c5.14,11.53,8.51,23.42,9.55,36.21l41.57,1.02c4.18-9.57,7.2-19.19,9.15-29.52,4.26-22.52,1.68-45.31-7.4-66.29-8.57-20.5-23.2-37.36-42.32-48.73-22.15-13.06-50.19-20.78-75.96-17.43,3.34,16.39,3.01,32.2-.36,48.02-2.08,9.45-4.99,18.3-8.86,27.09l-85.19-2.01c-6.7,16.03-9.95,32.85-8.54,50.25l80.92.69,87.43.7ZM291.05,225.62c10.15-23.88,14.14-48.46,8.73-73.8-12.92,1.6-24.82,5.37-36.3,10.87-15.21,7.36-28.2,17.72-38.68,30.96-7.21,9.15-12.94,18.94-17.63,30.02l83.89,1.95ZM353.98,386.44c13.8-21.09,22.81-46.82,20.91-72.46l-169.08-3.85c-4.72-10.93-7.75-22.14-8.86-33.88l-42.27-.32c-4,9.44-6.87,18.97-8.64,29.13-4.17,22.55-1.16,45.24,7.95,66.17,9.07,20.81,24.14,37.88,43.97,49.03,13.21,7.43,27.31,12.5,42.3,15.21,20.93,3.78,41.91,1.27,61.55-6.64,21.35-8.6,39.39-22.94,52.16-42.39ZM365.68,277.71l-97.58-.81-69.95-.67c1.16,11.39,4.02,22.41,8.53,32.68l168.07,3.85c-.92-12.42-4.26-23.89-9.07-35.05Z"
 const HERO_VIDEO_URL = "https://suppis2.openleads.com.br/wp-content/uploads/2025/12/video-1766457434494.mp4"
 
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay: i * 0.1,
+      ease: [0.215, 0.61, 0.355, 1]
+    }
+  })
+}
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1,
+      ease: [0.215, 0.61, 0.355, 1]
+    }
+  }
+}
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1,
+      ease: [0.215, 0.61, 0.355, 1]
+    }
+  }
+}
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 60 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1,
+      ease: [0.215, 0.61, 0.355, 1]
+    }
+  }
+}
+
 const DecorativeIcon = ({ 
   className = "", 
   rotation = 0, 
@@ -332,45 +381,52 @@ const SuppisIntegraDiagram = () => {
           <div className="suppis-container" id="suppis-container" ref={containerRef}>
             <canvas id="linesCanvas" ref={canvasRef}></canvas>
 
-            <div className="center-circle" id="centerCircle">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={scaleIn}
+              className="center-circle" 
+              id="centerCircle"
+            >
               <div className="center-content">
                 <div className="center-title">Suppis<br/>Integra</div>
                 <div className="center-subtitle">Método Exclusivo</div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="service-item item-marcenaria">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" onLoad={drawLines} /></div>
-              <span className="service-label">Marcenaria</span>
-            </div>
-            <div className="service-item item-iluminacao">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" onLoad={drawLines} /></div>
-              <span className="service-label">Iluminação</span>
-            </div>
-            <div className="service-item item-gesso">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" onLoad={drawLines} /></div>
-              <span className="service-label">Gesso</span>
-            </div>
-            <div className="service-item item-marmoraria">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" onLoad={drawLines} /></div>
-              <span className="service-label">Marmoraria</span>
-            </div>
-            <div className="service-item item-pisos">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" onLoad={drawLines} /></div>
-              <span className="service-label">Pisos e<br/>Revestimentos</span>
-            </div>
-            <div className="service-item item-metais">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" onLoad={drawLines} /></div>
-              <span className="service-label">Metais</span>
-            </div>
-            <div className="service-item item-cortinas">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" onLoad={drawLines} /></div>
-              <span className="service-label">Cortinas e<br/>Persianas</span>
-            </div>
-            <div className="service-item item-eletrica">
-              <div className="service-circle"><img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" onLoad={drawLines} /></div>
-              <span className="service-label">Elétrica</span>
-            </div>
+            {[
+              { id: 'marcenaria', label: 'Marcenaria', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg' },
+              { id: 'iluminacao', label: 'Iluminação', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg' },
+              { id: 'gesso', label: 'Gesso', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png' },
+              { id: 'marmoraria', label: 'Marmoraria', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg' },
+              { id: 'pisos', label: 'Pisos e\nRevestimentos', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg' },
+              { id: 'metais', label: 'Metais', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg' },
+              { id: 'cortinas', label: 'Cortinas e\nPersianas', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg' },
+              { id: 'eletrica', label: 'Elétrica', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg' }
+            ].map((item, i) => (
+              <motion.div 
+                key={item.id}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                custom={i}
+                className={`service-item item-${item.id}`}
+              >
+                <div className="service-circle">
+                  <img src={item.img} alt={item.label} onLoad={drawLines} />
+                </div>
+                <span className="service-label">
+                  {item.label.split('\n').map((line, j) => (
+                    <React.Fragment key={j}>
+                      {line}
+                      {j < item.label.split('\n').length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
@@ -540,18 +596,30 @@ export default function LandingPage() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl">
             <motion.div
-              initial={{ opacity: 0, scale: 0.98, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              initial="hidden"
+              animate="visible"
+              variants={fadeIn}
             >
-              <h1 className="text-6xl md:text-8xl font-medium text-white mb-8 tracking-tighter leading-[0.95]">
+              <motion.h1 
+                custom={0}
+                variants={fadeIn}
+                className="text-6xl md:text-8xl font-medium text-white mb-8 tracking-tighter leading-[0.95]"
+              >
                 Seu imóvel nas <br/> mãos certas<span className="text-[#d4c3b0]">.</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-zinc-200 mb-12 max-w-2xl font-light leading-relaxed">
+              </motion.h1>
+              <motion.p 
+                custom={1}
+                variants={fadeIn}
+                className="text-xl md:text-2xl text-zinc-200 mb-12 max-w-2xl font-light leading-relaxed"
+              >
                 Especialistas em projeto de interiores e marcenaria com execução integrada. 
                 Sofisticação e gestão inteligente para seu lar.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-6">
+              </motion.p>
+              <motion.div 
+                custom={2}
+                variants={fadeIn}
+                className="flex flex-col sm:flex-row gap-6"
+              >
                 <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
                   Falar com um especialista
                   <ArrowRight className="ml-3 w-4 h-4" />
@@ -559,7 +627,7 @@ export default function LandingPage() {
                 <Button variant="outline" className="border-white/20 text-[#4A583E] hover:bg-transparent hover:text-white hover:opacity-60 px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
                   Conheça a Suppis
                 </Button>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -574,10 +642,10 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 gap-24 items-center">
             <div className="relative">
               <motion.div 
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={slideInLeft}
                 className="relative aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl"
               >
                 <Image
@@ -586,15 +654,20 @@ export default function LandingPage() {
                   fill
                   className="object-cover grayscale-[0.3]"
                 />
-                </motion.div>
-              </div>
+              </motion.div>
+            </div>
 
-              <div className="space-y-12 relative">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={slideInRight}
+              className="space-y-12 relative"
+            >
               <div className="space-y-6">
                 <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs">Processo de Elite</span>
                 <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight">
                   Sem tempo para planejar <br /> a reforma do seu imóvel?
-
                 </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
                   Sabemos o quanto o seu tempo é valioso e por isso, a Suppis Soluções de Interiores nasceu com o propósito 
@@ -611,6 +684,8 @@ export default function LandingPage() {
                 ].map((item, i) => (
                   <motion.div 
                     key={i}
+                    variants={fadeIn}
+                    custom={i}
                     whileHover={{ x: 10 }}
                     transition={{ type: "spring", stiffness: 300 }}
                     className="flex gap-6 items-start group"
@@ -623,7 +698,7 @@ export default function LandingPage() {
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -673,10 +748,11 @@ export default function LandingPage() {
             ].map((item, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: i * 0.1 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={fadeIn}
+                custom={i}
                 className={`p-12 rounded-[2.5rem] flex flex-col items-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
                   item.dark 
                     ? 'bg-[#4A583E] text-white' 
@@ -751,6 +827,11 @@ export default function LandingPage() {
             ].map((item, i) => (
               <motion.div 
                 key={i} 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={fadeIn}
+                custom={i}
                 whileHover={{ y: -10 }}
                 className="p-12 bg-white rounded-[3rem] border border-black/[0.03] shadow-sm hover:shadow-2xl transition-all duration-500 group"
               >
@@ -814,10 +895,11 @@ export default function LandingPage() {
               ].map((testimonial, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: i * 0.2 }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-50px" }}
+                  variants={fadeIn}
+                  custom={i}
                   className="bg-white p-10 rounded-[3rem] shadow-sm border border-black/[0.02] flex flex-col justify-between"
                 >
                   <p className="text-[#4A583E] text-lg font-light italic leading-relaxed mb-8">
@@ -850,7 +932,13 @@ export default function LandingPage() {
         />
         <div className="container mx-auto px-6 relative z-10">
           {/* Top Row: Logo & Socials */}
-          <div className="flex flex-col md:flex-row md:items-center gap-10 mb-20">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="flex flex-col md:flex-row md:items-center gap-10 mb-20"
+          >
             <div className="relative w-72 h-20">
               <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain object-left brightness-0 invert" />
             </div>
@@ -861,62 +949,87 @@ export default function LandingPage() {
                 { icon: <Linkedin className="w-5 h-5" />, href: "#" },
                 { icon: <MessageCircle className="w-5 h-5" />, href: "#" }
               ].map((social, i) => (
-                <a 
+                <motion.a 
                   key={i} 
+                  custom={i}
+                  variants={fadeIn}
                   href={social.href} 
                   className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all border border-white/5"
                 >
                   {social.icon}
-                </a>
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Bottom Grid: Info Columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-24">
-            <div>
-              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Mapa do Site</h4>
-              <ul className="space-y-4 text-sm font-medium text-white/80 uppercase tracking-widest">
-                <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
-                <li><a href="#suppis-integra" className="hover:text-white transition-colors">Suppis Integra</a></li>
-                <li><a href="#servicos" className="hover:text-white transition-colors">Serviços</a></li>
-                <li><a href="#diferenciais" className="hover:text-white transition-colors">Nossos diferenciais</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Funcionamento</h4>
-              <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
-                Segunda à Sexta<br/>
-                08h às 18h30
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Endereço</h4>
-              <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
-                Rua Doutor Marinho Lobo, 23<br/>
-                Centro, Joinville - SC<br/>
-                CEP: 89201-020
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Contato</h4>
-              <ul className="space-y-3 text-sm font-medium text-white/80 uppercase tracking-widest">
-                <li>+55 47 99924-7199</li>
-                <li>contato@suppis.com.br</li>
-              </ul>
-            </div>
-          </div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeIn}
+            className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-24"
+          >
+            {[
+              {
+                title: "Mapa do Site",
+                content: (
+                  <ul className="space-y-4 text-sm font-medium text-white/80 uppercase tracking-widest">
+                    <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#suppis-integra" className="hover:text-white transition-colors">Suppis Integra</a></li>
+                    <li><a href="#servicos" className="hover:text-white transition-colors">Serviços</a></li>
+                    <li><a href="#diferenciais" className="hover:text-white transition-colors">Nossos diferenciais</a></li>
+                  </ul>
+                )
+              },
+              {
+                title: "Funcionamento",
+                content: (
+                  <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+                    Segunda à Sexta<br/>
+                    08h às 18h30
+                  </p>
+                )
+              },
+              {
+                title: "Endereço",
+                content: (
+                  <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+                    Rua Doutor Marinho Lobo, 23<br/>
+                    Centro, Joinville - SC<br/>
+                    CEP: 89201-020
+                  </p>
+                )
+              },
+              {
+                title: "Contato",
+                content: (
+                  <ul className="space-y-3 text-sm font-medium text-white/80 uppercase tracking-widest">
+                    <li>+55 47 99924-7199</li>
+                    <li>contato@suppis.com.br</li>
+                  </ul>
+                )
+              }
+            ].map((col, i) => (
+              <motion.div key={i} custom={i} variants={fadeIn}>
+                <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">{col.title}</h4>
+                {col.content}
+              </motion.div>
+            ))}
+          </motion.div>
           
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.3em] text-white/20">
-            <p>© 2025 Suppis Soluções. Crafted for excellence.</p>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.3em] text-white/20"
+          >
+            <p>© 2025 Suppis Soluções. Um site padrão Open Leads</p>
             <div className="flex gap-8">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
+              <a href="#" className="hover:text-white transition-colors">Política de Privacidade</a>
+              <a href="#" className="hover:text-white transition-colors">Termos de Uso</a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </footer>
       
