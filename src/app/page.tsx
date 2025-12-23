@@ -773,8 +773,8 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials - Refined Light Section with Contrast */}
-      <section className="relative py-40 bg-transparent z-30">
-        <div className="absolute inset-x-0 top-0 bottom-24 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-2xl" />
+      <section className="relative pt-40 pb-72 bg-transparent z-30">
+        <div className="absolute inset-x-0 top-0 bottom-32 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-2xl" />
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
@@ -834,7 +834,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer - XYZ Inspired Layout */}
-      <footer className="bg-[#4A583E] text-white pt-40 pb-12 -mt-32 relative z-20">
+      <footer className="bg-[#4A583E] text-white pt-56 pb-12 -mt-48 relative z-20">
         <div className="container mx-auto px-6">
           {/* Top Row: Logo & Socials */}
           <div className="flex flex-col md:flex-row md:items-center gap-10 mb-20">
@@ -862,8 +862,8 @@ export default function LandingPage() {
           {/* Bottom Grid: Info Columns */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-24">
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Mapa do Site</h4>
-              <ul className="space-y-4 text-[11px] font-medium text-white/80 uppercase tracking-widest">
+              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Mapa do Site</h4>
+              <ul className="space-y-4 text-sm font-medium text-white/80 uppercase tracking-widest">
                 <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Serviços</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Processos</a></li>
@@ -872,16 +872,16 @@ export default function LandingPage() {
             </div>
             
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Funcionamento</h4>
-              <p className="text-[11px] font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Funcionamento</h4>
+              <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
                 Segunda à Sexta<br/>
                 08h às 18h30
               </p>
             </div>
             
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Endereço</h4>
-              <p className="text-[11px] font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Endereço</h4>
+              <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
                 Rua Doutor Marinho Lobo, 23<br/>
                 Centro, Joinville - SC<br/>
                 CEP: 89201-020
@@ -889,15 +889,15 @@ export default function LandingPage() {
             </div>
             
             <div>
-              <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Contato</h4>
-              <ul className="space-y-3 text-[11px] font-medium text-white/80 uppercase tracking-widest">
+              <h4 className="text-xs uppercase tracking-[0.4em] font-bold text-white/50 mb-8">Contato</h4>
+              <ul className="space-y-3 text-sm font-medium text-white/80 uppercase tracking-widest">
                 <li>+55 47 99924-7199</li>
                 <li>contato@suppis.com.br</li>
               </ul>
             </div>
           </div>
           
-          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.3em] text-white/20">
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] uppercase tracking-[0.3em] text-white/20">
             <p>© 2025 Suppis Soluções. Crafted for excellence.</p>
             <div className="flex gap-8">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
