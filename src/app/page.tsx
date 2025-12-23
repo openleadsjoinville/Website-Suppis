@@ -716,6 +716,20 @@ export default function LandingPage() {
               </motion.div>
             ))}
           </div>
+
+          <div className="mt-20 flex justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
+                Quero começar meu projeto
+                <ArrowRight className="ml-3 w-4 h-4" />
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </section>
 
