@@ -179,7 +179,13 @@ const SuppisIntegraDiagram = () => {
     window.addEventListener('resize', handleResize)
     
     // Initial draw
-    setTimeout(drawLines, 500) // Give it some time to layout
+    setTimeout(drawLines, 500)
+
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+          setTimeout(drawLines, 100);
+      });
+    }
 
     return () => window.removeEventListener('resize', handleResize)
   }, [drawLines])
@@ -218,6 +224,12 @@ const SuppisIntegraDiagram = () => {
               font-style: normal;
               padding: 40px 20px;
               margin: 0;
+              box-sizing: border-box;
+          }
+
+          .suppis-wrapper * {
+              margin: 0;
+              padding: 0;
               box-sizing: border-box;
           }
 
@@ -265,6 +277,16 @@ const SuppisIntegraDiagram = () => {
                   0 0 0 clamp(10px, 1.4vw, 16px) rgba(200, 200, 190, 0.5),
                   0 0 0 clamp(14px, 2vw, 22px) rgba(180, 180, 170, 0.25),
                   0 10px 40px rgba(0,0,0,0.15);
+          }
+
+          .suppis-container .center-circle::before {
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 60 Q45 40 60 55 Q75 70 60 85 Q45 100 30 80 Q15 60 30 60Z' fill='rgba(255,255,255,0.02)'/%3E%3Cpath d='M70 30 Q85 20 95 35 Q105 50 90 60 Q75 70 65 55 Q55 40 70 30Z' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");
+              background-size: 100% 100%;
+              opacity: 0.6;
           }
 
           .suppis-container .center-content {
@@ -330,6 +352,10 @@ const SuppisIntegraDiagram = () => {
               transition: all 0.35s ease;
           }
 
+          .suppis-container .service-item:hover .service-circle img {
+              transform: scale(1.1);
+          }
+
           .suppis-container .service-label {
               font-family: 'DeMonte', Georgia, serif;
               font-size: clamp(13px, 1.7vw, 19px);
@@ -340,31 +366,79 @@ const SuppisIntegraDiagram = () => {
               transition: all 0.3s ease;
           }
 
-          .suppis-container .item-marcenaria { top: 8%; left: 32%; flex-direction: row-reverse; }
+          .suppis-container .service-item:hover .service-label {
+              color: #2E3E2E;
+          }
+
+          .suppis-container .item-marcenaria {
+              top: 8%;
+              left: 32%;
+              flex-direction: row-reverse;
+          }
           .suppis-container .item-marcenaria .service-label { text-align: right; }
-          .suppis-container .item-iluminacao { top: 8%; right: 10%; }
-          .suppis-container .item-gesso { top: 32%; right: 2%; }
-          .suppis-container .item-marmoraria { bottom: 32%; right: 2%; }
-          .suppis-container .item-pisos { bottom: 8%; right: 18%; }
-          .suppis-container .item-metais { bottom: 8%; left: 28%; flex-direction: row-reverse; }
+
+          .suppis-container .item-iluminacao {
+              top: 8%;
+              right: 10%;
+          }
+
+          .suppis-container .item-gesso {
+              top: 32%;
+              right: 2%;
+          }
+
+          .suppis-container .item-marmoraria {
+              bottom: 32%;
+              right: 2%;
+          }
+
+          .suppis-container .item-pisos {
+              bottom: 8%;
+              right: 18%;
+          }
+
+          .suppis-container .item-metais {
+              bottom: 8%;
+              left: 28%;
+              flex-direction: row-reverse;
+          }
           .suppis-container .item-metais .service-label { text-align: right; }
-          .suppis-container .item-cortinas { bottom: 32%; left: 2%; flex-direction: row-reverse; }
+
+          .suppis-container .item-cortinas {
+              bottom: 32%;
+              left: 2%;
+              flex-direction: row-reverse;
+          }
           .suppis-container .item-cortinas .service-label { text-align: right; }
-          .suppis-container .item-eletrica { top: 32%; left: 2%; flex-direction: row-reverse; }
+
+          .suppis-container .item-eletrica {
+              top: 32%;
+              left: 2%;
+              flex-direction: row-reverse;
+          }
           .suppis-container .item-eletrica .service-label { text-align: right; }
 
           @media (max-width: 900px) {
-              .suppis-container { aspect-ratio: 1.2 / 1; }
+              .suppis-container {
+                  width: 100% !important;
+                  aspect-ratio: 1.2 / 1;
+              }
               .suppis-container .center-circle { width: 30%; }
               .suppis-container .service-label { font-size: clamp(11px, 2vw, 16px); }
           }
 
           @media (max-width: 600px) {
               .suppis-wrapper { padding: 15px 5px; }
-              .suppis-container { aspect-ratio: 1 / 1.1; }
+              .suppis-container {
+                  width: 100% !important;
+                  aspect-ratio: 1 / 1.1;
+              }
               .suppis-container .center-circle { width: 32%; }
               .suppis-container .service-circle { width: clamp(50px, 14vw, 70px); }
-              .suppis-container .service-label { font-size: clamp(10px, 2.8vw, 14px); max-width: 70px; }
+              .suppis-container .service-label {
+                  font-size: clamp(10px, 2.8vw, 14px);
+                  max-width: 70px;
+              }
               .suppis-container .service-item { gap: clamp(5px, 1.2vw, 10px); }
               .suppis-container .item-marcenaria { top: 4%; left: 28%; }
               .suppis-container .item-iluminacao { top: 4%; right: 5%; }
@@ -395,38 +469,125 @@ const SuppisIntegraDiagram = () => {
               </div>
             </motion.div>
 
-            {[
-              { id: 'marcenaria', label: 'Marcenaria', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg' },
-              { id: 'iluminacao', label: 'Iluminação', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg' },
-              { id: 'gesso', label: 'Gesso', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png' },
-              { id: 'marmoraria', label: 'Marmoraria', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg' },
-              { id: 'pisos', label: 'Pisos e\nRevestimentos', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg' },
-              { id: 'metais', label: 'Metais', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg' },
-              { id: 'cortinas', label: 'Cortinas e\nPersianas', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg' },
-              { id: 'eletrica', label: 'Elétrica', img: 'https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg' }
-            ].map((item, i) => (
-              <motion.div 
-                key={item.id}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeIn}
-                custom={i}
-                className={`service-item item-${item.id}`}
-              >
-                <div className="service-circle">
-                  <img src={item.img} alt={item.label} onLoad={drawLines} />
-                </div>
-                <span className="service-label">
-                  {item.label.split('\n').map((line, j) => (
-                    <React.Fragment key={j}>
-                      {line}
-                      {j < item.label.split('\n').length - 1 && <br />}
-                    </React.Fragment>
-                  ))}
-                </span>
-              </motion.div>
-            ))}
+            {/* Marcenaria */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={0}
+              className="service-item item-marcenaria"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Marcenaria</span>
+            </motion.div>
+
+            {/* Iluminação */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={1}
+              className="service-item item-iluminacao"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Iluminação</span>
+            </motion.div>
+
+            {/* Gesso */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={2}
+              className="service-item item-gesso"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Gesso</span>
+            </motion.div>
+
+            {/* Marmoraria */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={3}
+              className="service-item item-marmoraria"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Marmoraria</span>
+            </motion.div>
+
+            {/* Pisos e Revestimentos */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={4}
+              className="service-item item-pisos"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Pisos e<br/>Revestimentos</span>
+            </motion.div>
+
+            {/* Metais */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={5}
+              className="service-item item-metais"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Metais</span>
+            </motion.div>
+
+            {/* Cortinas e Persianas */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={6}
+              className="service-item item-cortinas"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Cortinas e<br/>Persianas</span>
+            </motion.div>
+
+            {/* Elétrica */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              custom={7}
+              className="service-item item-eletrica"
+            >
+              <div className="service-circle">
+                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" onLoad={drawLines} />
+              </div>
+              <span className="service-label">Elétrica</span>
+            </motion.div>
           </div>
         </div>
       </div>
