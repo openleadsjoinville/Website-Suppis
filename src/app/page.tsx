@@ -166,11 +166,11 @@ const SuppisIntegraDiagram = () => {
 
         const angle = Math.atan2(itemY - centerY, itemX - centerX);
 
-        const startX = centerX + Math.cos(angle) * (centerRadius + 5);
-        const startY = centerY + Math.sin(angle) * (centerRadius + 5);
+        const startX = centerX + Math.cos(angle) * (centerRadius);
+        const startY = centerY + Math.sin(angle) * (centerRadius);
 
-        const endX = itemX - Math.cos(angle) * (itemRadius + 5);
-        const endY = itemY - Math.sin(angle) * (itemRadius + 5);
+        const endX = itemX - Math.cos(angle) * (itemRadius);
+        const endY = itemY - Math.sin(angle) * (itemRadius);
 
         ctx.beginPath();
         ctx.moveTo(startX, startY);
@@ -363,22 +363,22 @@ const SuppisIntegraDiagram = () => {
 
           @media (max-width: 768px) {
               .suppis-container {
-                  aspect-ratio: 1 / 1.4;
-                  max-width: 500px;
+                  aspect-ratio: 1 / 1.7;
+                  max-width: 450px;
               }
-              .suppis-container .center-circle { width: 35%; }
-              .suppis-container .service-circle { width: 70px; }
-              .suppis-container .service-label { font-size: 13px; white-space: normal; text-align: center; max-width: 80px; }
+              .suppis-container .center-circle { width: 38%; }
+              .suppis-container .service-circle { width: 65px; }
+              .suppis-container .service-label { font-size: 11px; white-space: normal; text-align: center; max-width: 70px; }
               
-              /* Mobile Recalibration */
-              .suppis-container .item-marcenaria { top: 2%; left: 10%; flex-direction: column; }
-              .suppis-container .item-iluminacao { top: 2%; right: 10%; flex-direction: column; }
-              .suppis-container .item-gesso { top: 35%; right: 0%; flex-direction: column; }
-              .suppis-container .item-marmoraria { bottom: 15%; right: 5%; flex-direction: column; }
-              .suppis-container .item-pisos { bottom: 2%; left: 50%; transform: translateX(-50%); flex-direction: column; }
-              .suppis-container .item-metais { bottom: 15%; left: 5%; flex-direction: column; }
-              .suppis-container .item-cortinas { top: 35%; left: 0%; flex-direction: column; }
-              .suppis-container .item-eletrica { top: 18%; left: 0%; flex-direction: column; }
+              /* Mobile Recalibration - Better spacing to avoid overlap */
+              .suppis-container .item-marcenaria { top: 1%; left: 8%; flex-direction: column; }
+              .suppis-container .item-iluminacao { top: 1%; right: 8%; flex-direction: column; }
+              .suppis-container .item-gesso { top: 22%; right: -2%; flex-direction: column; }
+              .suppis-container .item-marmoraria { bottom: 25%; right: -2%; flex-direction: column; }
+              .suppis-container .item-pisos { bottom: 1%; left: 50%; transform: translateX(-50%); flex-direction: column; }
+              .suppis-container .item-metais { bottom: 25%; left: -2%; flex-direction: column; }
+              .suppis-container .item-cortinas { top: 22%; left: -2%; flex-direction: column; }
+              .suppis-container .item-eletrica { top: 12%; left: 50%; transform: translateX(-50%); flex-direction: column; }
           }
         ` }} />
 
