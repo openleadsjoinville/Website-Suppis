@@ -173,7 +173,7 @@ const SuppisIntegraDiagram = () => {
     <section className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl md:text-5xl font-medium text-[#4A583E] tracking-tighter text-center mb-16">
-          Conheça o Suppis Integra, uma solução completa de ponta a ponta
+          Conheça o Suppis Integra, <br/> uma solução completa de ponta a ponta
         </h2>
         
         <style dangerouslySetInnerHTML={{ __html: `
@@ -594,7 +594,7 @@ export default function LandingPage() {
                 className="relative aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
+                  src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png"
                   alt="Minimalist Design"
                   fill
                   className="object-cover grayscale-[0.3]"
@@ -610,8 +610,9 @@ export default function LandingPage() {
 
                 </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
-                  Oferecemos soluções completas unindo gestão, cronograma e execução integrada. 
-                  Um método refinado que elimina a complexidade e garante o luxo.
+                  Sabemos o quanto o seu tempo é valioso e por isso, a Suppis Soluções de Interiores nasceu com o propósito 
+                  de otimizar o planejamento e a execução do seu projeto, oferecendo uma experiência personalizada, 
+                  com foco em marcenaria sob medida.
                 </p>
               </div>
 
@@ -727,7 +728,7 @@ export default function LandingPage() {
       </section>
 
       {/* Section 3: Vantagens - Modern Card Grid */}
-      <section id="serviços" className="py-32 bg-[#faf9f6] relative overflow-hidden">
+      <section id="serviços" className="py-32 bg-[#eef1da] relative overflow-hidden">
         {/* Decorative elements for Section 3 */}
         <DecorativeIcon 
           className="w-96 -top-20 -right-20" 
@@ -739,25 +740,25 @@ export default function LandingPage() {
           <div className="text-center mb-24">
             <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs mb-4 block">Diferenciais</span>
             <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter">
-              O Padrão Suppis
+              A Suppis é a parceira do seu projeto de vida.
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               { 
-                title: "Exclusividade Atemporal", 
-                desc: "Design que transcende tendências passageiras para durar gerações.",
+                title: "De ponta a ponta, interiores completos.", 
+                desc: "Soluções integradas para transformar obras em lares prontos, com confiança e credibilidade.",
                 icon: <Home className="w-6 h-6" />
               },
               { 
-                title: "Biofilia Integrada", 
-                desc: "Integramos o verde consciente para ambientes que respiram vida e calma.",
+                title: "Credibilidade em cada detalhe.", 
+                desc: "Integramos parceiros, processos e soluções com transparência e confiança.",
                 icon: <Sparkles className="w-6 h-6" />
               },
               { 
-                title: "Curadoria de Materiais", 
-                desc: "Seleção rigorosa de pedras, madeiras e tecidos de procedência elite.",
+                title: "Suppis Integra", 
+                desc: "Conectamos arquitetos, engenheiros e fornecedores que compartilham o mesmo compromisso com a excelência.",
                 icon: <Hammer className="w-6 h-6" />
               }
             ].map((item, i) => (
@@ -780,7 +781,7 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials - Refined Light Section with Contrast */}
-      <section className="relative pt-40 pb-72 bg-transparent z-30 overflow-hidden">
+      <section className="relative pt-40 pb-72 bg-[#eef1da] z-30 overflow-hidden">
         {/* Decorative element for Testimonials */}
         <DecorativeIcon 
           className="w-[600px] -top-20 -left-40" 
