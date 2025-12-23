@@ -538,7 +538,7 @@ export default function LandingPage() {
         
         {/* Decorative Icons on Hero */}
         <DecorativeIcon 
-          className="w-[500px] -top-20 -left-20" 
+          className="w-[500px] top-10 -left-20" 
           rotation={135} 
           opacity={0.15} 
           y={yHeroLeft}
@@ -599,16 +599,7 @@ export default function LandingPage() {
                   fill
                   className="object-cover grayscale-[0.3]"
                 />
-              </motion.div>
-                {/* Overlapping Curve Decoration */}
-                <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-[#4A583E] rounded-full flex items-center justify-center overflow-hidden">
-                   <DecorativeIcon 
-                     className="w-64" 
-                     rotation={45} 
-                     opacity={0.3} 
-                     y={yIntroCircle}
-                   />
-                </div>
+                </motion.div>
               </div>
 
               <div className="space-y-12 relative">
