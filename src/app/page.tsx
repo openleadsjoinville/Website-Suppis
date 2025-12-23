@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 
 // Constants
-const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/LOGO-SUPPIS-resized-1766456353173.webp?width=8000&height=8000&resize=contain"
+const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Logo-Suppis-Fundo-transparente-1766487680528.png?width=8000&height=8000&resize=contain"
 const GEOMETRIC_ICON_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Design-sem-nome-29-1766456393024.png?width=8000&height=8000&resize=contain"
 const HERO_VIDEO_URL = "https://suppis2.openleads.com.br/wp-content/uploads/2025/12/video-1766457434494.mp4"
 
