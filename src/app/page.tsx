@@ -101,12 +101,24 @@ const DecorativeIcon = ({
 )
 
 const HeroVideo = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        // Silently handle autoplay rejection
+      })
+    }
+  }, [])
+
   return (
     <video
+      ref={videoRef}
       autoPlay
       loop
       muted
       playsInline
+      preload="auto"
       className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] opacity-60"
     >
       <source src={HERO_VIDEO_URL} type="video/mp4" />
@@ -137,8 +149,8 @@ const SuppisIntegraDiagram = () => {
 
       ctx.clearRect(0, 0, rect.width, rect.height);
 
-      ctx.strokeStyle = 'rgba(165, 165, 155, 0.6)';
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = 'rgba(165, 165, 155, 0.4)';
+      ctx.lineWidth = 1;
 
       const centerRect = centerCircle.getBoundingClientRect();
       const centerX = centerRect.left - rect.left + centerRect.width / 2;
@@ -154,11 +166,11 @@ const SuppisIntegraDiagram = () => {
 
         const angle = Math.atan2(itemY - centerY, itemX - centerX);
 
-        const startX = centerX + Math.cos(angle) * centerRadius;
-        const startY = centerY + Math.sin(angle) * centerRadius;
+        const startX = centerX + Math.cos(angle) * (centerRadius + 5);
+        const startY = centerY + Math.sin(angle) * (centerRadius + 5);
 
-        const endX = itemX - Math.cos(angle) * itemRadius;
-        const endY = itemY - Math.sin(angle) * itemRadius;
+        const endX = itemX - Math.cos(angle) * (itemRadius + 5);
+        const endY = itemY - Math.sin(angle) * (itemRadius + 5);
 
         ctx.beginPath();
         ctx.moveTo(startX, startY);
@@ -171,6 +183,11 @@ const SuppisIntegraDiagram = () => {
       const images = document.querySelectorAll('.suppis-container .service-circle img');
       let loadedCount = 0;
       
+      if (images.length === 0) {
+        setTimeout(drawLines, 100);
+        return;
+      }
+
       images.forEach(img => {
         const image = img as HTMLImageElement;
         if (image.complete) {
@@ -190,26 +207,27 @@ const SuppisIntegraDiagram = () => {
       }
     }
 
-    // Run initial logic
     waitForImages();
-    setTimeout(drawLines, 200);
+    setTimeout(drawLines, 500);
 
     let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(drawLines, 50);
+      resizeTimeout = setTimeout(drawLines, 100);
     };
 
     window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
 
     if (document.fonts) {
       document.fonts.ready.then(() => {
-        setTimeout(drawLines, 100);
+        setTimeout(drawLines, 300);
       });
     }
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
     };
   }, []);
 
@@ -217,7 +235,7 @@ const SuppisIntegraDiagram = () => {
     <section id="suppis-integra" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl md:text-5xl font-medium text-[#4A583E] tracking-tighter text-center mb-16">
-          Conheça o Suppis Integra, <br/> uma solução completa de ponta a ponta
+          Conheça o Suppis Integra, <br className="hidden md:block"/> uma solução completa de ponta a ponta
         </h2>
         
         <style dangerouslySetInnerHTML={{ __html: `
@@ -238,29 +256,20 @@ const SuppisIntegraDiagram = () => {
           }
 
           .suppis-wrapper {
-              width: 100% !important;
-              max-width: 100% !important;
+              width: 100%;
               display: flex;
               align-items: center;
               justify-content: center;
               font-family: 'DeMonte', Georgia, serif;
-              font-style: normal;
-              padding: 40px 20px;
-              margin: 0;
-              box-sizing: border-box;
-          }
-
-          .suppis-wrapper * {
-              margin: 0;
-              padding: 0;
-              box-sizing: border-box;
+              padding: 40px 0;
           }
 
           .suppis-container {
               position: relative;
-              width: 100% !important;
-              max-width: 100% !important;
+              width: 100%;
+              max-width: 1000px;
               aspect-ratio: 1.4 / 1;
+              margin: 0 auto;
           }
 
           .suppis-container #linesCanvas {
@@ -278,7 +287,7 @@ const SuppisIntegraDiagram = () => {
               top: 50%;
               left: 50%;
               transform: translate(-50%, -50%);
-              width: 28%;
+              width: 25%;
               aspect-ratio: 1 / 1;
               background: radial-gradient(ellipse at 40% 40%, #4D5D4A, #3D4D3A 40%, #2E3E2E 100%);
               border-radius: 50%;
@@ -291,186 +300,85 @@ const SuppisIntegraDiagram = () => {
                   0 0 0 clamp(10px, 1.5vw, 18px) rgba(180, 180, 170, 0.2);
               z-index: 10;
               overflow: hidden;
-              transition: transform 0.4s ease, box-shadow 0.4s ease;
-          }
-
-          .suppis-container .center-circle:hover {
-              transform: translate(-50%, -50%) scale(1.03);
-              box-shadow: 
-                  0 0 0 clamp(10px, 1.4vw, 16px) rgba(200, 200, 190, 0.5),
-                  0 0 0 clamp(14px, 2vw, 22px) rgba(180, 180, 170, 0.25),
-                  0 10px 40px rgba(0,0,0,0.15);
-          }
-
-          .suppis-container .center-circle::before {
-              content: '';
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 60 Q45 40 60 55 Q75 70 60 85 Q45 100 30 80 Q15 60 30 60Z' fill='rgba(255,255,255,0.02)'/%3E%3Cpath d='M70 30 Q85 20 95 35 Q105 50 90 60 Q75 70 65 55 Q55 40 70 30Z' fill='rgba(255,255,255,0.015)'/%3E%3C/svg%3E");
-              background-size: 100% 100%;
-              opacity: 0.6;
-          }
-
-          .suppis-container .center-content {
-              z-index: 2;
-              text-align: center;
           }
 
           .suppis-container .center-title {
-              font-family: 'DeMonte', Georgia, serif;
-              font-size: clamp(32px, 5vw, 52px);
+              font-size: clamp(24px, 4vw, 48px);
               font-weight: 700;
-              font-style: normal;
               color: #fff;
-              line-height: 1.05;
+              line-height: 1.1;
+              text-align: center;
           }
 
           .suppis-container .center-subtitle {
-              font-family: 'DeMonte', Georgia, serif;
-              font-size: clamp(14px, 1.9vw, 22px);
-              font-weight: 400;
-              font-style: normal;
-              color: rgba(255,255,255,0.9);
-              letter-spacing: 1px;
-              margin-top: clamp(6px, 1vw, 12px);
+              font-size: clamp(10px, 1.5vw, 18px);
+              color: rgba(255,255,255,0.8);
+              margin-top: 8px;
+              text-align: center;
           }
 
           .suppis-container .service-item {
               position: absolute;
               display: flex;
               align-items: center;
-              gap: clamp(10px, 1.5vw, 18px);
-              cursor: pointer;
+              gap: 12px;
+              z-index: 5;
           }
 
           .suppis-container .service-circle {
-              width: clamp(65px, 9vw, 95px);
+              width: clamp(60px, 8vw, 90px);
               aspect-ratio: 1 / 1;
-              background: #FAFAFA;
+              background: #fff;
               border-radius: 50%;
               display: flex;
               align-items: center;
               justify-content: center;
-              box-shadow: 
-                  0 0 0 clamp(5px, 0.7vw, 8px) rgba(190, 190, 180, 0.5),
-                  0 0 0 clamp(7px, 1vw, 11px) rgba(200, 200, 190, 0.25);
-              flex-shrink: 0;
-              transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow: 0 4px 15px rgba(0,0,0,0.05);
               overflow: hidden;
-          }
-
-          .suppis-container .service-item:hover .service-circle {
-              transform: scale(1.1);
-              box-shadow: 
-                  0 0 0 clamp(6px, 0.9vw, 10px) rgba(77, 93, 74, 0.35),
-                  0 0 0 clamp(10px, 1.4vw, 15px) rgba(77, 93, 74, 0.18),
-                  0 8px 25px rgba(0,0,0,0.12);
+              border: 1px solid rgba(0,0,0,0.05);
           }
 
           .suppis-container .service-circle img {
               width: 100%;
               height: 100%;
               object-fit: cover;
-              transition: all 0.35s ease;
-          }
-
-          .suppis-container .service-item:hover .service-circle img {
-              transform: scale(1.1);
           }
 
           .suppis-container .service-label {
-              font-family: 'DeMonte', Georgia, serif;
-              font-size: clamp(13px, 1.7vw, 19px);
-              font-weight: 400;
-              font-style: normal;
-              color: #3A4A3A;
-              line-height: 1.3;
-              transition: all 0.3s ease;
+              font-size: clamp(12px, 1.5vw, 16px);
+              color: #4A583E;
+              font-weight: 500;
+              white-space: nowrap;
           }
 
-          .suppis-container .service-item:hover .service-label {
-              color: #2E3E2E;
-          }
+          /* Desktop Positions */
+          .suppis-container .item-marcenaria { top: 5%; left: 25%; flex-direction: row-reverse; }
+          .suppis-container .item-iluminacao { top: 5%; right: 25%; }
+          .suppis-container .item-gesso { top: 40%; right: 5%; }
+          .suppis-container .item-marmoraria { bottom: 10%; right: 15%; }
+          .suppis-container .item-pisos { bottom: 5%; left: 50%; transform: translateX(-50%); flex-direction: column; }
+          .suppis-container .item-metais { bottom: 10%; left: 15%; flex-direction: row-reverse; }
+          .suppis-container .item-cortinas { top: 40%; left: 5%; flex-direction: row-reverse; }
+          .suppis-container .item-eletrica { top: 20%; left: 10%; flex-direction: row-reverse; }
 
-          .suppis-container .item-marcenaria {
-              top: 8%;
-              left: 32%;
-              flex-direction: row-reverse;
-          }
-          .suppis-container .item-marcenaria .service-label { text-align: right; }
-
-          .suppis-container .item-iluminacao {
-              top: 8%;
-              right: 10%;
-          }
-
-          .suppis-container .item-gesso {
-              top: 32%;
-              right: 2%;
-          }
-
-          .suppis-container .item-marmoraria {
-              bottom: 32%;
-              right: 2%;
-          }
-
-          .suppis-container .item-pisos {
-              bottom: 8%;
-              right: 18%;
-          }
-
-          .suppis-container .item-metais {
-              bottom: 8%;
-              left: 28%;
-              flex-direction: row-reverse;
-          }
-          .suppis-container .item-metais .service-label { text-align: right; }
-
-          .suppis-container .item-cortinas {
-              bottom: 32%;
-              left: 2%;
-              flex-direction: row-reverse;
-          }
-          .suppis-container .item-cortinas .service-label { text-align: right; }
-
-          .suppis-container .item-eletrica {
-              top: 32%;
-              left: 2%;
-              flex-direction: row-reverse;
-          }
-          .suppis-container .item-eletrica .service-label { text-align: right; }
-
-          @media (max-width: 900px) {
+          @media (max-width: 768px) {
               .suppis-container {
-                  width: 100% !important;
-                  aspect-ratio: 1.2 / 1;
+                  aspect-ratio: 1 / 1.4;
+                  max-width: 500px;
               }
-              .suppis-container .center-circle { width: 30%; }
-              .suppis-container .service-label { font-size: clamp(11px, 2vw, 16px); }
-          }
-
-          @media (max-width: 600px) {
-              .suppis-wrapper { padding: 15px 5px; }
-              .suppis-container {
-                  width: 100% !important;
-                  aspect-ratio: 1 / 1.1;
-              }
-              .suppis-container .center-circle { width: 32%; }
-              .suppis-container .service-circle { width: clamp(50px, 14vw, 70px); }
-              .suppis-container .service-label {
-                  font-size: clamp(10px, 2.8vw, 14px);
-                  max-width: 70px;
-              }
-              .suppis-container .service-item { gap: clamp(5px, 1.2vw, 10px); }
-              .suppis-container .item-marcenaria { top: 4%; left: 28%; }
-              .suppis-container .item-iluminacao { top: 4%; right: 5%; }
-              .suppis-container .item-gesso { top: 28%; right: 0%; }
-              .suppis-container .item-marmoraria { bottom: 28%; right: 0%; }
-              .suppis-container .item-pisos { bottom: 4%; right: 12%; }
-              .suppis-container .item-metais { bottom: 4%; left: 22%; }
-              .suppis-container .item-cortinas { bottom: 28%; left: 0%; }
-              .suppis-container .item-eletrica { top: 28%; left: 0%; }
+              .suppis-container .center-circle { width: 35%; }
+              .suppis-container .service-circle { width: 70px; }
+              .suppis-container .service-label { font-size: 13px; white-space: normal; text-align: center; max-width: 80px; }
+              
+              /* Mobile Recalibration */
+              .suppis-container .item-marcenaria { top: 2%; left: 10%; flex-direction: column; }
+              .suppis-container .item-iluminacao { top: 2%; right: 10%; flex-direction: column; }
+              .suppis-container .item-gesso { top: 35%; right: 0%; flex-direction: column; }
+              .suppis-container .item-marmoraria { bottom: 15%; right: 5%; flex-direction: column; }
+              .suppis-container .item-pisos { bottom: 2%; left: 50%; transform: translateX(-50%); flex-direction: column; }
+              .suppis-container .item-metais { bottom: 15%; left: 5%; flex-direction: column; }
+              .suppis-container .item-cortinas { top: 35%; left: 0%; flex-direction: column; }
+              .suppis-container .item-eletrica { top: 18%; left: 0%; flex-direction: column; }
           }
         ` }} />
 
@@ -479,13 +387,12 @@ const SuppisIntegraDiagram = () => {
             <canvas id="linesCanvas"></canvas>
 
             <div className="center-circle" id="centerCircle">
-              <div className="center-content">
+              <div className="center-content px-4">
                 <div className="center-title">Suppis<br/>Integra</div>
                 <div className="center-subtitle">Método Exclusivo</div>
               </div>
             </div>
 
-            {/* Marcenaria */}
             <div className="service-item item-marcenaria">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" />
@@ -493,7 +400,6 @@ const SuppisIntegraDiagram = () => {
               <span className="service-label">Marcenaria</span>
             </div>
 
-            {/* Iluminação */}
             <div className="service-item item-iluminacao">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" />
@@ -501,7 +407,6 @@ const SuppisIntegraDiagram = () => {
               <span className="service-label">Iluminação</span>
             </div>
 
-            {/* Gesso */}
             <div className="service-item item-gesso">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" />
@@ -509,7 +414,6 @@ const SuppisIntegraDiagram = () => {
               <span className="service-label">Gesso</span>
             </div>
 
-            {/* Marmoraria */}
             <div className="service-item item-marmoraria">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" />
@@ -517,15 +421,13 @@ const SuppisIntegraDiagram = () => {
               <span className="service-label">Marmoraria</span>
             </div>
 
-            {/* Pisos e Revestimentos */}
             <div className="service-item item-pisos">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" />
               </div>
-              <span className="service-label">Pisos e<br/>Revestimentos</span>
+              <span className="service-label">Pisos e Revestimentos</span>
             </div>
 
-            {/* Metais */}
             <div className="service-item item-metais">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" />
@@ -533,15 +435,13 @@ const SuppisIntegraDiagram = () => {
               <span className="service-label">Metais</span>
             </div>
 
-            {/* Cortinas e Persianas */}
             <div className="service-item item-cortinas">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" />
               </div>
-              <span className="service-label">Cortinas e<br/>Persianas</span>
+              <span className="service-label">Cortinas e Persianas</span>
             </div>
 
-            {/* Elétrica */}
             <div className="service-item item-eletrica">
               <div className="service-circle">
                 <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" />
