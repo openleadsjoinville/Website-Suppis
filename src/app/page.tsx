@@ -538,7 +538,7 @@ export default function LandingPage() {
         
         {/* Decorative Icons on Hero */}
         <DecorativeIcon 
-          className="w-[500px] top-60 -left-20" 
+          className="w-[500px] top-40 -left-20" 
           rotation={135} 
           opacity={0.15} 
           y={yHeroLeft}
