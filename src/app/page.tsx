@@ -671,7 +671,7 @@ export default function LandingPage() {
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center">
-            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-48 h-10' : 'w-64 h-16'}`}>
+            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-32 md:w-48 h-8 md:h-10' : 'w-40 md:w-56 lg:w-64 h-10 md:h-14 lg:h-16'}`}>
               <Image 
                 src={LOGO_URL} 
                 alt="Suppis Logo" 
@@ -681,7 +681,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-10">
             {[
               { label: 'Início', href: '#home' },
               { label: 'Suppis Integra', href: '#suppis-integra' },
@@ -691,19 +691,19 @@ export default function LandingPage() {
               <a 
                 key={item.label} 
                 href={item.href} 
-                className={`text-[11px] uppercase tracking-[0.3em] font-medium transition-all hover:opacity-50 ${
+                className={`text-[11px] uppercase tracking-[0.3em] font-medium transition-all hover:opacity-50 whitespace-nowrap ${
                   isScrolled ? 'text-zinc-600' : 'text-zinc-100'
                 }`}
               >
                 {item.label}
               </a>
             ))}
-            <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-8 h-10 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300">
+            <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300 flex-shrink-0">
               Fale Conosco
             </Button>
           </div>
 
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(true)}>
+          <button className="lg:hidden" onClick={() => setMobileMenuOpen(true)}>
             <Menu className={isScrolled ? 'text-zinc-900' : 'text-white'} />
           </button>
         </div>
