@@ -493,30 +493,52 @@ const SuppisIntegraDiagram = () => {
                     aspect-ratio: 1.2 / 1;
                 }
                 .suppis-container .center-circle { width: 30%; }
-                .suppis-container .service-label { font-size: clamp(11px, 2vw, 16px); }
+                .suppis-container .center-title { font-size: clamp(24px, 4vw, 32px); }
+                .suppis-container .center-subtitle { font-size: clamp(12px, 1.5vw, 16px); }
+                .suppis-container .service-label { font-size: clamp(11px, 2vw, 15px); }
             }
 
             @media (max-width: 600px) {
-                .suppis-wrapper { padding: 15px 5px; }
+                .suppis-wrapper { padding: 20px 10px; }
                 .suppis-container {
                     width: 100% !important;
-                    aspect-ratio: 1 / 1.1;
+                    aspect-ratio: 1 / 1.5;
                 }
-                .suppis-container .center-circle { width: 32%; }
-                .suppis-container .service-circle { width: clamp(50px, 14vw, 70px); }
+                .suppis-container .center-circle { width: 38%; }
+                .suppis-container .center-title { font-size: 24px; }
+                .suppis-container .center-subtitle { font-size: 11px; margin-top: 4px; }
+                
+                .suppis-container .service-circle { width: 60px; }
                 .suppis-container .service-label {
-                    font-size: clamp(10px, 2.8vw, 14px);
-                    max-width: 70px;
+                    font-size: 11px;
+                    max-width: 65px;
                 }
-                .suppis-container .service-item { gap: clamp(5px, 1.2vw, 10px); }
-                .suppis-container .item-marcenaria { top: 4%; left: 28%; }
-                .suppis-container .item-iluminacao { top: 4%; right: 5%; }
-                .suppis-container .item-gesso { top: 28%; right: 0%; }
-                .suppis-container .item-marmoraria { bottom: 28%; right: 0%; }
-                .suppis-container .item-pisos { bottom: 4%; right: 12%; }
-                .suppis-container .item-metais { bottom: 4%; left: 22%; }
-                .suppis-container .item-cortinas { bottom: 28%; left: 0%; }
-                .suppis-container .item-eletrica { top: 28%; left: 0%; }
+                .suppis-container .service-item { gap: 6px; }
+
+                /* Posicionamento Mobile Otimizado para evitar sobreposição */
+                .suppis-container .item-marcenaria { top: 2%; left: 50%; transform: translateX(-50%); flex-direction: column; }
+                .suppis-container .item-marcenaria .service-label { text-align: center; }
+
+                .suppis-container .item-iluminacao { top: 12%; right: 2%; flex-direction: column; }
+                .suppis-container .item-iluminacao .service-label { text-align: center; }
+
+                .suppis-container .item-gesso { top: 40%; right: -2%; flex-direction: row; }
+                .suppis-container .item-gesso .service-label { text-align: left; }
+
+                .suppis-container .item-marmoraria { bottom: 30%; right: -2%; flex-direction: row; }
+                .suppis-container .item-marmoraria .service-label { text-align: left; }
+
+                .suppis-container .item-pisos { bottom: 5%; right: 5%; flex-direction: column; }
+                .suppis-container .item-pisos .service-label { text-align: center; }
+
+                .suppis-container .item-metais { bottom: 5%; left: 5%; flex-direction: column; }
+                .suppis-container .item-metais .service-label { text-align: center; }
+
+                .suppis-container .item-cortinas { bottom: 30%; left: -2%; flex-direction: row-reverse; }
+                .suppis-container .item-cortinas .service-label { text-align: right; }
+
+                .suppis-container .item-eletrica { top: 40%; left: -2%; flex-direction: row-reverse; }
+                .suppis-container .item-eletrica .service-label { text-align: right; }
             }
         ` }} />
 
