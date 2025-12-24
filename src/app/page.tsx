@@ -738,7 +738,7 @@ export default function LandingPage() {
       )}
 
       {/* Hero Section - Immersive with Curve Bottom */}
-      <section id="home" className="relative h-screen landscape:h-auto landscape:min-h-screen flex items-center overflow-hidden landscape:py-24">
+      <section id="home" className="relative h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24">
         <div className="absolute inset-0 z-0 bg-black">
           <HeroVideo />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
@@ -758,7 +758,7 @@ export default function LandingPage() {
           y={yHeroRight}
         />
 
-        <div className="container mx-auto px-6 relative z-10 md:pl-40 landscape:pt-12">
+        <div className="container mx-auto px-6 relative z-10 md:pl-40 [@media(max-width:1024px)_and_(orientation:landscape)]:pt-12">
           <div className="max-w-4xl">
             <motion.div
               initial="hidden"
@@ -768,14 +768,14 @@ export default function LandingPage() {
               <motion.h1 
                 custom={0}
                 variants={fadeIn}
-                className="text-4xl sm:text-6xl md:text-8xl font-medium text-white mb-4 sm:mb-8 tracking-tighter leading-[0.95] landscape:text-3xl landscape:sm:text-6xl"
+                className="text-4xl sm:text-6xl md:text-8xl font-medium text-white mb-4 sm:mb-8 tracking-tighter leading-[0.95] [@media(max-width:1024px)_and_(orientation:landscape)]:text-3xl [@media(max-width:1024px)_and_(orientation:landscape)]:sm:text-6xl"
               >
                 Seu imóvel nas <br/> mãos certas<span className="text-[#d4c3b0]">.</span>
               </motion.h1>
               <motion.p 
                 custom={1}
                 variants={fadeIn}
-                className="text-lg md:text-2xl text-zinc-200 mb-6 sm:mb-12 max-w-2xl font-light leading-relaxed landscape:text-base landscape:md:text-2xl landscape:mb-6"
+                className="text-lg md:text-2xl text-zinc-200 mb-6 sm:mb-12 max-w-2xl font-light leading-relaxed [@media(max-width:1024px)_and_(orientation:landscape)]:text-base [@media(max-width:1024px)_and_(orientation:landscape)]:md:text-2xl [@media(max-width:1024px)_and_(orientation:landscape)]:mb-6"
               >
                 Especialistas em projeto de interiores e marcenaria com execução integrada. 
                 Sofisticação e gestão inteligente para seu lar.
@@ -783,7 +783,7 @@ export default function LandingPage() {
               <motion.div 
                 custom={2}
                 variants={fadeIn}
-                className="flex flex-col sm:flex-row gap-4 sm:gap-6 landscape:scale-90 landscape:origin-left"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6 [@media(max-width:1024px)_and_(orientation:landscape)]:scale-90 [@media(max-width:1024px)_and_(orientation:landscape)]:origin-left"
               >
                 <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
                   Falar com um especialista
@@ -798,7 +798,7 @@ export default function LandingPage() {
         </div>
         
         {/* Large stylized transition curve at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-32 bg-[#faf9f6] rounded-t-[50px] sm:rounded-t-[100px] z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)] md:rounded-t-[200px] landscape:h-12" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-32 bg-[#faf9f6] rounded-t-[50px] sm:rounded-t-[100px] z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)] md:rounded-t-[200px] [@media(max-width:1024px)_and_(orientation:landscape)]:h-12" />
       </section>
 
       {/* Section 1: Intro - Refined & Delicate */}
