@@ -758,7 +758,7 @@ export default function LandingPage() {
           y={yHeroRight}
         />
 
-        <div className="container mx-auto px-6 relative z-10 md:pl-40 [@media(max-width:1024px)_and_(orientation:landscape)]:pt-12">
+        <div className="container mx-auto px-4 relative z-10 md:pl-28 [@media(max-width:1024px)_and_(orientation:landscape)]:pt-12">
           <div className="max-w-4xl">
             <motion.div
               initial="hidden"
