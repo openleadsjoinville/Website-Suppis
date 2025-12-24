@@ -324,7 +324,7 @@ const SuppisIntegraDiagram = () => {
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                width: 28%;
+                width: 25%;
                 aspect-ratio: 1 / 1;
                 background: radial-gradient(ellipse at 40% 40%, #4D5D4A, #3D4D3A 40%, #2E3E2E 100%);
                 border-radius: 50%;
@@ -365,7 +365,7 @@ const SuppisIntegraDiagram = () => {
 
             .suppis-container .center-title {
                 font-family: 'DeMonte', Georgia, serif;
-                font-size: clamp(32px, 5vw, 52px);
+                font-size: clamp(28px, 4.5vw, 48px);
                 font-weight: 700;
                 font-style: normal;
                 color: #fff;
@@ -374,24 +374,28 @@ const SuppisIntegraDiagram = () => {
 
             .suppis-container .center-subtitle {
                 font-family: 'DeMonte', Georgia, serif;
-                font-size: clamp(14px, 1.9vw, 22px);
+                font-size: clamp(12px, 1.7vw, 18px);
                 font-weight: 400;
                 font-style: normal;
                 color: rgba(255,255,255,0.9);
                 letter-spacing: 1px;
-                margin-top: clamp(6px, 1vw, 12px);
+                margin-top: clamp(4px, 0.8vw, 10px);
             }
 
             .suppis-container .service-item {
                 position: absolute;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
-                gap: clamp(10px, 1.5vw, 18px);
+                justify-content: center;
                 cursor: pointer;
+                transform: translate(-50%, -50%);
+                width: clamp(100px, 15vw, 180px);
+                z-index: 5;
             }
 
             .suppis-container .service-circle {
-                width: clamp(65px, 9vw, 95px);
+                width: clamp(60px, 8vw, 90px);
                 aspect-ratio: 1 / 1;
                 background: #FAFAFA;
                 border-radius: 50%;
@@ -399,11 +403,12 @@ const SuppisIntegraDiagram = () => {
                 align-items: center;
                 justify-content: center;
                 box-shadow: 
-                    0 0 0 clamp(5px, 0.7vw, 8px) rgba(190, 190, 180, 0.5),
-                    0 0 0 clamp(7px, 1vw, 11px) rgba(200, 200, 190, 0.25);
+                    0 0 0 clamp(4px, 0.6vw, 7px) rgba(190, 190, 180, 0.5),
+                    0 0 0 clamp(6px, 0.8vw, 10px) rgba(200, 200, 190, 0.25);
                 flex-shrink: 0;
                 transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                 overflow: hidden;
+                margin-bottom: 8px;
             }
 
             .suppis-container .service-item:hover .service-circle {
@@ -427,119 +432,98 @@ const SuppisIntegraDiagram = () => {
 
             .suppis-container .service-label {
                 font-family: 'DeMonte', Georgia, serif;
-                font-size: clamp(13px, 1.7vw, 19px);
+                font-size: clamp(12px, 1.5vw, 17px);
                 font-weight: 400;
                 font-style: normal;
                 color: #3A4A3A;
-                line-height: 1.3;
+                line-height: 1.2;
                 transition: all 0.3s ease;
+                text-align: center;
+                width: 100%;
+                pointer-events: none;
             }
 
             .suppis-container .service-item:hover .service-label {
                 color: #2E3E2E;
+                font-weight: 500;
             }
 
-            .suppis-container .item-marcenaria {
-                top: 8%;
-                left: 32%;
-                flex-direction: row-reverse;
-            }
-            .suppis-container .item-marcenaria .service-label { text-align: right; }
+            /* Posicionamento Desktop (Ellipse-based) */
+            .suppis-container .item-marcenaria { top: 10%; left: 50%; }
+            .suppis-container .item-iluminacao { top: 22%; left: 78%; }
+            .suppis-container .item-gesso { top: 50%; left: 90%; }
+            .suppis-container .item-marmoraria { top: 78%; left: 78%; }
+            .suppis-container .item-pisos { top: 90%; left: 50%; }
+            .suppis-container .item-metais { top: 78%; left: 22%; }
+            .suppis-container .item-cortinas { top: 50%; left: 10%; }
+            .suppis-container .item-eletrica { top: 22%; left: 22%; }
 
-            .suppis-container .item-iluminacao {
-                top: 8%;
-                right: 10%;
+            @media (min-width: 1024px) {
+                .suppis-container .item-gesso, 
+                .suppis-container .item-cortinas,
+                .suppis-container .item-eletrica,
+                .suppis-container .item-marcenaria,
+                .suppis-container .item-metais {
+                    flex-direction: row-reverse;
+                    width: auto;
+                    gap: 15px;
+                }
+                .suppis-container .item-iluminacao,
+                .suppis-container .item-marmoraria {
+                    flex-direction: row;
+                    width: auto;
+                    gap: 15px;
+                }
+                .suppis-container .item-marcenaria,
+                .suppis-container .item-pisos {
+                    flex-direction: column;
+                }
+                .suppis-container .item-gesso .service-label { text-align: left; }
+                .suppis-container .item-cortinas .service-label { text-align: right; }
+                .suppis-container .item-eletrica .service-label { text-align: right; }
+                .suppis-container .service-circle { margin-bottom: 0; }
             }
-
-            .suppis-container .item-gesso {
-                top: 32%;
-                right: 2%;
-            }
-
-            .suppis-container .item-marmoraria {
-                bottom: 32%;
-                right: 2%;
-            }
-
-            .suppis-container .item-pisos {
-                bottom: 8%;
-                right: 18%;
-            }
-
-            .suppis-container .item-metais {
-                bottom: 8%;
-                left: 28%;
-                flex-direction: row-reverse;
-            }
-            .suppis-container .item-metais .service-label { text-align: right; }
-
-            .suppis-container .item-cortinas {
-                bottom: 32%;
-                left: 2%;
-                flex-direction: row-reverse;
-            }
-            .suppis-container .item-cortinas .service-label { text-align: right; }
-
-            .suppis-container .item-eletrica {
-                top: 32%;
-                left: 2%;
-                flex-direction: row-reverse;
-            }
-            .suppis-container .item-eletrica .service-label { text-align: right; }
 
             @media (max-width: 900px) {
                 .suppis-container {
                     width: 100% !important;
-                    aspect-ratio: 1.2 / 1;
+                    aspect-ratio: 1.1 / 1;
                 }
-                .suppis-container .center-circle { width: 30%; }
-                .suppis-container .center-title { font-size: clamp(24px, 4vw, 32px); }
-                .suppis-container .center-subtitle { font-size: clamp(12px, 1.5vw, 16px); }
-                .suppis-container .service-label { font-size: clamp(11px, 2vw, 15px); }
+                .suppis-container .center-circle { width: 32%; }
+                .suppis-container .item-iluminacao { left: 82%; }
+                .suppis-container .item-marmoraria { left: 82%; }
+                .suppis-container .item-metais { left: 18%; }
+                .suppis-container .item-eletrica { left: 18%; }
             }
 
             @media (max-width: 600px) {
-                .suppis-wrapper { padding: 20px 10px; }
+                .suppis-wrapper { padding: 20px 5px; }
                 .suppis-container {
                     width: 100% !important;
-                    aspect-ratio: 1 / 1.5;
+                    aspect-ratio: 1 / 1.6;
                 }
-                .suppis-container .center-circle { width: 38%; }
-                .suppis-container .center-title { font-size: 24px; }
+                .suppis-container .center-circle { width: 42%; }
+                .suppis-container .center-title { font-size: 26px; }
                 .suppis-container .center-subtitle { font-size: 11px; margin-top: 4px; }
                 
-                .suppis-container .service-circle { width: 60px; }
+                .suppis-container .service-circle { width: 62px; }
                 .suppis-container .service-label {
                     font-size: 11px;
-                    max-width: 65px;
+                    line-height: 1.1;
                 }
-                .suppis-container .service-item { gap: 6px; }
+                .suppis-container .service-item { width: 85px; gap: 4px; }
 
-                /* Posicionamento Mobile Otimizado para evitar sobreposição */
-                .suppis-container .item-marcenaria { top: 2%; left: 50%; transform: translateX(-50%); flex-direction: column; }
-                .suppis-container .item-marcenaria .service-label { text-align: center; }
-
-                .suppis-container .item-iluminacao { top: 12%; right: 2%; flex-direction: column; }
-                .suppis-container .item-iluminacao .service-label { text-align: center; }
-
-                .suppis-container .item-gesso { top: 40%; right: -2%; flex-direction: row; }
-                .suppis-container .item-gesso .service-label { text-align: left; }
-
-                .suppis-container .item-marmoraria { bottom: 30%; right: -2%; flex-direction: row; }
-                .suppis-container .item-marmoraria .service-label { text-align: left; }
-
-                .suppis-container .item-pisos { bottom: 5%; right: 5%; flex-direction: column; }
-                .suppis-container .item-pisos .service-label { text-align: center; }
-
-                .suppis-container .item-metais { bottom: 5%; left: 5%; flex-direction: column; }
-                .suppis-container .item-metais .service-label { text-align: center; }
-
-                .suppis-container .item-cortinas { bottom: 30%; left: -2%; flex-direction: row-reverse; }
-                .suppis-container .item-cortinas .service-label { text-align: right; }
-
-                .suppis-container .item-eletrica { top: 40%; left: -2%; flex-direction: row-reverse; }
-                .suppis-container .item-eletrica .service-label { text-align: right; }
+                /* Posicionamento Mobile (Vertical Ellipse) */
+                .suppis-container .item-marcenaria { top: 6%; left: 50%; }
+                .suppis-container .item-iluminacao { top: 18%; left: 82%; }
+                .suppis-container .item-gesso { top: 40%; left: 88%; }
+                .suppis-container .item-marmoraria { top: 68%; left: 85%; }
+                .suppis-container .item-pisos { top: 92%; left: 55%; }
+                .suppis-container .item-metais { top: 85%; left: 18%; }
+                .suppis-container .item-cortinas { top: 58%; left: 12%; }
+                .suppis-container .item-eletrica { top: 30%; left: 15%; }
             }
+
         ` }} />
 
         <div className="suppis-wrapper">
