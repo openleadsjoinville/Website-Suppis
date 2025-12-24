@@ -666,12 +666,12 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav 
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${
-          isScrolled ? 'bg-white/70 backdrop-blur-xl py-3 shadow-none border-b border-black/5' : 'bg-transparent py-6'
+          isScrolled ? 'bg-white/70 backdrop-blur-xl py-2 sm:py-3 shadow-none border-b border-black/5' : 'bg-transparent py-3 sm:py-6'
         }`}
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center">
-            <div className={`relative transition-all duration-500 translate-y-[6px] ${isScrolled ? 'w-36 md:w-52 h-9 md:h-11' : 'w-48 md:w-64 lg:w-72 h-12 md:h-18 lg:h-20'}`}>
+            <div className={`relative transition-all duration-500 translate-y-[6px] ${isScrolled ? 'w-28 sm:w-36 md:w-52 h-7 sm:h-9 md:h-11' : 'w-36 sm:w-48 md:w-64 lg:w-72 h-9 sm:h-12 md:h-18 lg:h-20'}`}>
               <Image 
                 src={LOGO_URL} 
                 alt="Suppis Logo" 
@@ -738,7 +738,7 @@ export default function LandingPage() {
       )}
 
       {/* Hero Section - Immersive with Curve Bottom */}
-      <section id="home" className="relative h-[100vh] flex items-center overflow-hidden">
+      <section id="home" className="relative min-h-screen flex items-center overflow-hidden py-10 sm:py-0">
         <div className="absolute inset-0 z-0 bg-black">
           <HeroVideo />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
@@ -758,7 +758,7 @@ export default function LandingPage() {
           y={yHeroRight}
         />
 
-        <div className="container mx-auto px-6 relative z-10 md:pl-40">
+        <div className="container mx-auto px-6 relative z-10 pt-20 sm:pt-0 md:pl-40">
           <div className="max-w-4xl">
             <motion.div
               initial="hidden"
@@ -768,14 +768,14 @@ export default function LandingPage() {
               <motion.h1 
                 custom={0}
                 variants={fadeIn}
-                className="text-6xl md:text-8xl font-medium text-white mb-8 tracking-tighter leading-[0.95]"
+                className="text-4xl sm:text-6xl md:text-8xl font-medium text-white mb-4 sm:mb-8 tracking-tighter leading-[0.95]"
               >
                 Seu imóvel nas <br/> mãos certas<span className="text-[#d4c3b0]">.</span>
               </motion.h1>
               <motion.p 
                 custom={1}
                 variants={fadeIn}
-                className="text-xl md:text-2xl text-zinc-200 mb-12 max-w-2xl font-light leading-relaxed"
+                className="text-lg md:text-2xl text-zinc-200 mb-6 sm:mb-12 max-w-2xl font-light leading-relaxed"
               >
                 Especialistas em projeto de interiores e marcenaria com execução integrada. 
                 Sofisticação e gestão inteligente para seu lar.
@@ -783,13 +783,13 @@ export default function LandingPage() {
               <motion.div 
                 custom={2}
                 variants={fadeIn}
-                className="flex flex-col sm:flex-row gap-6"
+                className="flex flex-col sm:flex-row gap-4 sm:gap-6"
               >
-                <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
+                <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
                   Falar com um especialista
                   <ArrowRight className="ml-3 w-4 h-4" />
                 </Button>
-                <Button variant="outline" className="border-white/20 text-[#4A583E] hover:bg-transparent hover:text-white hover:opacity-60 px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
+                <Button variant="outline" className="border-white/20 text-[#4A583E] hover:bg-transparent hover:text-white hover:opacity-60 px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
                   Conheça a Suppis
                 </Button>
               </motion.div>
@@ -798,7 +798,7 @@ export default function LandingPage() {
         </div>
         
         {/* Large stylized transition curve at the bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-[#faf9f6] rounded-t-[100px] z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)] md:rounded-t-[200px]" />
+        <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-32 bg-[#faf9f6] rounded-t-[50px] sm:rounded-t-[100px] z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.1)] md:rounded-t-[200px]" />
       </section>
 
       {/* Section 1: Intro - Refined & Delicate */}
