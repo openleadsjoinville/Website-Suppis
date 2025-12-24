@@ -691,14 +691,14 @@ export default function LandingPage() {
               <a 
                 key={item.label} 
                 href={item.href} 
-                className={`text-[11px] uppercase tracking-[0.3em] font-medium transition-all hover:opacity-50 whitespace-nowrap ${
+                className={`text-[13px] uppercase tracking-[0.25em] font-semibold transition-all hover:opacity-50 whitespace-nowrap ${
                   isScrolled ? 'text-zinc-600' : 'text-zinc-100'
                 }`}
               >
                 {item.label}
               </a>
             ))}
-            <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-300 flex-shrink-0">
+            <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0">
               Fale Conosco
             </Button>
           </div>
