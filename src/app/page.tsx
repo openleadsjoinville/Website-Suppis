@@ -671,7 +671,7 @@ export default function LandingPage() {
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           <div className="flex items-center">
-            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-32 md:w-48 h-8 md:h-10' : 'w-40 md:w-56 lg:w-64 h-10 md:h-14 lg:h-16'}`}>
+            <div className={`relative transition-all duration-500 translate-y-[2px] ${isScrolled ? 'w-32 md:w-48 h-8 md:h-10' : 'w-40 md:w-56 lg:w-64 h-10 md:h-14 lg:h-16'}`}>
               <Image 
                 src={LOGO_URL} 
                 alt="Suppis Logo" 
