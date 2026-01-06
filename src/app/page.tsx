@@ -1100,6 +1100,13 @@ export default function LandingPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
+                    onClick={() => window.open('https://wa.me/5547999247199?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento.', '_blank')}
+                    className="bg-[#25D366] text-white hover:bg-[#128C7E] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  >
+                    Solicitar Orçamento
+                    <MessageCircle className="ml-3 w-4 h-4" />
+                  </Button>
+                  <Button 
                     onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
                     className="bg-white text-[#4A583E] hover:bg-[#eef1da] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
                   >
