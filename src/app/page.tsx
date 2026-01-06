@@ -1134,18 +1134,6 @@ export default function LandingPage() {
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[120px] fill-[#4A583E]">
             <path d="M0,120V80C300,20,900,20,1200,80V120H0z" />
           </svg>
-          
-          {/* Floating Brand Detail */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden md:block"
-          >
-            <div className="px-8 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center group hover:scale-105 transition-all duration-700">
-              <span className="text-white/40 text-[9px] uppercase tracking-[0.4em] font-medium">Excelência Garantida</span>
-            </div>
-          </motion.div>
         </div>
       </section>
 
