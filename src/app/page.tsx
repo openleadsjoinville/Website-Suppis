@@ -1085,7 +1085,7 @@ export default function LandingPage() {
                   Visite nosso <br/> Showroom
                 </h2>
                 <p className="text-white/70 text-lg font-light leading-relaxed max-w-lg">
-                  Venha conhecer de perto a sofisticação e o acabamento impecável que transformam ambientes em lares extraordinários. Uma experiência completa de design e marcenaria em Joinville.
+                  Aqui você sente na prática o que significa ter marcenaria própria, acabamento impecável e um parceiro que cuida do seu projeto de ponta a ponta.
                 </p>
                 
                 <div className="flex items-start gap-4 text-white/80">
