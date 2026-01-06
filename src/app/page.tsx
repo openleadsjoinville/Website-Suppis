@@ -264,8 +264,18 @@ const SuppisIntegraDiagram = () => {
   }, []);
 
   return (
-    <section id="suppis-integra" className="py-20 bg-white overflow-hidden">
-      <div className="container mx-auto px-6">
+    <section id="suppis-integra" className="min-h-screen h-screen flex items-center bg-white overflow-hidden py-8">
+      <div className="container mx-auto px-6 h-full flex flex-col">
+        <div className="text-center mb-6 max-w-4xl mx-auto flex-shrink-0">
+          <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-2 block">Metodologia</span>
+          <h2 className="text-4xl md:text-5xl font-medium text-[#4A583E] tracking-tighter leading-tight mb-3">
+            Suppis Integra
+          </h2>
+          <p className="text-zinc-500 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+            A solução completa que integra marcenaria de alto padrão, execução técnica e gestão inteligente em um único ecossistema.
+          </p>
+        </div>
+
         <style dangerouslySetInnerHTML={{ __html: `
             .suppis-wrapper {
                 width: 100% !important;
@@ -274,9 +284,11 @@ const SuppisIntegraDiagram = () => {
                 align-items: center;
                 justify-content: center;
                 font-style: normal;
-                padding: 40px 20px;
+                padding: 10px;
                 margin: 0;
                 box-sizing: border-box;
+                flex: 1;
+                min-height: 0;
             }
 
             .suppis-wrapper * {
@@ -288,8 +300,9 @@ const SuppisIntegraDiagram = () => {
             .suppis-container {
                 position: relative;
                 width: 100% !important;
-                max-width: 100% !important;
-                aspect-ratio: 1.4 / 1;
+                max-width: 1100px !important;
+                aspect-ratio: 1.6 / 1;
+                max-height: 65vh;
             }
 
             .suppis-container #linesCanvas {
@@ -473,18 +486,19 @@ const SuppisIntegraDiagram = () => {
             }
 
             @media (max-width: 600px) {
-                .suppis-wrapper { padding: 20px 5px; }
+                .suppis-wrapper { padding: 10px 5px; }
                 .suppis-container {
                     width: 100% !important;
-                    aspect-ratio: 1 / 1.6;
+                    aspect-ratio: 1 / 1.45;
+                    max-height: 55vh;
                 }
                 .suppis-container .center-circle { width: 42%; }
-                .suppis-container .center-title { font-size: 26px; }
-                .suppis-container .center-subtitle { font-size: 11px; margin-top: 4px; }
+                .suppis-container .center-title { font-size: 24px; }
+                .suppis-container .center-subtitle { font-size: 10px; margin-top: 3px; }
                 
-                .suppis-container .service-circle { width: 62px; }
+                .suppis-container .service-circle { width: 58px; }
                 .suppis-container .service-label {
-                    font-size: 11px;
+                    font-size: 10px;
                     line-height: 1.1;
                 }
                 .suppis-container .service-item { width: auto; gap: 8px; }
