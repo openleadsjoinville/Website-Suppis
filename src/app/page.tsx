@@ -267,29 +267,12 @@ const SuppisIntegraDiagram = () => {
     <section id="suppis-integra" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <style dangerouslySetInnerHTML={{ __html: `
-            @font-face {
-                font-family: 'DeMonte';
-                src: url('https://suppis2.openleads.com.br/wp-content/uploads/2025/12/DeMonte-Regular-1.ttf') format('truetype');
-                font-weight: 400;
-                font-style: normal;
-                font-display: swap;
-            }
-
-            @font-face {
-                font-family: 'DeMonte';
-                src: url('https://suppis2.openleads.com.br/wp-content/uploads/2025/12/DeMonte-Bold.otf') format('opentype');
-                font-weight: 700;
-                font-style: normal;
-                font-display: swap;
-            }
-
             .suppis-wrapper {
                 width: 100% !important;
                 max-width: 100% !important;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-family: 'DeMonte', Georgia, serif;
                 font-style: normal;
                 padding: 40px 20px;
                 margin: 0;
@@ -364,7 +347,6 @@ const SuppisIntegraDiagram = () => {
             }
 
             .suppis-container .center-title {
-                font-family: 'DeMonte', Georgia, serif;
                 font-size: clamp(28px, 4.5vw, 48px);
                 font-weight: 700;
                 font-style: normal;
@@ -373,7 +355,6 @@ const SuppisIntegraDiagram = () => {
             }
 
             .suppis-container .center-subtitle {
-                font-family: 'DeMonte', Georgia, serif;
                 font-size: clamp(12px, 1.7vw, 18px);
                 font-weight: 400;
                 font-style: normal;
@@ -392,6 +373,7 @@ const SuppisIntegraDiagram = () => {
                 transform: translate(-50%, -50%);
                 width: clamp(100px, 15vw, 180px);
                 z-index: 5;
+                gap: 8px;
             }
 
             .suppis-container .service-circle {
@@ -408,7 +390,6 @@ const SuppisIntegraDiagram = () => {
                 flex-shrink: 0;
                 transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
                 overflow: hidden;
-                margin-bottom: 8px;
             }
 
             .suppis-container .service-item:hover .service-circle {
@@ -431,7 +412,6 @@ const SuppisIntegraDiagram = () => {
             }
 
             .suppis-container .service-label {
-                font-family: 'DeMonte', Georgia, serif;
                 font-size: clamp(12px, 1.5vw, 17px);
                 font-weight: 400;
                 font-style: normal;
@@ -449,39 +429,35 @@ const SuppisIntegraDiagram = () => {
             }
 
             /* Posicionamento Desktop (Ellipse-based) */
-            .suppis-container .item-marcenaria { top: 10%; left: 50%; }
-            .suppis-container .item-iluminacao { top: 22%; left: 78%; }
-            .suppis-container .item-gesso { top: 50%; left: 90%; }
-            .suppis-container .item-marmoraria { top: 78%; left: 78%; }
-            .suppis-container .item-pisos { top: 90%; left: 50%; }
-            .suppis-container .item-metais { top: 78%; left: 22%; }
-            .suppis-container .item-cortinas { top: 50%; left: 10%; }
-            .suppis-container .item-eletrica { top: 22%; left: 22%; }
+            .suppis-container .item-marcenaria { top: 10%; left: 50%; flex-direction: column-reverse; }
+            .suppis-container .item-iluminacao { top: 22%; left: 78%; flex-direction: row; }
+            .suppis-container .item-gesso { top: 50%; left: 90%; flex-direction: row; }
+            .suppis-container .item-marmoraria { top: 78%; left: 78%; flex-direction: row; }
+            .suppis-container .item-pisos { top: 90%; left: 50%; flex-direction: column; }
+            .suppis-container .item-metais { top: 78%; left: 22%; flex-direction: row-reverse; }
+            .suppis-container .item-cortinas { top: 50%; left: 10%; flex-direction: row-reverse; }
+            .suppis-container .item-eletrica { top: 22%; left: 22%; flex-direction: row-reverse; }
 
             @media (min-width: 1024px) {
                 .suppis-container .item-gesso, 
                 .suppis-container .item-cortinas,
                 .suppis-container .item-eletrica,
                 .suppis-container .item-marcenaria,
-                .suppis-container .item-metais {
-                    flex-direction: row-reverse;
-                    width: auto;
-                    gap: 15px;
-                }
+                .suppis-container .item-metais,
                 .suppis-container .item-iluminacao,
-                .suppis-container .item-marmoraria {
-                    flex-direction: row;
+                .suppis-container .item-marmoraria,
+                .suppis-container .item-pisos {
                     width: auto;
                     gap: 15px;
                 }
-                .suppis-container .item-marcenaria,
-                .suppis-container .item-pisos {
-                    flex-direction: column;
-                }
+                
                 .suppis-container .item-gesso .service-label { text-align: left; }
+                .suppis-container .item-iluminacao .service-label { text-align: left; }
+                .suppis-container .item-marmoraria .service-label { text-align: left; }
+                
                 .suppis-container .item-cortinas .service-label { text-align: right; }
                 .suppis-container .item-eletrica .service-label { text-align: right; }
-                .suppis-container .service-circle { margin-bottom: 0; }
+                .suppis-container .item-metais .service-label { text-align: right; }
             }
 
             @media (max-width: 900px) {
@@ -511,17 +487,25 @@ const SuppisIntegraDiagram = () => {
                     font-size: 11px;
                     line-height: 1.1;
                 }
-                .suppis-container .service-item { width: 85px; gap: 4px; }
+                .suppis-container .service-item { width: auto; gap: 8px; }
 
                 /* Posicionamento Mobile (Vertical Ellipse) */
-                .suppis-container .item-marcenaria { top: 6%; left: 50%; }
-                .suppis-container .item-iluminacao { top: 18%; left: 82%; }
-                .suppis-container .item-gesso { top: 40%; left: 88%; }
-                .suppis-container .item-marmoraria { top: 68%; left: 85%; }
-                .suppis-container .item-pisos { top: 92%; left: 55%; }
-                .suppis-container .item-metais { top: 85%; left: 18%; }
-                .suppis-container .item-cortinas { top: 58%; left: 12%; }
-                .suppis-container .item-eletrica { top: 30%; left: 15%; }
+                .suppis-container .item-marcenaria { top: 6%; left: 50%; flex-direction: column-reverse; }
+                .suppis-container .item-iluminacao { top: 18%; left: 82%; flex-direction: row; }
+                .suppis-container .item-gesso { top: 40%; left: 88%; flex-direction: row; }
+                .suppis-container .item-marmoraria { top: 68%; left: 85%; flex-direction: row; }
+                .suppis-container .item-pisos { top: 92%; left: 50%; flex-direction: column; }
+                .suppis-container .item-metais { top: 85%; left: 18%; flex-direction: row-reverse; }
+                .suppis-container .item-cortinas { top: 58%; left: 12%; flex-direction: row-reverse; }
+                .suppis-container .item-eletrica { top: 30%; left: 15%; flex-direction: row-reverse; }
+
+                .suppis-container .item-gesso .service-label,
+                .suppis-container .item-iluminacao .service-label,
+                .suppis-container .item-marmoraria .service-label { text-align: left; }
+                
+                .suppis-container .item-cortinas .service-label,
+                .suppis-container .item-eletrica .service-label,
+                .suppis-container .item-metais .service-label { text-align: right; }
             }
 
         ` }} />
