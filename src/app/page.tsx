@@ -1112,7 +1112,7 @@ export default function LandingPage() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={scaleIn}
-                className="relative aspect-[4/5] md:aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl border-8 border-white/5"
+                className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-8 border-white/5"
               >
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3574.9657!2d-48.8475!3d-26.3032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deb0402b85e05d%3A0xc3f7a26245a4a58d!2sRua%20Doutor%20Marinho%20Lobo%2C%2023%20-%20Centro%2C%20Joinville%20-%20SC!5e0!3m2!1spt-BR!2sbr" 
