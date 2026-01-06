@@ -1138,7 +1138,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer - XYZ Inspired Layout */}
-      <footer className="bg-[#4A583E] text-white pt-32 pb-12 relative z-20 overflow-hidden">
+      <footer className="bg-[#4A583E] text-white pt-16 pb-12 relative z-20 overflow-hidden">
         {/* Decorative element for Footer */}
         <DecorativeIcon 
           className="w-[800px] -bottom-40 -right-40" 
