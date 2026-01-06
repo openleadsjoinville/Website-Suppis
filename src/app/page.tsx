@@ -673,7 +673,11 @@ export default function LandingPage() {
                 {item.label}
               </a>
             ))}
-            <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0">
+            <Button 
+              size="sm" 
+              onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
+              className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0"
+            >
               Fale Conosco
             </Button>
           </div>
@@ -760,7 +764,10 @@ export default function LandingPage() {
                 variants={fadeIn}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 [@media(max-width:1024px)_and_(orientation:landscape)]:scale-90 [@media(max-width:1024px)_and_(orientation:landscape)]:origin-left"
               >
-                <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
+                <Button 
+                  onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
+                  className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                >
                   Falar com um especialista
                   <ArrowRight className="ml-3 w-4 h-4" />
                 </Button>
@@ -920,7 +927,10 @@ export default function LandingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
+              <Button 
+                onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
+                className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+              >
                 Quero começar meu projeto
                 <ArrowRight className="ml-3 w-4 h-4" />
               </Button>
@@ -1098,8 +1108,15 @@ export default function LandingPage() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
-                    onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
+                    onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
                     className="bg-white text-[#4A583E] hover:bg-[#eef1da] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  >
+                    Falar no WhatsApp
+                    <MessageCircle className="ml-3 w-4 h-4" />
+                  </Button>
+                  <Button 
+                    onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
+                    className="bg-white/10 text-white hover:bg-white hover:text-[#4A583E] border border-white/20 px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300 hover:scale-105"
                   >
                     Ver no Google Maps
                     <ArrowRight className="ml-3 w-4 h-4" />
