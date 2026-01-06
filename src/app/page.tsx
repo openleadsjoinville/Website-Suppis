@@ -22,7 +22,8 @@ import {
   Lightbulb,
   Pencil,
   Settings,
-  Key
+  Key,
+  MapPin
 } from 'lucide-react'
 
 // Constants
@@ -996,8 +997,6 @@ export default function LandingPage() {
           color="#4a583e"
         />
         
-        {/* Background preenchimento verde para sobreposição */}
-        <div className="absolute inset-x-0 bottom-0 h-[400px] bg-[#4A583E] pointer-events-none" />
         
         <div className="absolute inset-x-0 top-0 bottom-32 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-2xl" />
         
@@ -1054,6 +1053,80 @@ export default function LandingPage() {
                   </div>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Showroom Section */}
+      <section className="py-24 bg-[#eef1da] relative z-40 overflow-hidden">
+        <div className="container mx-auto px-6">
+          <div className="bg-[#4A583E] rounded-[3rem] md:rounded-[4rem] p-8 md:p-20 overflow-hidden relative shadow-2xl">
+            {/* Decorative background element */}
+            <DecorativeIcon 
+              className="w-[800px] -top-40 -right-40" 
+              rotation={15} 
+              opacity={0.05} 
+              color="#ffffff"
+            />
+            
+            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center relative z-10">
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                className="space-y-8"
+              >
+                <span className="text-white/60 font-medium uppercase tracking-[0.4em] text-[10px] block">Onde estamos</span>
+                <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tighter leading-[0.95]">
+                  Visite nosso <br/> Showroom
+                </h2>
+                <p className="text-white/70 text-lg font-light leading-relaxed max-w-lg">
+                  Venha conhecer de perto a sofisticação e o acabamento impecável que transformam ambientes em lares extraordinários. Uma experiência completa de design e marcenaria em Joinville.
+                </p>
+                
+                <div className="flex items-start gap-4 text-white/80">
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="text-xl font-medium tracking-tight">Rua Doutor Marinho Lobo, 23</p>
+                    <p className="text-sm uppercase tracking-[0.2em] opacity-60">Centro, Joinville - SC</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button 
+                    onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
+                    className="bg-white text-[#4A583E] hover:bg-[#eef1da] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  >
+                    Ver no Google Maps
+                    <ArrowRight className="ml-3 w-4 h-4" />
+                  </Button>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={scaleIn}
+                className="relative aspect-[4/3] md:aspect-square rounded-3xl overflow-hidden shadow-2xl border-8 border-white/5 group"
+              >
+                <Image 
+                  src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png" 
+                  alt="Showroom Suppis" 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#4A583E]/40 to-transparent opacity-60" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white text-[10px] uppercase tracking-[0.2em] font-bold">
+                    Conhecer Espaço
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
