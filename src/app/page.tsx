@@ -112,24 +112,24 @@ const SuppisIntegraDiagram = () => {
   }, []);
 
   return (
-    <section id="suppis-integra" className="min-h-screen md:h-screen bg-white relative overflow-hidden flex flex-col items-center justify-center py-12">
-      <div className="container mx-auto px-6 flex flex-col h-full max-h-full">
-        <div className="text-center mb-6 md:mb-10 flex-shrink-0">
+    <section id="suppis-integra" className="min-h-screen bg-white relative overflow-hidden flex flex-col items-center justify-center py-20 md:py-32">
+      <div className="container mx-auto px-6 flex flex-col">
+        <div className="text-center mb-12 md:mb-20 flex-shrink-0">
           <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-3 block">Ecossistema</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-7xl font-medium text-[#4A583E] tracking-tighter leading-tight mb-6">
             Suppis Integra
           </h2>
-          <p className="text-zinc-500 text-sm md:text-lg font-light leading-relaxed max-w-2xl mx-auto">
-            Nosso método exclusivo que conecta arquitetos, engenheiros e fornecedores <br className="hidden md:block" /> em uma gestão unificada para garantir a excelência do seu projeto.
+          <p className="text-zinc-500 text-sm md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
+            Nosso método exclusivo que conecta arquitetos, engenheiros e fornecedores <br className="hidden md:block" /> em uma gestão unificada para garantir a excelência absoluta do seu projeto.
           </p>
         </div>
 
-        <div className="flex-1 flex items-center justify-center min-h-0 relative">
+        <div className="flex flex-center justify-center relative">
           <style dangerouslySetInnerHTML={{ __html: `
               .suppis-container {
                   position: relative;
                   width: 100%;
-                  max-width: min(80vh, 900px);
+                  max-width: 1000px;
                   aspect-ratio: 1 / 1;
                   margin: 0 auto;
                   font-style: normal;
@@ -150,7 +150,7 @@ const SuppisIntegraDiagram = () => {
                   top: 50%;
                   left: 50%;
                   transform: translate(-50%, -50%);
-                  width: 25%;
+                  width: 22%;
                   aspect-ratio: 1 / 1;
                   background: radial-gradient(ellipse at 40% 40%, #4D5D4A, #3D4D3A 40%, #2E3E2E 100%);
                   border-radius: 50%;
@@ -190,7 +190,7 @@ const SuppisIntegraDiagram = () => {
               }
 
               .suppis-container .center-title {
-                  font-size: clamp(28px, 4.5vw, 48px);
+                  font-size: clamp(24px, 3.5vw, 42px);
                   font-weight: 700;
                   font-style: normal;
                   color: #fff;
@@ -198,7 +198,7 @@ const SuppisIntegraDiagram = () => {
               }
 
               .suppis-container .center-subtitle {
-                  font-size: clamp(12px, 1.7vw, 18px);
+                  font-size: clamp(10px, 1.3vw, 16px);
                   font-weight: 400;
                   font-style: normal;
                   color: rgba(255,255,255,0.9);
@@ -214,13 +214,13 @@ const SuppisIntegraDiagram = () => {
                   justify-content: center;
                   cursor: pointer;
                   transform: translate(-50%, -50%);
-                  width: clamp(100px, 15vw, 180px);
+                  width: clamp(120px, 18vw, 220px);
                   z-index: 5;
-                  gap: 8px;
+                  gap: 12px;
               }
 
               .suppis-container .service-circle {
-                  width: clamp(60px, 8vw, 90px);
+                  width: clamp(70px, 10vw, 110px);
                   aspect-ratio: 1 / 1;
                   background: #FAFAFA;
                   border-radius: 50%;
@@ -255,11 +255,11 @@ const SuppisIntegraDiagram = () => {
               }
 
               .suppis-container .service-label {
-                  font-size: clamp(12px, 1.5vw, 17px);
+                  font-size: clamp(13px, 1.6vw, 18px);
                   font-weight: 400;
                   font-style: normal;
                   color: #3A4A3A;
-                  line-height: 1.2;
+                  line-height: 1.3;
                   transition: all 0.3s ease;
                   text-align: center;
                   width: 100%;
@@ -271,15 +271,15 @@ const SuppisIntegraDiagram = () => {
                   font-weight: 500;
               }
 
-              /* Posicionamento Circular Proporcional */
-              .suppis-container .item-marcenaria { top: 10%; left: 50%; flex-direction: column-reverse; }
-              .suppis-container .item-iluminacao { top: 22%; left: 78%; flex-direction: row; }
-              .suppis-container .item-gesso { top: 50%; left: 90%; flex-direction: row; }
-              .suppis-container .item-marmoraria { top: 78%; left: 78%; flex-direction: row; }
-              .suppis-container .item-pisos { top: 90%; left: 50%; flex-direction: column; }
-              .suppis-container .item-metais { top: 78%; left: 22%; flex-direction: row-reverse; }
-              .suppis-container .item-cortinas { top: 50%; left: 10%; flex-direction: row-reverse; }
-              .suppis-container .item-eletrica { top: 22%; left: 22%; flex-direction: row-reverse; }
+              /* Posicionamento Circular Proporcional - Aumentado o raio */
+              .suppis-container .item-marcenaria { top: 8%; left: 50%; flex-direction: column-reverse; }
+              .suppis-container .item-iluminacao { top: 20%; left: 82%; flex-direction: row; }
+              .suppis-container .item-gesso { top: 50%; left: 92%; flex-direction: row; }
+              .suppis-container .item-marmoraria { top: 80%; left: 82%; flex-direction: row; }
+              .suppis-container .item-pisos { top: 92%; left: 50%; flex-direction: column; }
+              .suppis-container .item-metais { top: 80%; left: 18%; flex-direction: row-reverse; }
+              .suppis-container .item-cortinas { top: 50%; left: 8%; flex-direction: row-reverse; }
+              .suppis-container .item-eletrica { top: 20%; left: 18%; flex-direction: row-reverse; }
 
               @media (min-width: 1024px) {
                   .suppis-container .item-gesso, 
@@ -291,7 +291,7 @@ const SuppisIntegraDiagram = () => {
                   .suppis-container .item-marmoraria,
                   .suppis-container .item-pisos {
                       width: auto;
-                      gap: 15px;
+                      gap: 20px;
                   }
                   
                   .suppis-container .item-gesso .service-label { text-align: left; }
@@ -306,36 +306,31 @@ const SuppisIntegraDiagram = () => {
               @media (max-width: 900px) {
                   .suppis-container {
                       width: 100%;
-                      max-width: 600px;
+                      max-width: 650px;
+                      margin: 40px auto;
                   }
-                  .suppis-container .center-circle { width: 32%; }
+                  .suppis-container .center-circle { width: 30%; }
               }
 
               @media (max-width: 600px) {
                   .suppis-container {
                       width: 100%;
-                      max-width: 450px;
+                      max-width: 480px;
                   }
-                  .suppis-container .center-circle { width: 42%; }
-                  .suppis-container .center-title { font-size: 24px; }
+                  .suppis-container .center-circle { width: 38%; }
+                  .suppis-container .center-title { font-size: 22px; }
                   .suppis-container .center-subtitle { font-size: 10px; margin-top: 3px; }
                   
-                  .suppis-container .service-circle { width: 58px; }
+                  .suppis-container .service-circle { width: 62px; }
                   .suppis-container .service-label {
-                      font-size: 10px;
+                      font-size: 11px;
                       line-height: 1.1;
                   }
                   .suppis-container .service-item { width: auto; gap: 8px; }
-
-                  /* Posicionamento Mobile Mantido Circular */
-                  .suppis-container .item-marcenaria { top: 10%; left: 50%; flex-direction: column-reverse; }
-                  .suppis-container .item-iluminacao { top: 22%; left: 78%; flex-direction: row; }
-                  .suppis-container .item-gesso { top: 50%; left: 90%; flex-direction: row; }
-                  .suppis-container .item-marmoraria { top: 78%; left: 78%; flex-direction: row; }
-                  .suppis-container .item-pisos { top: 90%; left: 50%; flex-direction: column; }
-                  .suppis-container .item-metais { top: 78%; left: 22%; flex-direction: row-reverse; }
-                  .suppis-container .item-cortinas { top: 50%; left: 10%; flex-direction: row-reverse; }
-                  .suppis-container .item-eletrica { top: 22%; left: 22%; flex-direction: row-reverse; }
+                  
+                  /* Ajuste fino mobile */
+                  .suppis-container .item-gesso { left: 94%; }
+                  .suppis-container .item-cortinas { left: 6%; }
               }
 
           ` }} />
