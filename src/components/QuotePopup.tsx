@@ -70,7 +70,7 @@ export function QuotePopup() {
             <div className="mb-8">
               <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-4 block">Oportunidade</span>
                 <h2 className="text-3xl md:text-4xl font-medium text-[#4A583E] tracking-tighter leading-[1.1] mb-6">
-                  A excelência que o seu <span className="italic">espaço exige</span>, a gestão que você merece.
+                  Antes de sair... leve a <span className="italic">excelência da Suppis</span> para o seu espaço.
                 </h2>
               <p className="text-zinc-500 text-base md:text-lg font-light leading-relaxed">
                 Garanta um orçamento personalizado e descubra como o método Suppis Integra pode elevar o nível do seu projeto.
