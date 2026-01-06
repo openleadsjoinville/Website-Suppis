@@ -266,8 +266,17 @@ const SuppisIntegraDiagram = () => {
   return (
     <section id="suppis-integra" className="py-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-        <style dangerouslySetInnerHTML={{ __html: `
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-6 block">Solução Completa</span>
+          <h2 className="text-4xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-[0.95] mb-8">
+            Suppis Integra
+          </h2>
+          <p className="text-zinc-500 text-lg md:text-xl font-light leading-relaxed">
+            Nosso método exclusivo que conecta todos os pilares do seu projeto em um único ecossistema de gestão e execução.
+          </p>
+        </div>
 
+        <style dangerouslySetInnerHTML={{ __html: `
             .suppis-wrapper {
                 width: 100% !important;
                 max-width: 100% !important;
@@ -348,7 +357,6 @@ const SuppisIntegraDiagram = () => {
             }
 
             .suppis-container .center-title {
-                font-family: 'DeMonte', Georgia, serif;
                 font-size: clamp(28px, 4.5vw, 48px);
                 font-weight: 700;
                 font-style: normal;
@@ -357,7 +365,6 @@ const SuppisIntegraDiagram = () => {
             }
 
             .suppis-container .center-subtitle {
-                font-family: 'DeMonte', Georgia, serif;
                 font-size: clamp(12px, 1.7vw, 18px);
                 font-weight: 400;
                 font-style: normal;
@@ -369,12 +376,14 @@ const SuppisIntegraDiagram = () => {
             .suppis-container .service-item {
                 position: absolute;
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 cursor: pointer;
                 transform: translate(-50%, -50%);
+                width: auto;
                 z-index: 5;
-                gap: 10px;
+                gap: 12px;
             }
 
             .suppis-container .service-circle {
@@ -413,53 +422,39 @@ const SuppisIntegraDiagram = () => {
             }
 
             .suppis-container .service-label {
-                font-size: clamp(12px, 1.5vw, 17px);
-                font-weight: 400;
+                font-size: clamp(11px, 1.4vw, 16px);
+                font-weight: 500;
                 font-style: normal;
                 color: #3A4A3A;
                 line-height: 1.2;
                 transition: all 0.3s ease;
                 text-align: center;
-                pointer-events: none;
                 white-space: nowrap;
+                pointer-events: none;
             }
 
             .suppis-container .service-item:hover .service-label {
                 color: #2E3E2E;
-                font-weight: 500;
-            }
-
-            /* Orientation logic to push labels AWAY from center */
-            /* Top items */
-            .suppis-container .item-marcenaria { flex-direction: column-reverse; }
-            /* Right side items */
-            .suppis-container .item-iluminacao,
-            .suppis-container .item-gesso,
-            .suppis-container .item-marmoraria { flex-direction: row; }
-            /* Bottom items */
-            .suppis-container .item-pisos { flex-direction: column; }
-            /* Left side items */
-            .suppis-container .item-metais,
-            .suppis-container .item-cortinas,
-            .suppis-container .item-eletrica { flex-direction: row-reverse; }
-
-            /* Desktop adjustments for better spacing */
-            @media (min-width: 1024px) {
-                .suppis-container .service-item { gap: 15px; }
-                .suppis-container .item-gesso .service-label { text-align: left; }
-                .suppis-container .item-cortinas .service-label { text-align: right; }
-                .suppis-container .item-eletrica .service-label { text-align: right; }
+                font-weight: 600;
             }
 
             /* Posicionamento Desktop (Ellipse-based) */
-            .suppis-container .item-marcenaria { top: 10%; left: 50%; }
-            .suppis-container .item-iluminacao { top: 22%; left: 78%; }
-            .suppis-container .item-gesso { top: 50%; left: 90%; }
-            .suppis-container .item-marmoraria { top: 78%; left: 78%; }
-            .suppis-container .item-pisos { top: 90%; left: 50%; }
-            .suppis-container .item-metais { top: 78%; left: 22%; }
-            .suppis-container .item-cortinas { top: 50%; left: 10%; }
-            .suppis-container .item-eletrica { top: 22%; left: 22%; }
+            .suppis-container .item-marcenaria { top: 10%; left: 50%; flex-direction: column-reverse; }
+            .suppis-container .item-iluminacao { top: 22%; left: 78%; flex-direction: row; }
+            .suppis-container .item-gesso { top: 50%; left: 90%; flex-direction: row; }
+            .suppis-container .item-marmoraria { top: 78%; left: 78%; flex-direction: row; }
+            .suppis-container .item-pisos { top: 90%; left: 50%; flex-direction: column; }
+            .suppis-container .item-metais { top: 78%; left: 22%; flex-direction: row-reverse; }
+            .suppis-container .item-cortinas { top: 50%; left: 10%; flex-direction: row-reverse; }
+            .suppis-container .item-eletrica { top: 22%; left: 22%; flex-direction: row-reverse; }
+
+            .suppis-container .item-gesso .service-label,
+            .suppis-container .item-iluminacao .service-label,
+            .suppis-container .item-marmoraria .service-label { text-align: left; }
+
+            .suppis-container .item-cortinas .service-label,
+            .suppis-container .item-metais .service-label,
+            .suppis-container .item-eletrica .service-label { text-align: right; }
 
             @media (max-width: 900px) {
                 .suppis-container {
@@ -488,17 +483,17 @@ const SuppisIntegraDiagram = () => {
                     font-size: 11px;
                     line-height: 1.1;
                 }
-                .suppis-container .service-item { width: 85px; gap: 4px; }
+                .suppis-container .service-item { gap: 8px; }
 
                 /* Posicionamento Mobile (Vertical Ellipse) */
-                .suppis-container .item-marcenaria { top: 6%; left: 50%; }
-                .suppis-container .item-iluminacao { top: 18%; left: 82%; }
-                .suppis-container .item-gesso { top: 40%; left: 88%; }
-                .suppis-container .item-marmoraria { top: 68%; left: 85%; }
-                .suppis-container .item-pisos { top: 92%; left: 55%; }
-                .suppis-container .item-metais { top: 85%; left: 18%; }
-                .suppis-container .item-cortinas { top: 58%; left: 12%; }
-                .suppis-container .item-eletrica { top: 30%; left: 15%; }
+                .suppis-container .item-marcenaria { top: 6%; left: 50%; flex-direction: column-reverse; }
+                .suppis-container .item-iluminacao { top: 18%; left: 82%; flex-direction: row; }
+                .suppis-container .item-gesso { top: 40%; left: 88%; flex-direction: row; }
+                .suppis-container .item-marmoraria { top: 68%; left: 85%; flex-direction: row; }
+                .suppis-container .item-pisos { top: 92%; left: 55%; flex-direction: column; }
+                .suppis-container .item-metais { top: 85%; left: 18%; flex-direction: row-reverse; }
+                .suppis-container .item-cortinas { top: 58%; left: 12%; flex-direction: row-reverse; }
+                .suppis-container .item-eletrica { top: 30%; left: 15%; flex-direction: row-reverse; }
             }
 
         ` }} />
