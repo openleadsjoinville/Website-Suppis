@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect } from 'react';
+
 const SuppisIntegraDiagram = () => {
   useEffect(() => {
     function drawLines() {
@@ -407,3 +411,5 @@ const SuppisIntegraDiagram = () => {
     </section>
   )
 }
+
+export default SuppisIntegraDiagram;
