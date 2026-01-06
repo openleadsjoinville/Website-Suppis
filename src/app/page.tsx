@@ -1131,19 +1131,19 @@ export default function LandingPage() {
 
         {/* Custom Stylized Divider */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 translate-y-[1px]">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[80px] md:h-[150px] fill-[#4A583E]">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[60px] md:h-[120px] fill-[#4A583E]">
+            <path d="M0,120V80C300,20,900,20,1200,80V120H0z" />
           </svg>
           
           {/* Floating Brand Detail */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden md:block"
           >
-            <div className="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center group hover:scale-110 transition-transform duration-500">
-              <DecorativeIcon className="w-8" color="#ffffff" opacity={0.4} />
+            <div className="px-8 py-3 rounded-full bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center group hover:scale-105 transition-all duration-700">
+              <span className="text-white/40 text-[9px] uppercase tracking-[0.4em] font-medium">Excelência Garantida</span>
             </div>
           </motion.div>
         </div>
