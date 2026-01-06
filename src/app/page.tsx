@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import Lenis from 'lenis'
+import { QuotePopup } from '@/components/QuotePopup'
 import { 
   ArrowRight, 
   Instagram, 
@@ -1179,6 +1180,7 @@ export default function LandingPage() {
       >
         <MessageCircle size={28} className="text-[#d4c3b0]" />
       </motion.a>
+      <QuotePopup />
     </div>
   )
 }
