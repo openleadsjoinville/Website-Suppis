@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import Lenis from 'lenis'
 import { QuotePopup } from '@/components/QuotePopup'
+import { WhatsAppButton } from '@/components/WhatsAppButton'
 import { 
   ArrowRight, 
   Instagram, 
@@ -1170,16 +1171,7 @@ export default function LandingPage() {
         </div>
       </footer>
       
-      {/* Floating Whale / WhatsApp button - Styled to be delicate */}
-      <motion.a 
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        href="#"
-        className="fixed bottom-10 right-10 w-16 h-16 bg-[#4A583E] border border-white/20 rounded-full flex items-center justify-center text-white shadow-3xl z-[90] backdrop-blur-md"
-      >
-        <MessageCircle size={28} className="text-[#d4c3b0]" />
-      </motion.a>
+      <WhatsAppButton />
       <QuotePopup />
     </div>
   )
