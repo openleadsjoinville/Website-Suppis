@@ -1060,7 +1060,7 @@ export default function LandingPage() {
 
       {/* Showroom Section */}
       <section className="py-24 bg-[#eef1da] relative z-40 overflow-hidden">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-6 mb-12">
           <div className="bg-[#4A583E] rounded-[3rem] md:rounded-[4rem] p-8 md:p-20 overflow-hidden relative shadow-2xl">
             {/* Decorative background element */}
             <DecorativeIcon 
@@ -1130,10 +1130,29 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+
+        {/* Custom Stylized Divider */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 translate-y-[1px]">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[80px] md:h-[150px] fill-[#4A583E]">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" />
+          </svg>
+          
+          {/* Floating Brand Detail */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden md:block"
+          >
+            <div className="w-14 h-14 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center group hover:scale-110 transition-transform duration-500">
+              <DecorativeIcon className="w-8" color="#ffffff" opacity={0.4} />
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Footer - XYZ Inspired Layout */}
-      <footer className="bg-[#4A583E] text-white pt-56 pb-12 -mt-48 relative z-20 overflow-hidden">
+      <footer className="bg-[#4A583E] text-white pt-32 pb-12 relative z-20 overflow-hidden">
         {/* Decorative element for Footer */}
         <DecorativeIcon 
           className="w-[800px] -bottom-40 -right-40" 
