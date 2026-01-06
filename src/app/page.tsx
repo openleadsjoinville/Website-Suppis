@@ -264,9 +264,9 @@ const SuppisIntegraDiagram = () => {
   }, []);
 
   return (
-    <section id="suppis-integra" className="py-20 bg-white overflow-hidden">
+    <section id="suppis-integra" className="pt-10 pb-20 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-6 max-w-3xl mx-auto">
           <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-6 block">Solução Completa</span>
           <h2 className="text-4xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-[0.95] mb-8">
             Suppis Integra
@@ -284,7 +284,7 @@ const SuppisIntegraDiagram = () => {
                 align-items: center;
                 justify-content: center;
                 font-style: normal;
-                padding: 40px 20px;
+                padding: 10px 20px 40px 20px;
                 margin: 0;
                 box-sizing: border-box;
             }
