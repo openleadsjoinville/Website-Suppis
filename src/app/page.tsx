@@ -30,6 +30,8 @@ import {
 const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Logo-Suppis-Fundo-transparente-1766487680528.png?width=8000&height=8000&resize=contain"
 const GEOMETRIC_PATH = "M354.05,388.54c-12.44,18.39-29.6,32.07-49.81,40.63-20.87,8.84-43.41,11.52-65.77,7.21-14.5-2.8-28.11-7.75-40.94-14.95-20.09-11.27-35.57-28.57-44.63-49.74-9.5-21.46-12.29-44.91-7.86-68.01,1.86-10.15,4.82-19.54,8.78-29l43.01.36c-1.35-17.42,1.85-33.94,8.42-50.2l-125.92-2.87c-10.62-23.7-12.3-50.42-4.2-75.3,3.93-12.29,9.43-23.63,16.58-34.31,13.2-19.92,32.12-34.68,54.43-43.16,36.12-13.72,72.21-8.16,105.1,10.82,26.57,15.96,42.49,40.27,49.56,70.34,27.05-2.74,52.67,3.96,75.75,17.09,19.64,11.34,34.76,28.43,43.63,49.3,9.19,20.99,12.05,43.83,7.96,66.43-1.98,11.19-5.3,21.67-9.8,31.83l-42.2-.94c1.72,26.62-7.43,52.63-22.1,74.47ZM222.62,194.41c18.63-24.53,46.69-39.76,76.92-43.83-6.79-29.29-22.36-53-47.56-68.65-13.08-7.98-27.17-13.5-42.22-16.71-21.78-4.64-43.86-2.49-64.49,5.64-21.42,8.44-39.56,22.76-52.36,41.94-22.02,33.29-29.05,70.63-12.74,107.99l125.66,2.81c4.52-10.57,9.84-20.09,16.79-29.19ZM366.45,276.47c5.14,11.53,8.51,23.42,9.55,36.21l41.57,1.02c4.18-9.57,7.2-19.19,9.15-29.52,4.26-22.52,1.68-45.31-7.4-66.29-8.57-20.5-23.2-37.36-42.32-48.73-22.15-13.06-50.19-20.78-75.96-17.43,3.34,16.39,3.01,32.2-.36,48.02-2.08,9.45-4.99,18.3-8.86,27.09l-85.19-2.01c-6.7,16.03-9.95,32.85-8.54,50.25l80.92.69,87.43.7ZM291.05,225.62c10.15-23.88,14.14-48.46,8.73-73.8-12.92,1.6-24.82,5.37-36.3,10.87-15.21,7.36-28.2,17.72-38.68,30.96-7.21,9.15-12.94,18.94-17.63,30.02l83.89,1.95ZM353.98,386.44c13.8-21.09,22.81-46.82,20.91-72.46l-169.08-3.85c-4.72-10.93-7.75-22.14-8.86-33.88l-42.27-.32c-4,9.44-6.87,18.97-8.64,29.13-4.17,22.55-1.16,45.24,7.95,66.17,9.07,20.81,24.14,37.88,43.97,49.03,13.21,7.43,27.31,12.5,42.3,15.21,20.93,3.78,41.91,1.27,61.55-6.64,21.35-8.6,39.39-22.94,52.16-42.39ZM365.68,277.71l-97.58-.81-69.95-.67c1.16,11.39,4.02,22.41,8.53,32.68l168.07,3.85c-.92-12.42-4.26-23.89-9.07-35.05Z"
 const HERO_VIDEO_URL = "https://suppis2.openleads.com.br/wp-content/uploads/2025/12/video-1766457434494.mp4"
+const WHATSAPP_LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9cefdaef-e4d8-4d89-ab4f-77b2e9f76adf/whatsapp1-2-resized-1767739642981.webp?width=8000&height=8000&resize=contain"
+
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -676,9 +678,12 @@ export default function LandingPage() {
             <Button 
               size="sm" 
               onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
-              className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0"
+              className="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0 gap-2"
             >
               Fale Conosco
+              <div className="w-4 h-4 relative">
+                <Image src={WHATSAPP_LOGO_URL} alt="WhatsApp" fill className="object-contain brightness-0 invert" />
+              </div>
             </Button>
           </div>
 
@@ -766,10 +771,12 @@ export default function LandingPage() {
               >
                 <Button 
                   onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
-                  className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  className="bg-[#25D366] hover:bg-[#128C7E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
                 >
                   Falar com um especialista
-                  <ArrowRight className="ml-3 w-4 h-4" />
+                  <div className="ml-3 w-5 h-5 relative">
+                    <Image src={WHATSAPP_LOGO_URL} alt="WhatsApp" fill className="object-contain brightness-0 invert" />
+                  </div>
                 </Button>
                 <Button variant="outline" className="border-white/20 text-[#4A583E] hover:bg-transparent hover:text-white hover:opacity-60 px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
                   Conheça a Suppis
@@ -929,10 +936,12 @@ export default function LandingPage() {
             >
               <Button 
                 onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
-                className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                className="bg-[#25D366] hover:bg-[#128C7E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
               >
                 Quero começar meu projeto
-                <ArrowRight className="ml-3 w-4 h-4" />
+                <div className="ml-3 w-5 h-5 relative">
+                  <Image src={WHATSAPP_LOGO_URL} alt="WhatsApp" fill className="object-contain brightness-0 invert" />
+                </div>
               </Button>
             </motion.div>
           </div>
@@ -1109,10 +1118,12 @@ export default function LandingPage() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
                     onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
-                    className="bg-white text-[#4A583E] hover:bg-[#eef1da] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                    className="bg-[#25D366] text-white hover:bg-[#128C7E] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
                   >
                     Falar no WhatsApp
-                    <MessageCircle className="ml-3 w-4 h-4" />
+                    <div className="ml-3 w-6 h-6 relative">
+                      <Image src={WHATSAPP_LOGO_URL} alt="WhatsApp" fill className="object-contain brightness-0 invert" />
+                    </div>
                   </Button>
                   <Button 
                     onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
