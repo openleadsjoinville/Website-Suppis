@@ -264,45 +264,16 @@ const SuppisIntegraDiagram = () => {
   }, []);
 
   return (
-    <section id="suppis-integra" className="min-h-screen h-screen flex items-center bg-white overflow-hidden py-8">
-      <div className="container mx-auto px-6 h-full flex flex-col">
-        <div className="text-center mb-6 max-w-4xl mx-auto flex-shrink-0">
-          <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-2 block">Metodologia</span>
-          <h2 className="text-4xl md:text-5xl font-medium text-[#4A583E] tracking-tighter leading-tight mb-3">
-            Suppis Integra
-          </h2>
-          <p className="text-zinc-500 text-lg font-light leading-relaxed max-w-2xl mx-auto">
-            A solução completa que integra marcenaria de alto padrão, execução técnica e gestão inteligente em um único ecossistema.
-          </p>
-        </div>
-
+    <section id="suppis-integra" className="py-24 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-6">
         <style dangerouslySetInnerHTML={{ __html: `
-            .suppis-wrapper {
-                width: 100% !important;
-                max-width: 100% !important;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-style: normal;
-                padding: 10px;
-                margin: 0;
-                box-sizing: border-box;
-                flex: 1;
-                min-height: 0;
-            }
-
-            .suppis-wrapper * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
             .suppis-container {
                 position: relative;
-                width: 100% !important;
-                max-width: 1100px !important;
-                aspect-ratio: 1.6 / 1;
-                max-height: 65vh;
+                width: 100%;
+                max-width: 900px;
+                aspect-ratio: 1 / 1;
+                margin: 0 auto;
+                font-style: normal;
             }
 
             .suppis-container #linesCanvas {
@@ -441,7 +412,7 @@ const SuppisIntegraDiagram = () => {
                 font-weight: 500;
             }
 
-            /* Posicionamento Desktop (Ellipse-based) */
+            /* Posicionamento Circular Proporcional */
             .suppis-container .item-marcenaria { top: 10%; left: 50%; flex-direction: column-reverse; }
             .suppis-container .item-iluminacao { top: 22%; left: 78%; flex-direction: row; }
             .suppis-container .item-gesso { top: 50%; left: 90%; flex-direction: row; }
@@ -475,22 +446,16 @@ const SuppisIntegraDiagram = () => {
 
             @media (max-width: 900px) {
                 .suppis-container {
-                    width: 100% !important;
-                    aspect-ratio: 1.1 / 1;
+                    width: 100%;
+                    max-width: 600px;
                 }
                 .suppis-container .center-circle { width: 32%; }
-                .suppis-container .item-iluminacao { left: 82%; }
-                .suppis-container .item-marmoraria { left: 82%; }
-                .suppis-container .item-metais { left: 18%; }
-                .suppis-container .item-eletrica { left: 18%; }
             }
 
             @media (max-width: 600px) {
-                .suppis-wrapper { padding: 10px 5px; }
                 .suppis-container {
-                    width: 100% !important;
-                    aspect-ratio: 1 / 1.45;
-                    max-height: 55vh;
+                    width: 100%;
+                    max-width: 450px;
                 }
                 .suppis-container .center-circle { width: 42%; }
                 .suppis-container .center-title { font-size: 24px; }
@@ -503,97 +468,88 @@ const SuppisIntegraDiagram = () => {
                 }
                 .suppis-container .service-item { width: auto; gap: 8px; }
 
-                /* Posicionamento Mobile (Vertical Ellipse) */
-                .suppis-container .item-marcenaria { top: 6%; left: 50%; flex-direction: column-reverse; }
-                .suppis-container .item-iluminacao { top: 18%; left: 82%; flex-direction: row; }
-                .suppis-container .item-gesso { top: 40%; left: 88%; flex-direction: row; }
-                .suppis-container .item-marmoraria { top: 68%; left: 85%; flex-direction: row; }
-                .suppis-container .item-pisos { top: 92%; left: 50%; flex-direction: column; }
-                .suppis-container .item-metais { top: 85%; left: 18%; flex-direction: row-reverse; }
-                .suppis-container .item-cortinas { top: 58%; left: 12%; flex-direction: row-reverse; }
-                .suppis-container .item-eletrica { top: 30%; left: 15%; flex-direction: row-reverse; }
-
-                .suppis-container .item-gesso .service-label,
-                .suppis-container .item-iluminacao .service-label,
-                .suppis-container .item-marmoraria .service-label { text-align: left; }
-                
-                .suppis-container .item-cortinas .service-label,
-                .suppis-container .item-eletrica .service-label,
-                .suppis-container .item-metais .service-label { text-align: right; }
+                /* Posicionamento Mobile Mantido Circular */
+                .suppis-container .item-marcenaria { top: 10%; left: 50%; flex-direction: column-reverse; }
+                .suppis-container .item-iluminacao { top: 22%; left: 78%; flex-direction: row; }
+                .suppis-container .item-gesso { top: 50%; left: 90%; flex-direction: row; }
+                .suppis-container .item-marmoraria { top: 78%; left: 78%; flex-direction: row; }
+                .suppis-container .item-pisos { top: 90%; left: 50%; flex-direction: column; }
+                .suppis-container .item-metais { top: 78%; left: 22%; flex-direction: row-reverse; }
+                .suppis-container .item-cortinas { top: 50%; left: 10%; flex-direction: row-reverse; }
+                .suppis-container .item-eletrica { top: 22%; left: 22%; flex-direction: row-reverse; }
             }
 
         ` }} />
 
-        <div className="suppis-wrapper">
-          <div className="suppis-container" id="suppis-container">
-            <canvas id="linesCanvas"></canvas>
+        <div className="suppis-container" id="suppis-container">
+          <canvas id="linesCanvas"></canvas>
 
-            <div className="center-circle" id="centerCircle">
-              <div className="center-content">
-                <div className="center-title">Suppis<br/>Integra</div>
-                <div className="center-subtitle">Método Exclusivo</div>
-              </div>
+          <div className="center-circle" id="centerCircle">
+            <div className="center-content">
+              <div className="center-title">Suppis<br/>Integra</div>
+              <div className="center-subtitle">Método Exclusivo</div>
             </div>
+          </div>
 
-            <div className="service-item item-marcenaria">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" />
-              </div>
-              <span className="service-label">Marcenaria</span>
+          <div className="service-item item-marcenaria">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/marcenaria.jpeg" alt="Marcenaria" />
             </div>
+            <span className="service-label">Marcenaria</span>
+          </div>
 
-            <div className="service-item item-iluminacao">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" />
-              </div>
-              <span className="service-label">Iluminação</span>
+          <div className="service-item item-iluminacao">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/iluminacao.jpeg" alt="Iluminação" />
             </div>
+            <span className="service-label">Iluminação</span>
+          </div>
 
-            <div className="service-item item-gesso">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" />
-              </div>
-              <span className="service-label">Gesso</span>
+          <div className="service-item item-gesso">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Gesso.png" alt="Gesso" />
             </div>
+            <span className="service-label">Gesso</span>
+          </div>
 
-            <div className="service-item item-marmoraria">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" />
-              </div>
-              <span className="service-label">Marmoraria</span>
+          <div className="service-item item-marmoraria">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Marmoraria.jpeg" alt="Marmoraria" />
             </div>
+            <span className="service-label">Marmoraria</span>
+          </div>
 
-            <div className="service-item item-pisos">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" />
-              </div>
-              <span className="service-label">Pisos e<br/>Revestimentos</span>
+          <div className="service-item item-pisos">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Pisos.jpeg" alt="Pisos e Revestimentos" />
             </div>
+            <span className="service-label">Pisos e<br/>Revestimentos</span>
+          </div>
 
-            <div className="service-item item-metais">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" />
-              </div>
-              <span className="service-label">Metais</span>
+          <div className="service-item item-metais">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/METEAIS.jpeg" alt="Metais" />
             </div>
+            <span className="service-label">Metais</span>
+          </div>
 
-            <div className="service-item item-cortinas">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" />
-              </div>
-              <span className="service-label">Cortinas e<br/>Persianas</span>
+          <div className="service-item item-cortinas">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/CORTINAS.jpeg" alt="Cortinas e Persianas" />
             </div>
+            <span className="service-label">Cortinas e<br/>Persianas</span>
+          </div>
 
-            <div className="service-item item-eletrica">
-              <div className="service-circle">
-                <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" />
-              </div>
-              <span className="service-label">Elétrica</span>
+          <div className="service-item item-eletrica">
+            <div className="service-circle">
+              <img src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/Eletrica.jpeg" alt="Elétrica" />
             </div>
+            <span className="service-label">Elétrica</span>
           </div>
         </div>
       </div>
     </section>
+
   )
 }
 
