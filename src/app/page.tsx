@@ -832,12 +832,11 @@ export default function LandingPage() {
               <div className="space-y-6">
                 <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs">Processo de Elite</span>
                 <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight">
-                  Sem tempo para planejar <br /> a reforma do seu imóvel?
+                  Cansado de obras intermináveis, <br /> fornecedores desalinhados e <br /> orçamentos fora da realidade?
                 </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
-                  Sabemos o quanto o seu tempo é valioso e por isso, a Suppis Soluções de Interiores nasceu com o propósito 
-                  de otimizar o planejamento e a execução do seu projeto, oferecendo uma experiência personalizada, 
-                  com foco em marcenaria sob medida.
+                  Sabemos que reformar pode ser um pesadelo: atrasos, retrabalho e frustrações. 
+                  Você merece um parceiro que cuida de tudo, do primeiro traço ao último ajuste.
                 </p>
               </div>
 
