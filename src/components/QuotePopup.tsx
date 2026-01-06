@@ -7,6 +7,7 @@ import { X, ArrowRight, Sparkles, Home, Hammer } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 
@@ -33,9 +34,10 @@ export function QuotePopup() {
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="max-w-[90vw] md:max-w-[800px] p-0 overflow-hidden border-none bg-transparent shadow-none">
-        <div className="relative w-full bg-[#faf9f6] rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl">
+      <Dialog open={isOpen} onOpenChange={handleClose}>
+        <DialogContent className="max-w-[90vw] md:max-w-[800px] p-0 overflow-hidden border-none bg-transparent shadow-none" showCloseButton={false}>
+          <DialogTitle className="sr-only">Solicitar Orçamento Suppis</DialogTitle>
+          <div className="relative w-full bg-[#faf9f6] rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl">
           {/* Close button - custom to fit the design better */}
           <button 
             onClick={handleClose}
@@ -67,8 +69,8 @@ export function QuotePopup() {
           <div className="w-full md:w-7/12 p-8 md:p-12 flex flex-col justify-center">
             <div className="mb-8">
               <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-4 block">Oportunidade</span>
-              <h2 className="text-3xl md:text-4xl font-medium text-[#4A583E] tracking-tighter leading-[1.1] mb-6">
-                Transforme seu lar com quem entende de <span className="italic">luxo e precisão</span>.
+                <h2 className="text-3xl md:text-4xl font-medium text-[#4A583E] tracking-tighter leading-[1.1] mb-6">
+                Onde a alma do design encontra o <span className="italic">rigor da execução</span>.
               </h2>
               <p className="text-zinc-500 text-base md:text-lg font-light leading-relaxed">
                 Garanta um orçamento personalizado e descubra como o método Suppis Integra pode elevar o nível do seu projeto.
