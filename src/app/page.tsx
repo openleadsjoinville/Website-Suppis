@@ -588,6 +588,8 @@ export default function LandingPage() {
   const yIntegraTop = useTransform(scrollYProgress, [0, 1], [0, 200])
   const yIntegraBottom = useTransform(scrollYProgress, [0, 1], [0, -200])
   const yVantagens = useTransform(scrollYProgress, [0, 1], [0, 100])
+  const ySobreParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, -80])
+  const ySobreTextParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, 40])
   
   const yRange = useTransform(scrollYProgress, [0, 1], [0, 200])
   const opacityRange = useTransform(scrollYProgress, [0, 0.2], [1, 0])
@@ -937,102 +939,102 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Section: Sobre Nós */}
-      <section id="sobre" className="py-32 bg-white relative overflow-hidden">
+      {/* Section: Sobre Nós - Creative Layout */}
+      <section id="sobre" className="py-32 md:py-48 bg-white relative overflow-hidden">
+        {/* Large Watermark Text */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] font-bold text-[#4A583E]/[0.02] pointer-events-none select-none tracking-tighter leading-none -rotate-90 md:rotate-0 md:left-10">
+          SUPPIS
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div className="order-2 md:order-1">
-              <motion.span 
+          <div className="grid md:grid-cols-12 gap-12 items-center">
+            <motion.div 
+              style={{ y: ySobreTextParallax }}
+              className="md:col-span-6 lg:col-span-5 order-2 md:order-1"
+            >
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeIn}
-                className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs mb-8 block"
               >
-                Sobre Nós
-              </motion.span>
-              
-              <motion.h2 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeIn}
-                className="text-5xl md:text-7xl font-medium text-[#4A583E] tracking-tighter mb-12"
-              >
-                Somos a Suppis.
-              </motion.h2>
+                <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-8 block">A Nossa Essência</span>
+                
+                <h2 className="text-5xl md:text-8xl font-medium text-[#4A583E] tracking-tighter mb-16 leading-[0.9]">
+                  Somos a <br/> Suppis.
+                </h2>
 
-              <div className="space-y-8 text-zinc-500 text-lg md:text-xl font-light leading-relaxed">
-                <motion.p 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeIn}
-                  custom={1}
-                >
-                  Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores.
-                </motion.p>
+                <div className="space-y-10 text-zinc-500 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                  <motion.p variants={fadeIn} custom={1}>
+                    Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores.
+                  </motion.p>
 
-                <motion.p 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeIn}
-                  custom={2}
-                >
-                  Acreditamos que um ambiente bem feito é resultado de conexão, entre ideias, materiais, profissionais e execução.
-                </motion.p>
+                  <motion.p variants={fadeIn} custom={2}>
+                    Acreditamos que um ambiente bem feito é resultado de conexão: entre ideias, materiais, profissionais e execução.
+                  </motion.p>
 
-                <motion.p 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeIn}
-                  custom={3}
-                >
-                  Por isso, integramos todas as etapas em um só caminho, reduzindo ruídos e elevando a experiência.
-                </motion.p>
+                  <motion.p variants={fadeIn} custom={3}>
+                    Por isso, integramos todas as etapas em um só caminho, reduzindo ruídos e elevando a experiência final.
+                  </motion.p>
 
-                <div className="pt-8">
-                  <motion.span 
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeIn}
-                    custom={4}
-                    className="text-[#4A583E] font-medium block mb-4"
-                  >
-                    Nosso propósito é simples:
-                  </motion.span>
-                  <motion.p 
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeIn}
-                    custom={5}
-                    className="text-2xl md:text-4xl text-[#4A583E] font-medium tracking-tight"
-                  >
-                    entregar espaços completos, coerentes e prontos para receber histórias.
+                  <motion.p variants={fadeIn} custom={4} className="pt-4">
+                    Nosso propósito é simples: entregar espaços completos, coerentes e prontos para receber histórias.
                   </motion.p>
                 </div>
-              </div>
-            </div>
 
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={slideInRight}
-              className="order-1 md:order-2 relative aspect-square md:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl group"
-            >
-              <Image
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9cefdaef-e4d8-4d89-ab4f-77b2e9f76adf/imgi_3_d8ee88b56da3af7380a957cd91488ecd-1767817727941.png?width=8000&height=8000&resize=contain"
-                alt="Suppis Branding"
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-[#4A583E]/5 mix-blend-multiply transition-opacity duration-700 group-hover:opacity-0" />
+                <motion.div 
+                  variants={fadeIn} 
+                  custom={5}
+                  className="pt-12"
+                >
+                  <Button 
+                    onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
+                    variant="outline" 
+                    className="border-[#4A583E]/20 text-[#4A583E] hover:bg-[#4A583E] hover:text-white px-10 py-7 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold transition-all duration-500"
+                  >
+                    Conheça nossa história
+                  </Button>
+                </motion.div>
+              </motion.div>
             </motion.div>
+
+            <div className="md:col-span-6 lg:col-span-6 lg:offset-1 order-1 md:order-2 relative">
+              <DecorativeIcon 
+                className="w-full max-w-[400px] -top-20 -right-20 z-0" 
+                rotation={15} 
+                opacity={0.1} 
+                color="#4a583e"
+              />
+              
+              <motion.div 
+                style={{ y: ySobreParallax }}
+                className="relative z-10 group"
+              >
+                <div className="relative aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)] transition-all duration-700 group-hover:rounded-[2rem]">
+                  <Image
+                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9cefdaef-e4d8-4d89-ab4f-77b2e9f76adf/imgi_3_d8ee88b56da3af7380a957cd91488ecd-1767817727941.png?width=8000&height=8000&resize=contain"
+                    alt="Suppis Branding"
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#4A583E]/20 to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-700" />
+                </div>
+
+                {/* Floating element */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8, duration: 1 }}
+                  className="absolute -bottom-10 -left-10 md:-left-20 bg-white p-8 md:p-12 rounded-3xl shadow-2xl hidden md:block max-w-[280px]"
+                >
+                  <p className="text-[#4A583E] font-medium text-4xl mb-2 tracking-tighter">10+</p>
+                  <p className="text-zinc-500 text-xs uppercase tracking-widest leading-relaxed">
+                    Anos de excelência transformando sonhos em realidade tangível.
+                  </p>
+                </motion.div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
