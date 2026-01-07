@@ -1019,20 +1019,6 @@ export default function LandingPage() {
                     Nosso propósito é simples: entregar espaços completos, coerentes e prontos para receber histórias.
                   </motion.p>
                 </div>
-
-                <motion.div 
-                  variants={fadeIn} 
-                  custom={5}
-                  className="pt-12"
-                >
-                  <Button 
-                    onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
-                    variant="outline" 
-                    className="border-[#4A583E]/20 text-[#4A583E] hover:bg-[#4A583E] hover:text-white px-10 py-7 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold transition-all duration-500"
-                  >
-                    Conheça nossa história
-                  </Button>
-                </motion.div>
               </motion.div>
             </motion.div>
           </div>
