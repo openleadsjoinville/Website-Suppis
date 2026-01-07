@@ -1010,14 +1010,18 @@ export default function LandingPage() {
 
                 <div className="space-y-6 text-zinc-400 text-base md:text-lg font-light leading-relaxed">
                   <motion.p variants={fadeIn} custom={1}>
-                    Nascemos para transformar a experiência de habitar. Na Suppis, o design não apenas resolve funções, ele antecipa desejos.
+                    Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores. Acreditamos que um ambiente bem feito é resultado de conexão, entre ideias, materiais, profissionais e execução.
                   </motion.p>
 
                   <motion.p variants={fadeIn} custom={2}>
-                    Conectamos tecnologia de ponta, marcenaria de alta precisão e uma curadoria estética que desafia o tempo.
+                    Por isso, integramos todas as etapas em um só caminho, reduzindo ruídos e elevando a experiência.
+                  </motion.p>
+
+                  <motion.p variants={fadeIn} custom={3}>
+                    Nosso propósito é simples: entregar espaços completos, coerentes e prontos para receber histórias.
                   </motion.p>
                   
-                  <motion.div variants={fadeIn} custom={3} className="pt-4">
+                  <motion.div variants={fadeIn} custom={4} className="pt-4">
                     <Button 
                       onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
                       className="bg-white/10 hover:bg-white hover:text-[#1A1F16] text-white border border-white/20 rounded-full px-8 py-6 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500"
