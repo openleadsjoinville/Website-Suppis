@@ -940,7 +940,7 @@ export default function LandingPage() {
       </section>
 
       {/* Section: Sobre Nós - Creative Layout */}
-      <section id="sobre" className="py-32 md:py-48 bg-white relative overflow-hidden">
+      <section id="sobre" className="py-20 md:py-24 bg-white relative overflow-hidden">
         {/* Large Watermark Text */}
         <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] font-bold text-[#4A583E]/[0.02] pointer-events-none select-none tracking-tighter leading-none -rotate-90 md:rotate-0 md:left-10">
           SUPPIS
@@ -960,7 +960,7 @@ export default function LandingPage() {
                 style={{ y: ySobreParallax }}
                 className="relative z-10 group"
               >
-                <div className="relative aspect-[4/5] rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)] transition-all duration-700 group-hover:rounded-[2rem]">
+                <div className="relative aspect-[4/3] rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)] transition-all duration-700 group-hover:rounded-[2rem]">
                   <Image
                     src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9cefdaef-e4d8-4d89-ab4f-77b2e9f76adf/imgi_3_d8ee88b56da3af7380a957cd91488ecd-1767817727941.png?width=8000&height=8000&resize=contain"
                     alt="Suppis Branding"
@@ -984,9 +984,9 @@ export default function LandingPage() {
                 viewport={{ once: true }}
                 variants={fadeIn}
               >
-                <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-8 block">A Nossa Essência</span>
+                <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-4 block">A Nossa Essência</span>
                 
-                <h2 className="text-5xl md:text-8xl font-medium text-[#4A583E] tracking-tighter mb-16 leading-[0.9]">
+                <h2 className="text-5xl md:text-7xl font-medium text-[#4A583E] tracking-tighter mb-8 leading-[0.9]">
                   Somos a <br/> Suppis.
                 </h2>
 
