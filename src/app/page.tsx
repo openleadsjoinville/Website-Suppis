@@ -1207,7 +1207,7 @@ export default function LandingPage() {
               {
                 title: "Mapa do Site",
                 content: (
-                  <ul className="space-y-4 text-sm font-medium text-white/80 uppercase tracking-widest">
+                  <ul className="space-y-4 text-sm font-medium text-white/80">
                     <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
                     <li><a href="#suppis-integra" className="hover:text-white transition-colors">Suppis Integra</a></li>
                     <li><a href="#servicos" className="hover:text-white transition-colors">Serviços</a></li>
@@ -1218,7 +1218,7 @@ export default function LandingPage() {
               {
                 title: "Funcionamento",
                 content: (
-                  <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+                  <p className="text-sm font-medium text-white/80 leading-relaxed">
                     Segunda à Sexta<br/>
                     08h às 18h30
                   </p>
@@ -1227,7 +1227,7 @@ export default function LandingPage() {
               {
                 title: "Endereço",
                 content: (
-                  <p className="text-sm font-medium text-white/80 leading-relaxed uppercase tracking-widest">
+                  <p className="text-sm font-medium text-white/80 leading-relaxed">
                     Rua Doutor Marinho Lobo, 23<br/>
                     Centro, Joinville - SC<br/>
                     CEP: 89201-020
@@ -1237,7 +1237,7 @@ export default function LandingPage() {
               {
                 title: "Contato",
                 content: (
-                  <ul className="space-y-3 text-sm font-medium text-white/80 uppercase tracking-widest">
+                  <ul className="space-y-3 text-sm font-medium text-white/80">
                     <li>+55 47 99924-7199</li>
                     <li>contato@suppis.com.br</li>
                   </ul>
