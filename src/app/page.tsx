@@ -675,9 +675,11 @@ export default function LandingPage() {
                 {item.label}
               </a>
             ))}
-            <Button size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0">
-              Fale Conosco
-            </Button>
+              <Button 
+                onClick={() => window.open('https://wa.me/5547999247199?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.', '_blank')}
+                size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0">
+                Fale Conosco
+              </Button>
           </div>
 
           <button className="lg:hidden" onClick={() => setMobileMenuOpen(true)}>
@@ -695,13 +697,13 @@ export default function LandingPage() {
           <div className="w-64 h-16 relative mb-8">
             <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
           </div>
-          {([
-            { label: 'Início', href: '#home' },
-            { label: 'Suppis Integra', href: '#suppis-integra' },
-            { label: 'Serviços', href: '#servicos' },
-            { label: 'Nossos Diferenciais', href: '#diferenciais' },
-            { label: 'Fale Conosco', href: '#' }
-          ]).map((item) => (
+            {([
+              { label: 'Início', href: '#home' },
+              { label: 'Suppis Integra', href: '#suppis-integra' },
+              { label: 'Serviços', href: '#servicos' },
+              { label: 'Nossos Diferenciais', href: '#diferenciais' },
+              { label: 'Fale Conosco', href: 'https://wa.me/5547999247199?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.' }
+            ]).map((item) => (
             <a 
               key={item.label} 
               href={item.href} 
@@ -762,7 +764,9 @@ export default function LandingPage() {
                 variants={fadeIn}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 [@media(max-width:1024px)_and_(orientation:landscape)]:scale-90 [@media(max-width:1024px)_and_(orientation:landscape)]:origin-left"
               >
-                <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
+                <Button 
+                  onClick={() => window.open('https://wa.me/5547999247199?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20meu%20imóvel.', '_blank')}
+                  className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
                   Falar com um especialista
                   <ArrowRight className="ml-3 w-4 h-4" />
                 </Button>
@@ -922,7 +926,9 @@ export default function LandingPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <Button className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
+              <Button 
+                onClick={() => window.open('https://wa.me/5547999247199?text=Olá!%20Quero%20começar%20meu%20projeto%20com%20a%20Suppis.%20Como%20funciona?', '_blank')}
+                className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
                 Quero começar meu projeto
                 <ArrowRight className="ml-3 w-4 h-4" />
               </Button>
@@ -1099,13 +1105,13 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    onClick={() => window.open('https://wa.me/5547999247199?text=Olá,%20gostaria%20de%20solicitar%20um%20orçamento.', '_blank')}
-                    className="bg-[#25D366] text-white hover:bg-[#128C7E] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
-                  >
-                    Solicitar Orçamento
-                    <MessageCircle className="ml-3 w-4 h-4" />
-                  </Button>
+                    <Button 
+                      onClick={() => window.open('https://wa.me/5547999247199?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20projeto.', '_blank')}
+                      className="bg-[#25D366] text-white hover:bg-[#128C7E] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                    >
+                      Solicitar Orçamento
+                      <MessageCircle className="ml-3 w-4 h-4" />
+                    </Button>
                   <Button 
                     onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
                     className="bg-white text-[#4A583E] hover:bg-[#eef1da] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
@@ -1170,9 +1176,7 @@ export default function LandingPage() {
             
             <div className="flex gap-4">
               {[
-                { icon: <Instagram className="w-5 h-5" />, href: "#" },
-                { icon: <Linkedin className="w-5 h-5" />, href: "#" },
-                { icon: <MessageCircle className="w-5 h-5" />, href: "#" }
+                { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/suppis.interiores" }
               ].map((social, i) => (
                 <motion.a 
                   key={i} 
