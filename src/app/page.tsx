@@ -937,6 +937,88 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Section: Sobre Nós */}
+      <section id="sobre" className="py-32 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.span 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs mb-8 block"
+            >
+              Sobre Nós
+            </motion.span>
+            
+            <motion.h2 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeIn}
+              className="text-5xl md:text-7xl font-medium text-[#4A583E] tracking-tighter mb-16"
+            >
+              Somos a Suppis.
+            </motion.h2>
+
+            <div className="space-y-12 text-zinc-500 text-xl md:text-2xl font-light leading-relaxed">
+              <motion.p 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                custom={1}
+              >
+                Nascemos para transformar a forma como as<br className="hidden md:block" /> pessoas vivenciam um projeto de interiores.
+              </motion.p>
+
+              <motion.p 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                custom={2}
+              >
+                Acreditamos que um ambiente bem feito é<br className="hidden md:block" /> resultado de conexão, entre ideias, materiais,<br className="hidden md:block" /> profissionais e execução.
+              </motion.p>
+
+              <motion.p 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeIn}
+                custom={3}
+              >
+                Por isso, integramos todas as etapas em um<br className="hidden md:block" /> só caminho, reduzindo ruídos e elevando a<br className="hidden md:block" /> experiência.
+              </motion.p>
+
+              <div className="pt-8">
+                <motion.span 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeIn}
+                  custom={4}
+                  className="text-[#4A583E] font-medium block mb-6"
+                >
+                  Nosso propósito é simples:
+                </motion.span>
+                <motion.p 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeIn}
+                  custom={5}
+                  className="text-3xl md:text-4xl text-[#4A583E] font-medium tracking-tight"
+                >
+                  entregar espaços completos, coerentes e<br className="hidden md:block" /> prontos para receber histórias.
+                </motion.p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Section 3: Vantagens - Modern Card Grid */}
       <section id="diferenciais" className="py-32 bg-[#eef1da] relative overflow-hidden">
         {/* Decorative elements for Section 3 */}
