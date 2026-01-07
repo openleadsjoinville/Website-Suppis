@@ -960,7 +960,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Image Side with Floating Frame */}
-            <div className="lg:col-span-6 relative">
+            <div className="lg:col-span-7 relative">
               <motion.div 
                 style={{ y: ySobreParallax }}
                 className="relative z-10"
@@ -988,7 +988,7 @@ export default function LandingPage() {
             {/* Text Side with Glassmorphism */}
             <motion.div 
               style={{ y: ySobreTextParallax }}
-              className="lg:col-span-6 z-20 mt-12 lg:mt-0"
+              className="lg:col-span-5 z-20 mt-12 lg:mt-0"
             >
               <motion.div
                 initial="hidden"
