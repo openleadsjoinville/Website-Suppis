@@ -970,19 +970,7 @@ export default function LandingPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#4A583E]/20 to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-700" />
                 </div>
 
-                {/* Floating element */}
-                <motion.div 
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.8, duration: 1 }}
-                  className="absolute -bottom-10 -right-10 md:-right-20 bg-white p-8 md:p-12 rounded-3xl shadow-2xl hidden md:block max-w-[280px]"
-                >
-                  <p className="text-[#4A583E] font-medium text-4xl mb-2 tracking-tighter">10+</p>
-                  <p className="text-zinc-500 text-xs uppercase tracking-widest leading-relaxed">
-                    Anos de excelência transformando sonhos em realidade tangível.
-                  </p>
-                </motion.div>
+
               </motion.div>
             </div>
 
