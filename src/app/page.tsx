@@ -248,7 +248,7 @@ const SuppisIntegraDiagram = () => {
         });
     }
 
-    let resizeTimeout: NodeJS.Timeout;
+    let resizeTimeout: any;
     const handleResize = () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(drawLines, 50);
@@ -590,56 +590,30 @@ export default function LandingPage() {
   const yVantagens = useTransform(scrollYProgress, [0, 1], [0, 100])
   const ySobreParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, -80])
   const ySobreTextParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, 40])
-  
-  const yRange = useTransform(scrollYProgress, [0, 1], [0, 200])
-  const opacityRange = useTransform(scrollYProgress, [0, 0.2], [1, 0])
-
-  useEffect(() => {
-    const lenis = new Lenis()
-    
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-    
-    requestAnimationFrame(raf)
-
-    const timer = setTimeout(() => setIsLoading(false), 2000)
-    
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      clearTimeout(timer)
-      lenis.destroy()
-    }
-  }, [])
-
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 z-[200] bg-[#faf9f6] flex items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="relative w-48 h-24"
-        >
-          <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
-          <motion.div 
-            className="absolute -bottom-4 left-0 right-0 h-[1px] bg-[#4A583E]/20"
-            initial={{ width: 0 }}
-            animate={{ width: "100%" }}
-            transition={{ duration: 2, ease: "easeInOut" }}
-          />
-        </motion.div>
-      </div>
-    )
-  }
+  const xBackgroundText = useTransform(scrollYProgress, [0.6, 0.9], [100, -100])
 
   return (
     <div className="min-h-screen bg-[#faf9f6] text-zinc-900 selection:bg-[#4A583E] selection:text-white font-light overflow-x-hidden">
+      {/* Loading Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 z-[200] bg-[#faf9f6] flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="relative w-48 h-24"
+          >
+            <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
+            <motion.div 
+              className="absolute -bottom-4 left-0 right-0 h-[1px] bg-[#4A583E]/20"
+              initial={{ width: 0 }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+            />
+          </motion.div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav 
         className={`fixed left-0 right-0 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
@@ -943,7 +917,7 @@ export default function LandingPage() {
       <section id="sobre" className="py-24 md:py-32 bg-[#1A1F16] relative overflow-hidden">
         {/* Animated Background Text */}
         <motion.div 
-          style={{ x: useTransform(scrollYProgress, [0.6, 0.9], [100, -100]) }}
+          style={{ x: xBackgroundText }}
           className="absolute top-1/2 left-0 -translate-y-1/2 text-[25vw] font-bold text-white/[0.03] pointer-events-none select-none tracking-[20px] leading-none whitespace-nowrap"
         >
           SUPPIS SUPPIS
