@@ -1002,7 +1002,7 @@ export default function LandingPage() {
                   Somos a <br/> Suppis.
                 </h2>
 
-                <div className="space-y-10 text-zinc-500 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                <div className="space-y-6 text-zinc-500 text-lg md:text-xl font-light leading-relaxed max-w-xl">
                   <motion.p variants={fadeIn} custom={1}>
                     Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores.
                   </motion.p>
@@ -1015,7 +1015,7 @@ export default function LandingPage() {
                     Por isso, integramos todas as etapas em um só caminho, reduzindo ruídos e elevando a experiência final.
                   </motion.p>
 
-                  <motion.p variants={fadeIn} custom={4} className="pt-4">
+                  <motion.p variants={fadeIn} custom={4}>
                     Nosso propósito é simples: entregar espaços completos, coerentes e prontos para receber histórias.
                   </motion.p>
                 </div>
