@@ -615,8 +615,8 @@ export default function LandingPage() {
   const yIntegraTop = useTransform(scrollYProgress, [0, 1], [0, 200])
   const yIntegraBottom = useTransform(scrollYProgress, [0, 1], [0, -200])
   const yVantagens = useTransform(scrollYProgress, [0, 1], [0, 100])
-  const ySobreParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, -80])
-  const ySobreTextParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, 40])
+  const ySobreParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, -40])
+  const ySobreTextParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, 20])
   const xBackgroundText = useTransform(scrollYProgress, [0.6, 0.9], [100, -100])
 
   return (
@@ -955,14 +955,14 @@ export default function LandingPage() {
         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#d4c3b0]/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid md:grid-cols-12 gap-8 items-center">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Image Side with Floating Frame */}
-            <div className="md:col-span-7 relative">
+            <div className="lg:col-span-8 relative">
               <motion.div 
                 style={{ y: ySobreParallax }}
                 className="relative z-10"
               >
-                <div className="relative aspect-[16/10] md:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] border border-white/10 group">
+                <div className="relative aspect-[16/10] lg:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] border border-white/10 group">
                   <Image
                     src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9cefdaef-e4d8-4d89-ab4f-77b2e9f76adf/imgi_3_d8ee88b56da3af7380a957cd91488ecd-1767817727941.png?width=8000&height=8000&resize=contain"
                     alt="Suppis Branding"
@@ -985,7 +985,7 @@ export default function LandingPage() {
             {/* Text Side with Glassmorphism Overlap */}
             <motion.div 
               style={{ y: ySobreTextParallax }}
-              className="md:col-span-6 md:absolute md:right-10 lg:right-20 md:w-[45%] z-20"
+              className="lg:col-span-5 lg:absolute lg:right-6 xl:right-20 lg:w-[42%] z-20 mt-12 lg:mt-0"
             >
               <motion.div
                 initial="hidden"
