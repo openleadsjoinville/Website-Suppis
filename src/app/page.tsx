@@ -1192,9 +1192,8 @@ export default function LandingPage() {
                     allowFullScreen 
                     loading="lazy" 
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full h-full grayscale opacity-80 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100"
+                    className="w-full h-full"
                   />
-                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-[#1A1F16]/40 via-transparent to-transparent opacity-80" />
                 </div>
                 
                 {/* Floating Geometric Elements */}
