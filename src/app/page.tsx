@@ -939,73 +939,88 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Section: Sobre Nós - Creative Layout */}
-      <section id="sobre" className="py-20 md:py-24 bg-white relative overflow-hidden">
-        {/* Large Watermark Text */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[15vw] font-bold text-[#4A583E]/[0.02] pointer-events-none select-none tracking-tighter leading-none -rotate-90 md:rotate-0 md:left-10">
-          SUPPIS
-        </div>
+      {/* Section: Sobre Nós - Disruptive & Futuristic */}
+      <section id="sobre" className="py-24 md:py-32 bg-[#1A1F16] relative overflow-hidden">
+        {/* Animated Background Text */}
+        <motion.div 
+          style={{ x: useTransform(scrollYProgress, [0.6, 0.9], [100, -100]) }}
+          className="absolute top-1/2 left-0 -translate-y-1/2 text-[25vw] font-bold text-white/[0.03] pointer-events-none select-none tracking-[20px] leading-none whitespace-nowrap"
+        >
+          SUPPIS SUPPIS
+        </motion.div>
+
+        {/* Ambient Glows */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#4A583E]/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#d4c3b0]/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="grid md:grid-cols-12 gap-12 items-center">
-            <div className="md:col-span-6 lg:col-span-6 order-1 md:order-1 relative">
-              <DecorativeIcon 
-                className="w-full max-w-[400px] -top-20 -left-20 z-0" 
-                rotation={15} 
-                opacity={0.1} 
-                color="#4a583e"
-              />
-              
+          <div className="grid md:grid-cols-12 gap-8 items-center">
+            {/* Image Side with Floating Frame */}
+            <div className="md:col-span-7 relative">
               <motion.div 
                 style={{ y: ySobreParallax }}
-                className="relative z-10 group"
+                className="relative z-10"
               >
-                <div className="relative aspect-[4/3] rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.25)] transition-all duration-700 group-hover:rounded-[2rem]">
+                <div className="relative aspect-[16/10] md:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] border border-white/10 group">
                   <Image
                     src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9cefdaef-e4d8-4d89-ab4f-77b2e9f76adf/imgi_3_d8ee88b56da3af7380a957cd91488ecd-1767817727941.png?width=8000&height=8000&resize=contain"
                     alt="Suppis Branding"
                     fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#4A583E]/20 to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#1A1F16]/40 via-transparent to-transparent opacity-80" />
                 </div>
-
-
+                
+                {/* Floating Geometric Elements */}
+                <DecorativeIcon 
+                  className="w-40 -top-10 -right-10 z-20" 
+                  rotation={45} 
+                  opacity={0.2} 
+                  color="#d4c3b0"
+                />
               </motion.div>
             </div>
 
+            {/* Text Side with Glassmorphism Overlap */}
             <motion.div 
               style={{ y: ySobreTextParallax }}
-              className="md:col-span-6 lg:col-span-5 lg:offset-1 order-2 md:order-2"
+              className="md:col-span-6 md:absolute md:right-10 lg:right-20 md:w-[45%] z-20"
             >
               <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeIn}
+                className="bg-white/5 backdrop-blur-3xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl"
               >
-                <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-4 block">A Nossa Essência</span>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-px w-12 bg-[#d4c3b0]/40" />
+                  <span className="text-[#d4c3b0] font-medium uppercase tracking-[0.5em] text-[10px]">A Nossa Essência</span>
+                </div>
                 
-                <h2 className="text-5xl md:text-7xl font-medium text-[#4A583E] tracking-tighter mb-8 leading-[0.9]">
-                  Somos a <br/> Suppis.
+                <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter mb-8 leading-[0.85]">
+                  Futuro <br/>
+                  <span className="font-serif italic text-[#d4c3b0]">Traduzido</span><br/>
+                  em Espaço.
                 </h2>
 
-                <div className="space-y-6 text-zinc-500 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                <div className="space-y-6 text-zinc-400 text-base md:text-lg font-light leading-relaxed">
                   <motion.p variants={fadeIn} custom={1}>
-                    Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores.
+                    Nascemos para transformar a experiência de habitar. Na Suppis, o design não apenas resolve funções, ele antecipa desejos.
                   </motion.p>
 
                   <motion.p variants={fadeIn} custom={2}>
-                    Acreditamos que um ambiente bem feito é resultado de conexão: entre ideias, materiais, profissionais e execução.
+                    Conectamos tecnologia de ponta, marcenaria de alta precisão e uma curadoria estética que desafia o tempo.
                   </motion.p>
-
-                  <motion.p variants={fadeIn} custom={3}>
-                    Por isso, integramos todas as etapas em um só caminho, reduzindo ruídos e elevando a experiência final.
-                  </motion.p>
-
-                  <motion.p variants={fadeIn} custom={4}>
-                    Nosso propósito é simples: entregar espaços completos, coerentes e prontos para receber histórias.
-                  </motion.p>
+                  
+                  <motion.div variants={fadeIn} custom={3} className="pt-4">
+                    <Button 
+                      onClick={() => window.open('https://wa.me/5547999247199', '_blank')}
+                      className="bg-white/10 hover:bg-white hover:text-[#1A1F16] text-white border border-white/20 rounded-full px-8 py-6 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500"
+                    >
+                      Descubra mais
+                    </Button>
+                  </motion.div>
                 </div>
               </motion.div>
             </motion.div>
