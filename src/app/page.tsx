@@ -617,7 +617,10 @@ export default function LandingPage() {
   const yVantagens = useTransform(scrollYProgress, [0, 1], [0, 100])
   const ySobreParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, -40])
   const ySobreTextParallax = useTransform(scrollYProgress, [0.5, 0.9], [0, 20])
+  const yShowroomParallax = useTransform(scrollYProgress, [0.7, 1.0], [0, -40])
+  const yShowroomTextParallax = useTransform(scrollYProgress, [0.7, 1.0], [0, 20])
   const xBackgroundText = useTransform(scrollYProgress, [0.6, 0.9], [100, -100])
+  const xShowroomBackgroundText = useTransform(scrollYProgress, [0.7, 1.0], [100, -100])
 
   return (
     <div className="min-h-screen bg-[#faf9f6] text-zinc-900 selection:bg-[#4A583E] selection:text-white font-light overflow-x-hidden">
@@ -1158,81 +1161,108 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Showroom Section */}
-      <section className="py-24 bg-[#eef1da] relative z-40 overflow-hidden">
-        <div className="container mx-auto px-6 mb-12">
-          <div className="bg-[#4A583E] rounded-[3rem] md:rounded-[4rem] p-8 md:p-20 overflow-hidden relative shadow-2xl">
-            {/* Decorative background element */}
-            <DecorativeIcon 
-              className="w-[800px] -top-40 -right-40" 
-              rotation={15} 
-              opacity={0.05} 
-              color="#ffffff"
-            />
-            
-            <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center relative z-10">
+      {/* Section: Showroom - Matching Sobre Nós Design */}
+      <section id="showroom" className="py-24 md:py-32 bg-[#1A1F16] relative overflow-hidden">
+        {/* Animated Background Text */}
+        <motion.div 
+          style={{ x: xShowroomBackgroundText }}
+          className="absolute top-1/2 left-0 -translate-y-1/2 text-[25vw] font-bold text-white/[0.03] pointer-events-none select-none tracking-[20px] leading-none whitespace-nowrap"
+        >
+          SHOWROOM SHOWROOM
+        </motion.div>
+
+        {/* Ambient Glows */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#4A583E]/20 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#d4c3b0]/10 rounded-full blur-[100px] translate-y-1/2 translate-x-1/2" />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            {/* Map Side with Floating Frame */}
+            <div className="lg:col-span-8 relative">
               <motion.div 
+                style={{ y: yShowroomParallax }}
+                className="relative z-10"
+              >
+                <div className="relative aspect-[16/10] lg:aspect-[16/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_30px_60px_-12px_rgba(0,0,0,0.5)] border border-white/10 group">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3574.9657!2d-48.8475!3d-26.3032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deb0402b85e05d%3A0xc3f7a26245a4a58d!2sRua%20Doutor%20Marinho%20Lobo%2C%2023%20-%20Centro%2C%20Joinville%20-%20SC!5e0!3m2!1spt-BR!2sbr" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-full grayscale opacity-80 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-[#1A1F16]/40 via-transparent to-transparent opacity-80" />
+                </div>
+                
+                {/* Floating Geometric Elements */}
+                <DecorativeIcon 
+                  className="w-40 -top-10 -left-10 z-20" 
+                  rotation={-15} 
+                  opacity={0.2} 
+                  color="#d4c3b0"
+                />
+              </motion.div>
+            </div>
+
+            {/* Text Side with Glassmorphism Overlap */}
+            <motion.div 
+              style={{ y: yShowroomTextParallax }}
+              className="lg:col-span-5 lg:absolute lg:right-6 xl:right-20 lg:w-[42%] z-20 mt-12 lg:mt-0"
+            >
+              <motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeIn}
-                className="space-y-8"
+                className="bg-white/5 backdrop-blur-3xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl"
               >
-                <span className="text-white/60 font-medium uppercase tracking-[0.4em] text-[10px] block">Onde estamos</span>
-                <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tighter leading-[0.95]">
-                  Visite nosso <br/> Showroom
-                </h2>
-                <p className="text-white/70 text-lg font-light leading-relaxed max-w-lg">
-                  Aqui você sente na prática o que significa ter marcenaria própria, acabamento impecável e um parceiro que cuida do seu projeto de ponta a ponta.
-                </p>
-                
-                <div className="flex items-start gap-4 text-white/80">
-                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="text-xl font-medium tracking-tight">Rua Doutor Marinho Lobo, 23</p>
-                    <p className="text-sm uppercase tracking-[0.2em] opacity-60">Centro, Joinville - SC</p>
-                  </div>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="h-px w-12 bg-[#d4c3b0]/40" />
+                  <span className="text-[#d4c3b0] font-medium uppercase tracking-[0.5em] text-[10px]">Onde Estamos</span>
                 </div>
+                
+                <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter mb-8 leading-[0.85]">
+                  Visite nosso <br/>
+                  <span className="italic text-[#d4c3b0]">Showroom</span>
+                </h2>
 
-                <div className="flex flex-col sm:flex-row gap-4">
+                <div className="space-y-8 text-zinc-400 text-base md:text-lg font-light leading-relaxed">
+                  <motion.p variants={fadeIn} custom={1}>
+                    Aqui você sente na prática o que significa ter marcenaria própria, acabamento impecável e um parceiro que cuida do seu projeto de ponta a ponta.
+                  </motion.p>
+
+                  <div className="flex items-start gap-4 text-white/80">
+                    <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-xl font-medium tracking-tight text-white">Rua Doutor Marinho Lobo, 23</p>
+                      <p className="text-sm uppercase tracking-[0.2em] opacity-60">Centro, Joinville - SC</p>
+                    </div>
+                  </div>
+
+                  <motion.div variants={fadeIn} custom={3} className="flex flex-col sm:flex-row gap-4 pt-4">
                     <Button 
                       onClick={() => window.open('https://wa.me/5547999247199?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20projeto.', '_blank')}
-                      className="bg-[#25D366] text-white hover:bg-[#128C7E] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                      className="bg-[#25D366] text-white hover:bg-[#128C7E] px-8 py-6 rounded-full text-[10px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
                     >
                       Solicitar Orçamento
                       <MessageCircle className="ml-3 w-4 h-4" />
                     </Button>
-                  <Button 
-                    onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
-                    className="bg-white text-[#4A583E] hover:bg-[#eef1da] px-10 py-8 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105"
-                  >
-                    Ver no Google Maps
-                    <ArrowRight className="ml-3 w-4 h-4" />
-                  </Button>
+                    <Button 
+                      onClick={() => window.open('https://www.google.com/maps/search/?api=1&query=Rua+Doutor+Marinho+Lobo,+23,+Centro,+Joinville+-+SC', '_blank')}
+                      className="bg-white/10 hover:bg-white hover:text-[#1A1F16] text-white border border-white/20 rounded-full px-8 py-6 text-[10px] uppercase tracking-[0.2em] font-bold transition-all duration-500"
+                    >
+                      Google Maps
+                      <ArrowRight className="ml-3 w-4 h-4" />
+                    </Button>
+                  </motion.div>
                 </div>
               </motion.div>
-
-              <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={scaleIn}
-                className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-8 border-white/5"
-              >
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3574.9657!2d-48.8475!3d-26.3032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deb0402b85e05d%3A0xc3f7a26245a4a58d!2sRua%20Doutor%20Marinho%20Lobo%2C%2023%20-%20Centro%2C%20Joinville%20-%20SC!5e0!3m2!1spt-BR!2sbr" 
-                  width="100%" 
-                  height="100%" 
-                  style={{ border: 0 }} 
-                  allowFullScreen 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full"
-                />
-              </motion.div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
