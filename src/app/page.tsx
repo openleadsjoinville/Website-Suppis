@@ -1175,19 +1175,23 @@ export default function LandingPage() {
             </div>
             
             <div className="flex gap-4">
-              {[
-                { icon: <Instagram className="w-5 h-5" />, href: "https://www.instagram.com/suppis.interiores" }
-              ].map((social, i) => (
-                <motion.a 
-                  key={i} 
-                  custom={i}
-                  variants={fadeIn}
-                  href={social.href} 
-                  className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all border border-white/5"
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+              <motion.a 
+                custom={0}
+                variants={fadeIn}
+                href="https://www.instagram.com/suppis.interiores" 
+                className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all border border-white/5"
+              >
+                <Instagram className="w-5 h-5" />
+              </motion.a>
+              <motion.a 
+                custom={1}
+                variants={fadeIn}
+                href="https://wa.me/5547999247199?text=Olá!%20Vi%20o%20site%20da%20Suppis%20e%20gostaria%20de%20mais%20informações." 
+                target="_blank"
+                className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-all border border-white/5"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </motion.a>
             </div>
           </motion.div>
 
