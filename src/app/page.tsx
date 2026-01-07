@@ -940,81 +940,99 @@ export default function LandingPage() {
       {/* Section: Sobre Nós */}
       <section id="sobre" className="py-32 bg-white relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.span 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs mb-8 block"
-            >
-              Sobre Nós
-            </motion.span>
-            
-            <motion.h2 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
-              className="text-5xl md:text-7xl font-medium text-[#4A583E] tracking-tighter mb-16"
-            >
-              Somos a Suppis.
-            </motion.h2>
-
-            <div className="space-y-12 text-zinc-500 text-xl md:text-2xl font-light leading-relaxed">
-              <motion.p 
+          <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+            <div className="order-2 md:order-1">
+              <motion.span 
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeIn}
-                custom={1}
+                className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs mb-8 block"
               >
-                Nascemos para transformar a forma como as<br className="hidden md:block" /> pessoas vivenciam um projeto de interiores.
-              </motion.p>
-
-              <motion.p 
+                Sobre Nós
+              </motion.span>
+              
+              <motion.h2 
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeIn}
-                custom={2}
+                className="text-5xl md:text-7xl font-medium text-[#4A583E] tracking-tighter mb-12"
               >
-                Acreditamos que um ambiente bem feito é<br className="hidden md:block" /> resultado de conexão, entre ideias, materiais,<br className="hidden md:block" /> profissionais e execução.
-              </motion.p>
+                Somos a Suppis.
+              </motion.h2>
 
-              <motion.p 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeIn}
-                custom={3}
-              >
-                Por isso, integramos todas as etapas em um<br className="hidden md:block" /> só caminho, reduzindo ruídos e elevando a<br className="hidden md:block" /> experiência.
-              </motion.p>
-
-              <div className="pt-8">
-                <motion.span 
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={fadeIn}
-                  custom={4}
-                  className="text-[#4A583E] font-medium block mb-6"
-                >
-                  Nosso propósito é simples:
-                </motion.span>
+              <div className="space-y-8 text-zinc-500 text-lg md:text-xl font-light leading-relaxed">
                 <motion.p 
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeIn}
-                  custom={5}
-                  className="text-3xl md:text-4xl text-[#4A583E] font-medium tracking-tight"
+                  custom={1}
                 >
-                  entregar espaços completos, coerentes e<br className="hidden md:block" /> prontos para receber histórias.
+                  Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores.
                 </motion.p>
+
+                <motion.p 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeIn}
+                  custom={2}
+                >
+                  Acreditamos que um ambiente bem feito é resultado de conexão, entre ideias, materiais, profissionais e execução.
+                </motion.p>
+
+                <motion.p 
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeIn}
+                  custom={3}
+                >
+                  Por isso, integramos todas as etapas em um só caminho, reduzindo ruídos e elevando a experiência.
+                </motion.p>
+
+                <div className="pt-8">
+                  <motion.span 
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeIn}
+                    custom={4}
+                    className="text-[#4A583E] font-medium block mb-4"
+                  >
+                    Nosso propósito é simples:
+                  </motion.span>
+                  <motion.p 
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeIn}
+                    custom={5}
+                    className="text-2xl md:text-4xl text-[#4A583E] font-medium tracking-tight"
+                  >
+                    entregar espaços completos, coerentes e prontos para receber histórias.
+                  </motion.p>
+                </div>
               </div>
             </div>
+
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideInRight}
+              className="order-1 md:order-2 relative aspect-square md:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl group"
+            >
+              <Image
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9cefdaef-e4d8-4d89-ab4f-77b2e9f76adf/imgi_3_d8ee88b56da3af7380a957cd91488ecd-1767817727941.png?width=8000&height=8000&resize=contain"
+                alt="Suppis Branding"
+                fill
+                className="object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-[#4A583E]/5 mix-blend-multiply transition-opacity duration-700 group-hover:opacity-0" />
+            </motion.div>
           </div>
         </div>
       </section>
