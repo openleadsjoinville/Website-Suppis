@@ -579,6 +579,33 @@ export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const { scrollYProgress } = useScroll()
+
+  useEffect(() => {
+    // Smooth Scroll initialization
+    const lenis = new Lenis()
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
+
+    // Scroll listener for navbar
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener('scroll', handleScroll)
+
+    // Loading timeout
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      clearTimeout(timer)
+      lenis.destroy()
+    }
+  }, [])
   
   // Parallax transforms - MUST be defined at top level
   const yHeroLeft = useTransform(scrollYProgress, [0, 1], [0, 100])
