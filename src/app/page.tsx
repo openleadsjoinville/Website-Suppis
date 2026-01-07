@@ -1162,7 +1162,7 @@ export default function LandingPage() {
       </section>
 
       {/* Section: Showroom - Matching Sobre Nós Design */}
-      <section id="showroom" className="py-24 md:py-32 bg-[#1A1F16] relative overflow-hidden">
+      <section id="showroom" className="pt-24 md:pt-32 pb-56 md:pb-72 bg-[#1A1F16] relative overflow-hidden">
         {/* Animated Background Text */}
         <motion.div 
           style={{ x: xShowroomBackgroundText }}
@@ -1275,7 +1275,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer - XYZ Inspired Layout */}
-      <footer className="bg-[#4A583E] text-white pt-16 pb-12 relative z-20 overflow-hidden">
+      <footer className="bg-[#4A583E] text-white pt-24 md:pt-32 pb-12 relative z-20 overflow-hidden">
         {/* Decorative element for Footer */}
         <DecorativeIcon 
           className="w-[800px] -bottom-40 -right-40" 
