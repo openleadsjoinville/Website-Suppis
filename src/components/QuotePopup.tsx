@@ -105,7 +105,10 @@ export function QuotePopup() {
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
-                onClick={handleClose}
+                onClick={() => {
+                  window.open('https://wa.me/5547999247199?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20projeto.', '_blank')
+                  handleClose()
+                }}
                 className="bg-[#4A583E] hover:bg-[#3D4932] text-white px-8 py-7 rounded-full text-[11px] uppercase tracking-[0.2em] font-bold shadow-xl transition-all duration-300 hover:scale-[1.02] flex-1"
               >
                 Solicitar Orçamento Agora
