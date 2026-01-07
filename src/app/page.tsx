@@ -1001,7 +1001,7 @@ export default function LandingPage() {
                 
                 <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter mb-8 leading-[0.85]">
                   Futuro <br/>
-                  <span className="font-serif italic text-[#d4c3b0]">Traduzido</span><br/>
+                  <span className="italic text-[#d4c3b0]">Traduzido</span><br/>
                   em Espaço.
                 </h2>
 
