@@ -798,7 +798,8 @@ export default function LandingPage() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-100px" }}
                 variants={slideInLeft}
-                className="relative aspect-[16/10] rounded-[3rem] overflow-hidden shadow-2xl"
+                  className="relative aspect-[16/11] rounded-[3rem] overflow-hidden shadow-2xl"
+
               >
                 <Image
                   src="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png"
