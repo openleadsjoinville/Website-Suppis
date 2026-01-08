@@ -818,8 +818,8 @@ export default function LandingPage() {
             >
               <div className="space-y-6">
                 <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs">Processo de Elite</span>
-                <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight">
-                  Cansado de obras intermináveis, <br /> fornecedores desalinhados e <br /> orçamentos fora da realidade?
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[#4A583E] tracking-tighter leading-tight max-w-[90%] md:max-w-none">
+                  Cansado de obras intermináveis, <br className="hidden md:block" /> fornecedores desalinhados e <br className="hidden md:block" /> orçamentos fora da realidade?
                 </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
                   Sabemos que reformar pode ser um pesadelo: atrasos, retrabalho e frustrações. 
