@@ -888,6 +888,18 @@ export default function LandingPage() {
                 desc: "Levantamento orçamentário, contratos, conferência técnica e cronogramas.",
                 icon: <Settings className="w-8 h-8" />,
                 dark: true
+              },
+              {
+                title: "Bloco 04: Execução",
+                desc: "Fabricação e instalação coordenada dos produtos e serviços conforme planejamento.",
+                icon: <Hammer className="w-8 h-8" />,
+                dark: false
+              },
+              {
+                title: "Bloco 05: Entrega",
+                desc: "Gerenciamento dos produtos e serviços para entrega completa do projeto, do piso ao teto.",
+                icon: <Key className="w-8 h-8" />,
+                dark: true
               }
             ].map((item, i) => (
               <motion.div 
