@@ -1015,7 +1015,7 @@ export default function LandingPage() {
 
                 <div className="space-y-6 text-zinc-400 text-base md:text-lg font-light leading-relaxed">
                   <motion.p variants={fadeIn} custom={1}>
-                    Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores. Acreditamos que um ambiente bem feito é resultado de conexão, entre ideias, materiais, profissionais e execução.
+                    Nascemos para transformar a forma como as pessoas vivenciam um projeto de interiores. Acreditamos que um ambiente bem feito é resultado da conexão entre ideias, materiais, profissionais e execução.
                   </motion.p>
 
                   <motion.p variants={fadeIn} custom={2}>
@@ -1023,7 +1023,7 @@ export default function LandingPage() {
                   </motion.p>
 
                   <motion.p variants={fadeIn} custom={3}>
-                    Nosso propósito é simples: entregar espaços completos, coerentes e prontos para receber histórias.
+                    Nosso propósito é entregar espaços completos e prontos para receber histórias.
                   </motion.p>
                   
                   <motion.div variants={fadeIn} custom={4} className="pt-4">
