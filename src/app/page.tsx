@@ -819,19 +819,18 @@ export default function LandingPage() {
             >
                 <div className="space-y-6">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[#4A583E] tracking-tighter leading-tight max-w-[90%] md:max-w-none">
-                    Cansado de prazos intermináveis, <br className="hidden md:block" /> fornecedores desalinhados e <br className="hidden md:block" /> orçamentos sem planejamento?
+                    Entendemos que executar um projeto de interiores pode ser um pesadelo: atrasos, frustrações e falta de planejamento.
                   </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
-                  Sabemos que reformar pode ser um pesadelo: atrasos, retrabalho e frustrações. 
-                  Você merece um parceiro que cuida de tudo, do primeiro traço ao último ajuste.
+                  Você merece um parceiro que cuida de tudo, do primeiro traço a chave na mão.
                 </p>
               </div>
 
               <div className="grid gap-8">
                 {[
-                  { title: "Gestão Unificada", desc: "Um único ponto de contato para todo o projeto." },
-                  { title: "Cronograma de Precisão", desc: "Prazos cumpridos com rigor técnico absoluto." },
-                  { title: "Marcenaria Exclusiva", desc: "Produção própria com padrão de alta costura." }
+                  { title: "Cronograma de Precisão", desc: "Gerenciamento de prazos, de acordo com cada etapa do projeto de interiores;" },
+                  { title: "Gestão Unificada", desc: "Do projeto a execução com um único ponto de contato;" },
+                  { title: "Planejamento orçamentário", desc: "Estruturação do seu projeto com orçamento completo;" }
                 ].map((item, i) => (
                   <motion.div 
                     key={i}
