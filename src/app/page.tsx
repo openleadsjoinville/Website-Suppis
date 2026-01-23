@@ -1054,7 +1054,7 @@ export default function LandingPage() {
           <div className="text-center mb-24">
             <span className="text-[#4A583E] font-medium uppercase tracking-[0.3em] text-xs mb-4 block">Diferenciais</span>
             <h2 className="text-5xl md:text-6xl font-medium text-[#4A583E] tracking-tighter">
-              A Suppis é a parceira do seu projeto de vida.
+              A Suppis cuida do seu projeto e facilita sua vida.
             </h2>
           </div>
 
