@@ -8,6 +8,7 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 
@@ -19,7 +20,7 @@ export function QuotePopup() {
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0) {
-        const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v2')
+        const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v20_final')
         if (!hasSeenPopup) {
           setIsOpen(true)
         }
@@ -28,13 +29,13 @@ export function QuotePopup() {
 
     document.addEventListener('mouseleave', handleMouseLeave)
 
-    // Show popup after 5 seconds
+    // Show popup after 4 seconds
     const timer = setTimeout(() => {
-      const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v2')
+      const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v20_final')
       if (!hasSeenPopup) {
         setIsOpen(true)
       }
-    }, 5000)
+    }, 4000)
 
     return () => {
       document.removeEventListener('mouseleave', handleMouseLeave)
@@ -44,13 +45,15 @@ export function QuotePopup() {
 
   const handleClose = () => {
     setIsOpen(false)
-    localStorage.setItem('hasSeenQuotePopup_v2', 'true')
+    localStorage.setItem('hasSeenQuotePopup_v20_final', 'true')
   }
 
   return (
       <Dialog open={isOpen} onOpenChange={handleClose}>
         <DialogContent className="max-w-[90vw] md:max-w-[800px] p-0 overflow-hidden border-none bg-transparent shadow-none" showCloseButton={false}>
           <DialogTitle className="sr-only">Solicitar Orçamento Suppis</DialogTitle>
+          <DialogDescription className="sr-only">Formulário para solicitação de orçamento personalizado Suppis Integra.</DialogDescription>
+
           <div className="relative w-full bg-[#faf9f6] rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row shadow-2xl">
           {/* Close button - custom to fit the design better */}
           <button 
