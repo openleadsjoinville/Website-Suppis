@@ -872,7 +872,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
             {[
               {
                 title: "Briefing",
@@ -912,7 +912,7 @@ export default function LandingPage() {
                 viewport={{ once: true, margin: "-50px" }}
                 variants={fadeIn}
                 custom={i}
-                className={`p-12 rounded-[2.5rem] flex flex-col items-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 ${
+                className={`p-12 rounded-[2.5rem] flex flex-col items-center text-center transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 flex-grow basis-full md:basis-[calc(33.333%-1.5rem)] ${
                   item.dark 
                     ? 'bg-[#4A583E] text-white' 
                     : 'bg-white text-[#4A583E] shadow-sm border border-black/[0.03]'
