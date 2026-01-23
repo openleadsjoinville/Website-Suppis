@@ -817,10 +817,10 @@ export default function LandingPage() {
               variants={slideInRight}
               className="space-y-12 relative"
             >
-              <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[#4A583E] tracking-tighter leading-tight max-w-[90%] md:max-w-none">
-                  Cansado de obras intermináveis, <br className="hidden md:block" /> fornecedores desalinhados e <br className="hidden md:block" /> orçamentos fora da realidade?
-                </h2>
+                <div className="space-y-6">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[#4A583E] tracking-tighter leading-tight max-w-[90%] md:max-w-none">
+                    Cansado de prazos intermináveis, <br className="hidden md:block" /> fornecedores desalinhados e <br className="hidden md:block" /> orçamentos sem planejamento?
+                  </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
                   Sabemos que reformar pode ser um pesadelo: atrasos, retrabalho e frustrações. 
                   Você merece um parceiro que cuida de tudo, do primeiro traço ao último ajuste.
