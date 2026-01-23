@@ -110,20 +110,16 @@ const HeroVideo = () => {
     const video = videoRef.current
     if (!video) return
 
-    // Força as propriedades de autoplay no DOM para garantir compatibilidade mobile
     video.muted = true
     video.setAttribute('muted', '')
     video.setAttribute('playsinline', '')
     
     const playVideo = () => {
-      video.play().catch(() => {
-        // Silently handle autoplay rejection
-      })
+      video.play().catch(() => {})
     }
 
     playVideo()
 
-    // Fallback: inicia o vídeo na primeira interação caso o autoplay seja bloqueado pelo sistema
     const handleInteraction = () => {
       playVideo()
       window.removeEventListener('touchstart', handleInteraction)
@@ -151,10 +147,9 @@ const HeroVideo = () => {
       playsInline
       preload="auto"
       poster="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png"
-      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-    >
-      <source src={HERO_VIDEO_URL} type="video/mp4" />
-    </video>
+      className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+      src={HERO_VIDEO_URL}
+    />
   )
 }
 
@@ -724,11 +719,18 @@ export default function LandingPage() {
       )}
 
       {/* Hero Section - Immersive with Curve Bottom */}
-      <section id="home" className="relative h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24">
-        <div className="absolute inset-0 z-0 bg-black">
-          <HeroVideo />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent" />
-        </div>
+      <section id="home" className="relative h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24 bg-black">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+          src={HERO_VIDEO_URL}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent z-[1]" />
         
         {/* Decorative Icons on Hero */}
         <DecorativeIcon 
