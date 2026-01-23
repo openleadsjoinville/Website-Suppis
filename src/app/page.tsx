@@ -275,7 +275,7 @@ const SuppisIntegraDiagram = () => {
             Suppis Integra
           </h2>
           <p className="text-zinc-500 text-lg md:text-xl font-light leading-relaxed">
-            Nosso método exclusivo que conecta todos os pilares do seu projeto em um único ecossistema de gestão e execução.
+            Nosso método exclusivo que conecta fornecedores aos processos e prazos do seu projeto em um único ecossistema de gestão e execução.
           </p>
         </div>
 
