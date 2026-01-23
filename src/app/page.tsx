@@ -865,7 +865,7 @@ export default function LandingPage() {
               Como vamos fazer o seu projeto juntos
             </h2>
             <p className="text-zinc-500 text-xl font-light leading-relaxed max-w-2xl mx-auto">
-              Aqui seu projeto sai do papel. Marcenaria sob medida e interiores completos com quem entende cada etapa.
+              A sua ideia vira um projeto de interiores completo, do revestimento a personalização da marcenaria, com quem entende de cada etapa.
             </p>
           </div>
 
