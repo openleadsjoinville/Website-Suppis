@@ -19,7 +19,7 @@ export function QuotePopup() {
   useEffect(() => {
     const handleMouseLeave = (e: MouseEvent) => {
       if (e.clientY <= 0) {
-        const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup')
+        const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v2')
         if (!hasSeenPopup) {
           setIsOpen(true)
         }
@@ -30,7 +30,7 @@ export function QuotePopup() {
 
     // Show popup after 5 seconds
     const timer = setTimeout(() => {
-      const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup')
+      const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v2')
       if (!hasSeenPopup) {
         setIsOpen(true)
       }
@@ -44,7 +44,7 @@ export function QuotePopup() {
 
   const handleClose = () => {
     setIsOpen(false)
-    localStorage.setItem('hasSeenQuotePopup', 'true')
+    localStorage.setItem('hasSeenQuotePopup_v2', 'true')
   }
 
   return (
