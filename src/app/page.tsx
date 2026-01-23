@@ -1007,11 +1007,11 @@ export default function LandingPage() {
                   <span className="text-[#d4c3b0] font-medium uppercase tracking-[0.5em] text-[10px]">A Nossa Essência</span>
                 </div>
                 
-                <h2 className="text-5xl md:text-7xl font-light text-white tracking-tighter mb-8 leading-[0.85]">
-                  Futuro <br/>
-                  <span className="italic text-[#d4c3b0]">Traduzido</span><br/>
-                  em Espaço.
-                </h2>
+                  <h2 className="text-3xl md:text-5xl font-light text-white tracking-tighter mb-8 leading-tight">
+                    Autoria, experiência <br/>
+                    e <span className="italic text-[#d4c3b0]">confiança</span> em <br/>
+                    cada espaço.
+                  </h2>
 
                 <div className="space-y-6 text-zinc-400 text-base md:text-lg font-light leading-relaxed">
                   <motion.p variants={fadeIn} custom={1}>
