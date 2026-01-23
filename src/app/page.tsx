@@ -1058,21 +1058,26 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {[
               { 
-                title: "De ponta a ponta, interiores completos.", 
-                desc: "Soluções integradas para transformar obras em lares prontos, com confiança e credibilidade.",
+                title: "Do piso ao teto, interiores completos.", 
+                desc: "Soluções integradas para transformar obras em lares prontos.",
                 icon: <Home className="w-6 h-6" />
               },
               { 
-                title: "Credibilidade em cada detalhe.", 
-                desc: "Integramos parceiros, processos e soluções com transparência e confiança.",
+                title: "Atendimento Intimista.", 
+                desc: "Atendimento baseado no diálogo, na confiança e na proximidade, com acompanhamento dedicado do início ao fim.",
+                icon: <MessageCircle className="w-6 h-6" />
+              },
+              { 
+                title: "Cuidado em cada detalhe.", 
+                desc: "Processos e cronogramas bem definidos com transparência e confiança.",
                 icon: <Sparkles className="w-6 h-6" />
               },
               { 
                 title: "Suppis Integra", 
-                desc: "Conectamos arquitetos, engenheiros e fornecedores que compartilham o mesmo compromisso com a excelência.",
+                desc: "Conectamos parceiros homologados e fornecedores que compartilham do nosso propósito e compromisso com a excelência.",
                 icon: <Hammer className="w-6 h-6" />
               }
             ].map((item, i) => (
