@@ -17,31 +17,22 @@ const POPUP_IMAGE = "https://suppis2.openleads.com.br/wp-content/uploads/2025/12
 export function QuotePopup() {
   const [isOpen, setIsOpen] = useState(false)
 
-  useEffect(() => {
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0) {
-        const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v20_final')
-        if (!hasSeenPopup) {
-          setIsOpen(true)
+    useEffect(() => {
+      const handleMouseLeave = (e: MouseEvent) => {
+        if (e.clientY <= 0) {
+          const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v20_final')
+          if (!hasSeenPopup) {
+            setIsOpen(true)
+          }
         }
       }
-    }
-
-    document.addEventListener('mouseleave', handleMouseLeave)
-
-    // Show popup after 4 seconds
-    const timer = setTimeout(() => {
-      const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v20_final')
-      if (!hasSeenPopup) {
-        setIsOpen(true)
+  
+      document.addEventListener('mouseleave', handleMouseLeave)
+  
+      return () => {
+        document.removeEventListener('mouseleave', handleMouseLeave)
       }
-    }, 4000)
-
-    return () => {
-      document.removeEventListener('mouseleave', handleMouseLeave)
-      clearTimeout(timer)
-    }
-  }, [])
+    }, [])
 
   const handleClose = () => {
     setIsOpen(false)
