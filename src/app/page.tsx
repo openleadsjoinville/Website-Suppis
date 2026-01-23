@@ -869,31 +869,25 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {[
               {
-                title: "Planejamento",
-                desc: "Reunião inicial para entender suas necessidades, estilo e orçamento.",
+                title: "Bloco 01: Briefing",
+                desc: "Reunião inicial para entender as necessidades, preferências e orçamentos.",
                 icon: <Lightbulb className="w-8 h-8" />,
                 dark: true
               },
               {
-                title: "Desenvolvimento",
-                desc: "Criação do projeto de marcenaria personalizado e definição de acabamentos.",
+                title: "Bloco 02: Desenvolvimento",
+                desc: "Análise de briefing, estudo criativo e apresentação do projeto de interiores.",
                 icon: <Pencil className="w-8 h-8" />,
                 dark: false
               },
               {
-                title: "Execução",
-                desc: "Fabricação e instalação coordenada com gestão profissional de cronograma.",
+                title: "Bloco 03: Planejamento",
+                desc: "Levantamento orçamentário, contratos, conferência técnica e cronogramas.",
                 icon: <Settings className="w-8 h-8" />,
                 dark: true
-              },
-              {
-                title: "Entrega",
-                desc: "Acompanhamento final, ajustes e entrega completa do ambiente pronto.",
-                icon: <Key className="w-8 h-8" />,
-                dark: false
               }
             ].map((item, i) => (
               <motion.div 
