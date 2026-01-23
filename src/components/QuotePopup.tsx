@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ArrowRight, Sparkles } from 'lucide-react'
+import { X, ArrowRight, Sparkles, Home } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -94,7 +94,16 @@ export function QuotePopup() {
                 </p>
             </div>
 
-
+              <div className="space-y-4 mb-8">
+                {[
+                  { icon: <Home size={18} />, text: "Interiores completos de ponta a ponta" }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-zinc-600 text-sm">
+                    <div className="text-[#4A583E]">{item.icon}</div>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
