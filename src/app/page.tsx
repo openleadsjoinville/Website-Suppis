@@ -872,31 +872,31 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
             {[
               {
-                title: "Bloco 01: Briefing",
+                title: "01: Briefing",
                 desc: "Reunião inicial para entender as necessidades, preferências e orçamentos.",
                 icon: <Lightbulb className="w-8 h-8" />,
                 dark: true
               },
               {
-                title: "Bloco 02: Desenvolvimento",
+                title: "02: Desenvolvimento",
                 desc: "Análise de briefing, estudo criativo e apresentação do projeto de interiores.",
                 icon: <Pencil className="w-8 h-8" />,
                 dark: false
               },
               {
-                title: "Bloco 03: Planejamento",
+                title: "03: Planejamento",
                 desc: "Levantamento orçamentário, contratos, conferência técnica e cronogramas.",
                 icon: <Settings className="w-8 h-8" />,
                 dark: true
               },
               {
-                title: "Bloco 04: Execução",
+                title: "04: Execução",
                 desc: "Fabricação e instalação coordenada dos produtos e serviços conforme planejamento.",
                 icon: <Hammer className="w-8 h-8" />,
                 dark: false
               },
               {
-                title: "Bloco 05: Entrega",
+                title: "05: Entrega",
                 desc: "Gerenciamento dos produtos e serviços para entrega completa do projeto, do piso ao teto.",
                 icon: <Key className="w-8 h-8" />,
                 dark: true
