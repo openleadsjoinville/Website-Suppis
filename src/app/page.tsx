@@ -150,7 +150,8 @@ const HeroVideo = () => {
       muted
       playsInline
       preload="auto"
-      className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] opacity-60 pointer-events-none"
+      poster="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png"
+      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
     >
       <source src={HERO_VIDEO_URL} type="video/mp4" />
     </video>
@@ -726,7 +727,7 @@ export default function LandingPage() {
       <section id="home" className="relative h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24">
         <div className="absolute inset-0 z-0 bg-black">
           <HeroVideo />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent" />
         </div>
         
         {/* Decorative Icons on Hero */}
