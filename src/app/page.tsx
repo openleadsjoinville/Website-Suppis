@@ -730,7 +730,7 @@ export default function LandingPage() {
           className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
           src={HERO_VIDEO_URL}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent z-[1]" />
+        <div className="absolute inset-0 bg-black/50 z-[1]" />
         
         {/* Decorative Icons on Hero */}
         <DecorativeIcon 
