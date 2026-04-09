@@ -47,7 +47,7 @@ export function WhatsAppButton() {
   }, [])
 
   return (
-    <div className="fixed bottom-10 right-10 z-[100] flex flex-col items-end gap-4 pointer-events-none">
+    <div className="fixed bottom-24 lg:bottom-10 right-6 lg:right-10 z-[100] flex flex-col items-end gap-4 pointer-events-none">
       <AnimatePresence>
         {showPopup && (
           <motion.div

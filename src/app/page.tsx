@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/button"
 import Lenis from 'lenis'
 import { QuotePopup } from '@/components/QuotePopup'
 import { WhatsAppButton } from '@/components/WhatsAppButton'
-import { 
-  ArrowRight, 
-  Instagram, 
-  Linkedin, 
-  Menu, 
-  MessageCircle, 
+import {
+  ArrowRight,
+  Instagram,
+  Linkedin,
+  Menu,
+  MessageCircle,
   X,
   Sparkles,
   Home,
@@ -23,7 +23,11 @@ import {
   Pencil,
   Settings,
   Key,
-  MapPin
+  MapPin,
+  Layers,
+  Briefcase,
+  Award,
+  Phone
 } from 'lucide-react'
 
 // Constants
@@ -111,30 +115,63 @@ const HeroVideo = () => {
     if (!video) return
 
     video.muted = true
+    video.volume = 0
     video.setAttribute('muted', '')
     video.setAttribute('playsinline', '')
-    
+    video.setAttribute('webkit-playsinline', '')
+
     const playVideo = () => {
-      video.play().catch(() => {})
+      if (video.paused) {
+        const p = video.play()
+        if (p) p.catch(() => {})
+      }
     }
 
+    // Try immediately
     playVideo()
 
+    // Retry on canplay/loadeddata in case source wasn't ready
+    video.addEventListener('canplay', playVideo)
+    video.addEventListener('loadeddata', playVideo)
+
+    // On any user interaction, force play (iOS requirement)
     const handleInteraction = () => {
       playVideo()
       window.removeEventListener('touchstart', handleInteraction)
+      window.removeEventListener('touchend', handleInteraction)
+      window.removeEventListener('click', handleInteraction)
       window.removeEventListener('scroll', handleInteraction)
-      window.removeEventListener('mousedown', handleInteraction)
     }
 
-    window.addEventListener('touchstart', handleInteraction)
-    window.addEventListener('scroll', handleInteraction)
-    window.addEventListener('mousedown', handleInteraction)
+    window.addEventListener('touchstart', handleInteraction, { passive: true })
+    window.addEventListener('touchend', handleInteraction, { passive: true })
+    window.addEventListener('click', handleInteraction)
+    window.addEventListener('scroll', handleInteraction, { passive: true })
+
+    // Periodic retry for stubborn mobile browsers
+    const retryInterval = setInterval(() => {
+      if (video.paused && document.visibilityState === 'visible') {
+        playVideo()
+      } else if (!video.paused) {
+        clearInterval(retryInterval)
+      }
+    }, 500)
+
+    // Also retry when tab becomes visible again
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') playVideo()
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
+      clearInterval(retryInterval)
+      video.removeEventListener('canplay', playVideo)
+      video.removeEventListener('loadeddata', playVideo)
       window.removeEventListener('touchstart', handleInteraction)
+      window.removeEventListener('touchend', handleInteraction)
+      window.removeEventListener('click', handleInteraction)
       window.removeEventListener('scroll', handleInteraction)
-      window.removeEventListener('mousedown', handleInteraction)
+      document.removeEventListener('visibilitychange', handleVisibility)
     }
   }, [])
 
@@ -720,16 +757,7 @@ export default function LandingPage() {
 
       {/* Hero Section - Immersive with Curve Bottom */}
       <section id="home" className="relative h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24 bg-black">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
-          src={HERO_VIDEO_URL}
-        />
+        <HeroVideo />
         <div className="absolute inset-0 bg-black/50 z-[1]" />
         
         {/* Decorative Icons on Hero */}
@@ -773,13 +801,16 @@ export default function LandingPage() {
                 variants={fadeIn}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 [@media(max-width:1024px)_and_(orientation:landscape)]:scale-90 [@media(max-width:1024px)_and_(orientation:landscape)]:origin-left"
               >
-                <Button 
+                <Button
                   onClick={() => window.open('https://wa.me/5547999247199?text=Olá!%20Gostaria%20de%20falar%20com%20um%20especialista%20sobre%20meu%20imóvel.', '_blank')}
-                  className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105">
+                  className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white px-8 sm:px-10 py-6 sm:py-8 rounded-full text-[13px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 hover:scale-105 w-full sm:w-auto justify-center">
                   Falar com um especialista
-                  <ArrowRight className="ml-3 w-4 h-4" />
+                  <ArrowRight className="ml-3 w-5 h-5 sm:w-4 sm:h-4" />
                 </Button>
-                <Button variant="outline" className="border-white/20 text-[#4A583E] hover:bg-[#4A583E] hover:text-white hover:border-[#4A583E] px-8 sm:px-10 py-4 sm:py-8 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300">
+                <Button
+                  variant="outline"
+                  onClick={() => document.getElementById('suppis-integra')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="border-white/30 text-white hover:bg-[#4A583E] hover:text-white hover:border-[#4A583E] px-8 sm:px-10 py-6 sm:py-8 rounded-full text-[13px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300 w-full sm:w-auto justify-center">
                   Conheça a Suppis
                 </Button>
               </motion.div>
@@ -1255,8 +1286,8 @@ export default function LandingPage() {
                       <MapPin className="w-6 h-6" />
                     </div>
                     <div>
-                      <p className="text-xl font-medium tracking-tight text-white">Rua Doutor Marinho Lobo, 23</p>
-                      <p className="text-sm uppercase tracking-[0.2em] opacity-60">Centro, Joinville - SC</p>
+                      <p className="text-xl font-medium tracking-tight text-white">R. Dr. Marinho Lobo, 512 - sala 23</p>
+                      <p className="text-sm uppercase tracking-[0.2em] opacity-60">Centro, Joinville - SC, 89201-020</p>
                     </div>
                   </div>
 
@@ -1291,7 +1322,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer - XYZ Inspired Layout */}
-      <footer className="bg-[#4A583E] text-white pt-16 md:pt-24 pb-12 relative z-20 overflow-hidden">
+      <footer className="bg-[#4A583E] text-white pt-16 md:pt-24 pb-28 lg:pb-12 relative z-20 overflow-hidden">
         {/* Decorative element for Footer */}
         <DecorativeIcon 
           className="w-[800px] -bottom-40 -right-40" 
@@ -1358,7 +1389,7 @@ export default function LandingPage() {
                 content: (
                   <p className="text-sm font-medium text-white/80 leading-relaxed">
                     Segunda à Sexta<br/>
-                    08h às 18h30
+                    09h às 19h
                   </p>
                 )
               },
@@ -1366,7 +1397,7 @@ export default function LandingPage() {
                 title: "Endereço",
                 content: (
                   <p className="text-sm font-medium text-white/80 leading-relaxed">
-                    Rua Doutor Marinho Lobo, 23<br/>
+                    R. Dr. Marinho Lobo, 512 - sala 23<br/>
                     Centro, Joinville - SC<br/>
                     CEP: 89201-020
                   </p>
@@ -1377,7 +1408,7 @@ export default function LandingPage() {
                 content: (
                   <ul className="space-y-3 text-sm font-medium text-white/80">
                     <li>+55 47 99924-7199</li>
-                    <li>contato@suppis.com.br</li>
+                    <li>suppissolucoes@gmail.com</li>
                   </ul>
                 )
               }
@@ -1406,6 +1437,40 @@ export default function LandingPage() {
       
       <WhatsAppButton />
       <QuotePopup />
+
+      {/* Mobile Bottom Navigation - App Style */}
+      <nav className="fixed bottom-0 left-0 right-0 z-[100] lg:hidden">
+        <div className="bg-white/90 backdrop-blur-2xl border-t border-zinc-200/50 shadow-[0_-4px_30px_rgba(0,0,0,0.08)]">
+          <div className="flex items-center justify-around px-2 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+            {[
+              { label: 'Início', href: '#home', icon: Home },
+              { label: 'Suppis Integra', href: '#suppis-integra', icon: Layers },
+              { label: 'Serviços', href: '#servicos', icon: Briefcase },
+              { label: 'Diferenciais', href: '#diferenciais', icon: Award },
+              { label: 'Contato', href: 'https://wa.me/5547999247199?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.', icon: Phone, isExternal: true },
+            ].map((item) => {
+              const Icon = item.icon
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  {...(item.isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                  className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all duration-200 active:scale-95 ${
+                    item.isExternal
+                      ? 'text-[#4A583E]'
+                      : 'text-zinc-500 hover:text-[#4A583E]'
+                  }`}
+                >
+                  <Icon className={`w-5 h-5 ${item.isExternal ? 'text-[#4A583E]' : ''}`} />
+                  <span className={`text-[10px] font-semibold tracking-wide ${item.isExternal ? 'text-[#4A583E]' : ''}`}>
+                    {item.label}
+                  </span>
+                </a>
+              )
+            })}
+          </div>
+        </div>
+      </nav>
     </div>
   )
 }
