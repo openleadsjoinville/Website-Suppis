@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 
-const POPUP_IMAGE = "https://suppis2.openleads.com.br/wp-content/uploads/2025/12/7-3-scaled.png"
+const POPUP_IMAGE = "https://kgmputkxbsuyxkssesmi.supabase.co/storage/v1/object/public/media/suppis/7-3-scaled.png"
 
 export function QuotePopup() {
   const [isOpen, setIsOpen] = useState(false)
