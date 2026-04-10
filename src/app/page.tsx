@@ -677,36 +677,36 @@ export default function LandingPage() {
         </div>
       )}
 
-      {/* Navigation */}
-      <nav 
-        className={`fixed left-0 right-0 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-          isScrolled 
-            ? 'top-4 mx-auto w-[95%] max-w-7xl bg-white/80 backdrop-blur-2xl py-2 px-6 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20' 
+      {/* Navigation - Desktop only (full nav) */}
+      <nav
+        className={`fixed left-0 right-0 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] hidden lg:block ${
+          isScrolled
+            ? 'top-4 mx-auto w-[95%] max-w-7xl bg-white/80 backdrop-blur-2xl py-2 px-6 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/20'
             : 'top-0 w-full bg-transparent py-3 sm:py-6 px-0 border-transparent shadow-none'
         }`}
       >
         <div className={`mx-auto h-full flex items-center justify-between transition-all duration-500 ${isScrolled ? 'w-full px-2' : 'container px-6'}`}>
           <div className="flex items-center">
-            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-28 sm:w-36 md:w-48 h-7 sm:h-9 md:h-10' : 'w-36 sm:w-48 md:w-64 lg:w-72 h-9 sm:h-12 md:h-18 lg:h-20 translate-y-[6px]'}`}>
-              <Image 
-                src={LOGO_URL} 
-                alt="Suppis Logo" 
-                fill 
+            <div className={`relative transition-all duration-500 ${isScrolled ? 'w-48 h-10' : 'w-64 lg:w-72 h-18 lg:h-20 translate-y-[6px]'}`}>
+              <Image
+                src={LOGO_URL}
+                alt="Suppis Logo"
+                fill
                 className={`object-contain transition-all duration-500 ${isScrolled ? '' : 'brightness-0 invert'}`}
               />
             </div>
           </div>
 
-          <div className="hidden lg:flex items-center gap-4 xl:gap-10">
+          <div className="flex items-center gap-4 xl:gap-10">
             {[
               { label: 'Início', href: '#home' },
               { label: 'Suppis Integra', href: '#suppis-integra' },
               { label: 'Serviços', href: '#servicos' },
               { label: 'Nossos Diferenciais', href: '#diferenciais' }
             ].map((item) => (
-              <a 
-                key={item.label} 
-                href={item.href} 
+              <a
+                key={item.label}
+                href={item.href}
                 className={`text-[13px] uppercase tracking-[0.25em] font-semibold transition-all hover:opacity-50 whitespace-nowrap ${
                   isScrolled ? 'text-zinc-600' : 'text-zinc-100'
                 }`}
@@ -714,46 +714,32 @@ export default function LandingPage() {
                 {item.label}
               </a>
             ))}
-              <Button 
+              <Button
                 onClick={() => window.open('https://wa.me/5547999247199?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.', '_blank')}
                 size="sm" className="bg-[#4A583E] hover:bg-white hover:text-[#4A583E] text-white rounded-full px-6 xl:px-8 h-10 text-[12px] uppercase tracking-[0.15em] font-bold transition-all duration-300 flex-shrink-0">
                 Fale Conosco
               </Button>
           </div>
-
-          <button className="lg:hidden" onClick={() => setMobileMenuOpen(true)}>
-            <Menu className={isScrolled ? 'text-zinc-900' : 'text-white'} />
-          </button>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[110] bg-[#faf9f6] p-8 flex flex-col items-center justify-center space-y-10">
-          <button className="absolute top-6 right-6" onClick={() => setMobileMenuOpen(false)}>
-            <X className="w-8 h-8 text-[#4A583E]" />
-          </button>
-          <div className="w-64 h-16 relative mb-8">
-            <Image src={LOGO_URL} alt="Suppis Logo" fill className="object-contain" />
+      {/* Mobile Top Bar - Logo only, centered */}
+      <div className={`fixed left-0 right-0 z-[100] lg:hidden transition-all duration-500 ${
+        isScrolled
+          ? 'top-2 mx-auto w-[90%] bg-white/80 backdrop-blur-2xl py-2 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white/10'
+          : 'top-0 w-full bg-transparent py-4'
+      }`}>
+        <div className="flex items-center justify-center">
+          <div className={`relative transition-all duration-500 ${isScrolled ? 'w-32 h-8' : 'w-48 h-14'}`}>
+            <Image
+              src={LOGO_URL}
+              alt="Suppis Logo"
+              fill
+              className={`object-contain transition-all duration-500 ${isScrolled ? '' : 'brightness-0 invert'}`}
+            />
           </div>
-            {([
-              { label: 'Início', href: '#home' },
-              { label: 'Suppis Integra', href: '#suppis-integra' },
-              { label: 'Serviços', href: '#servicos' },
-              { label: 'Nossos Diferenciais', href: '#diferenciais' },
-              { label: 'Fale Conosco', href: 'https://wa.me/5547999247199?text=Olá!%20Vi%20o%20site%20e%20gostaria%20de%20falar%20com%20um%20especialista.' }
-            ]).map((item) => (
-            <a 
-              key={item.label} 
-              href={item.href} 
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-medium text-[#4A583E] tracking-tighter"
-            >
-              {item.label}
-            </a>
-          ))}
         </div>
-      )}
+      </div>
 
       {/* Hero Section - Immersive with Curve Bottom */}
       <section id="home" className="relative h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24 bg-black">
@@ -774,7 +760,7 @@ export default function LandingPage() {
           y={yHeroRight}
         />
 
-        <div className="container mx-auto px-4 relative z-10 md:pl-28 [@media(max-width:1024px)_and_(orientation:landscape)]:pt-12">
+        <div className="container mx-auto px-4 relative z-10 md:pl-28 -mt-16 lg:mt-0 [@media(max-width:1024px)_and_(orientation:landscape)]:pt-12">
           <div className="max-w-4xl">
             <motion.div
               initial="hidden"
@@ -784,7 +770,7 @@ export default function LandingPage() {
               <motion.h1 
                 custom={0}
                 variants={fadeIn}
-                className="text-4xl sm:text-6xl md:text-8xl font-medium text-white mb-4 sm:mb-8 tracking-tighter leading-[0.95] [@media(max-width:1024px)_and_(orientation:landscape)]:text-3xl [@media(max-width:1024px)_and_(orientation:landscape)]:sm:text-6xl"
+                className="text-5xl sm:text-6xl md:text-8xl font-medium text-white mb-4 sm:mb-8 tracking-tighter leading-[0.95] [@media(max-width:1024px)_and_(orientation:landscape)]:text-3xl [@media(max-width:1024px)_and_(orientation:landscape)]:sm:text-6xl"
               >
                 Seu imóvel nas <br/> mãos certas<span className="text-[#d4c3b0]">.</span>
               </motion.h1>
@@ -810,7 +796,7 @@ export default function LandingPage() {
                 <Button
                   variant="outline"
                   onClick={() => document.getElementById('suppis-integra')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="border-white/30 text-white hover:bg-[#4A583E] hover:text-white hover:border-[#4A583E] px-8 sm:px-10 py-6 sm:py-8 rounded-full text-[13px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold backdrop-blur-xl transition-all duration-300 w-full sm:w-auto justify-center">
+                  className="bg-white text-[#4A583E] border-white hover:bg-[#4A583E] hover:text-white hover:border-[#4A583E] px-8 sm:px-10 py-6 sm:py-8 rounded-full text-[13px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold shadow-2xl transition-all duration-300 w-full sm:w-auto justify-center">
                   Conheça a Suppis
                 </Button>
               </motion.div>
