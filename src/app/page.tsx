@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback, Component, type ReactNode } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from "@/components/ui/button"
@@ -628,7 +628,36 @@ const SuppisIntegraDiagram = () => {
   )
 }
 
-export default function LandingPage() {
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode }) {
+    super(props)
+    this.state = { hasError: false }
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-[#faf9f6] flex items-center justify-center p-8">
+          <div className="text-center">
+            <h1 className="text-3xl font-medium text-[#4A583E] tracking-tighter mb-4">Suppis</h1>
+            <p className="text-zinc-500 mb-6">Ocorreu um erro ao carregar a página.</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="bg-[#4A583E] text-white px-8 py-3 rounded-full text-sm uppercase tracking-widest font-bold"
+            >
+              Recarregar
+            </button>
+          </div>
+        </div>
+      )
+    }
+    return this.props.children
+  }
+}
+
+function LandingPageContent() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -1489,5 +1518,13 @@ export default function LandingPage() {
         </div>
       </nav>
     </div>
+  )
+}
+
+export default function LandingPage() {
+  return (
+    <ErrorBoundary>
+      <LandingPageContent />
+    </ErrorBoundary>
   )
 }

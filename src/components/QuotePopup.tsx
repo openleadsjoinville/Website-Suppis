@@ -64,10 +64,10 @@ export function QuotePopup() {
 
           {/* Left Side: Image/Visual */}
           <div className="relative w-full md:w-5/12 h-48 md:h-auto overflow-hidden">
-            <Image 
-              src={POPUP_IMAGE} 
-              alt="Design de Interiores Suppis" 
-              fill 
+            <Image
+              src={POPUP_IMAGE}
+              alt="Design de Interiores Suppis"
+              fill
               className="object-cover grayscale-[0.2]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#4A583E]/60 to-transparent md:bg-gradient-to-r" />
