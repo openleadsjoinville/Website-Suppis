@@ -3,12 +3,8 @@ import { NextResponse } from 'next/server'
 const PLACE_ID = 'ChIJ2xSpMNCx3pQRdAQAoWcx3H0'
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyDbe50XeyJCl5IkzBdYXTqbpZsBk8rpz1g'
 
-// Cache reviews for 1 hour to avoid excessive API calls
-let cachedData: { data: GoogleReviewsResponse | null; timestamp: number } = {
-  data: null,
-  timestamp: 0,
-}
-const CACHE_DURATION = 60 * 60 * 1000 // 1 hour
+// Revalidate every hour (ISR)
+export const revalidate = 3600
 
 interface GoogleReview {
   author_name: string
@@ -35,14 +31,9 @@ interface GoogleReviewsResponse {
 }
 
 async function fetchReviews(): Promise<GoogleReviewsResponse> {
-  const now = Date.now()
-  if (cachedData.data && now - cachedData.timestamp < CACHE_DURATION) {
-    return cachedData.data
-  }
-
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=name,rating,user_ratings_total,reviews&reviews_sort=newest&language=pt-BR&key=${API_KEY}`
 
-  const res = await fetch(url)
+  const res = await fetch(url, { next: { revalidate: 3600 } })
   const json = await res.json()
 
   if (json.status !== 'OK' || !json.result) {
@@ -50,7 +41,7 @@ async function fetchReviews(): Promise<GoogleReviewsResponse> {
   }
 
   const result = json.result
-  const data: GoogleReviewsResponse = {
+  return {
     rating: result.rating,
     totalReviews: result.user_ratings_total,
     reviews: (result.reviews || []).map((r: GoogleReview) => ({
@@ -63,9 +54,6 @@ async function fetchReviews(): Promise<GoogleReviewsResponse> {
       time: r.time,
     })),
   }
-
-  cachedData = { data, timestamp: now }
-  return data
 }
 
 export async function GET() {
