@@ -3,7 +3,8 @@ import { NextResponse } from 'next/server'
 const PLACE_ID = 'ChIJ2xSpMNCx3pQRdAQAoWcx3H0'
 const API_KEY = process.env.GOOGLE_PLACES_API_KEY || 'AIzaSyDbe50XeyJCl5IkzBdYXTqbpZsBk8rpz1g'
 
-// Revalidate every hour (ISR)
+// Generate at build time, revalidate every hour
+export const dynamic = 'force-static'
 export const revalidate = 3600
 
 interface GoogleReview {
