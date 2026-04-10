@@ -114,16 +114,25 @@ const HeroVideo = () => {
     const video = videoRef.current
     if (!video) return
 
-    video.muted = true
-    video.volume = 0
-    video.setAttribute('muted', '')
-    video.setAttribute('playsinline', '')
-    video.setAttribute('webkit-playsinline', '')
+    try {
+      video.muted = true
+      video.volume = 0
+      video.setAttribute('muted', '')
+      video.setAttribute('playsinline', '')
+      video.setAttribute('webkit-playsinline', '')
+    } catch {
+      // setAttribute may fail in rare cases
+    }
 
     const playVideo = () => {
-      if (video.paused) {
-        const p = video.play()
-        if (p) p.catch(() => {})
+      try {
+        const v = videoRef.current
+        if (v && v.paused) {
+          const p = v.play()
+          if (p) p.catch(() => {})
+        }
+      } catch {
+        // play() failed - non-critical
       }
     }
 
@@ -150,9 +159,12 @@ const HeroVideo = () => {
 
     // Periodic retry for stubborn mobile browsers
     const retryInterval = setInterval(() => {
-      if (video.paused && document.visibilityState === 'visible') {
+      const v = videoRef.current
+      if (!v) return
+      const isVisible = typeof document.visibilityState !== 'undefined' ? document.visibilityState === 'visible' : true
+      if (v.paused && isVisible) {
         playVideo()
-      } else if (!video.paused) {
+      } else if (!v.paused) {
         clearInterval(retryInterval)
       }
     }, 500)
@@ -193,18 +205,20 @@ const HeroVideo = () => {
 const SuppisIntegraDiagram = () => {
   useEffect(() => {
     function drawLines() {
+      try {
         const container = document.getElementById('suppis-container');
-        const canvas = document.getElementById('linesCanvas') as HTMLCanvasElement;
+        const canvas = document.getElementById('linesCanvas') as HTMLCanvasElement | null;
         if (!container || !canvas) return;
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
         const centerCircle = document.getElementById('centerCircle');
         const items = container.querySelectorAll('.service-circle');
-        if (!centerCircle) return;
+        if (!centerCircle || items.length === 0) return;
 
         const dpr = window.devicePixelRatio || 1;
         const rect = container.getBoundingClientRect();
-        
+        if (rect.width === 0 || rect.height === 0) return;
+
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;
         canvas.style.width = rect.width + 'px';
@@ -223,7 +237,7 @@ const SuppisIntegraDiagram = () => {
 
         items.forEach(item => {
             const itemRect = item.getBoundingClientRect();
-            
+
             const itemX = itemRect.left - rect.left + itemRect.width / 2;
             const itemY = itemRect.top - rect.top + itemRect.height / 2;
             const itemRadius = itemRect.width / 2;
@@ -241,12 +255,15 @@ const SuppisIntegraDiagram = () => {
             ctx.lineTo(endX, endY);
             ctx.stroke();
         });
+      } catch {
+        // Canvas drawing failed - non-critical, continue without lines
+      }
     }
 
     function waitForImages() {
         const images = document.querySelectorAll('.suppis-container .service-circle img');
         let loadedCount = 0;
-        
+
         if (images.length === 0) {
           setTimeout(drawLines, 100);
           return;
@@ -265,7 +282,7 @@ const SuppisIntegraDiagram = () => {
                 });
             }
         });
-        
+
         if (loadedCount === images.length) {
             setTimeout(drawLines, 100);
         }
@@ -281,17 +298,21 @@ const SuppisIntegraDiagram = () => {
         });
     }
 
-    let resizeTimeout: any;
+    let resizeTimeout: ReturnType<typeof setTimeout>;
     const handleResize = () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(drawLines, 50);
     };
     window.addEventListener('resize', handleResize);
 
-    if (document.fonts) {
+    try {
+      if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
             setTimeout(drawLines, 100);
         });
+      }
+    } catch {
+      // document.fonts not supported
     }
 
     return () => {
@@ -614,19 +635,28 @@ export default function LandingPage() {
   const { scrollYProgress } = useScroll()
 
   useEffect(() => {
-    // Smooth Scroll initialization
-    const lenis = new Lenis()
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+    // Smooth Scroll initialization - skip on mobile/touch devices to avoid Safari conflicts
+    let lenis: Lenis | null = null
+    let rafId: number | null = null
+    try {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      if (!isTouchDevice) {
+        lenis = new Lenis()
+        function raf(time: number) {
+          lenis?.raf(time)
+          rafId = requestAnimationFrame(raf)
+        }
+        rafId = requestAnimationFrame(raf)
+      }
+    } catch {
+      // Lenis failed to initialize - continue without smooth scroll
     }
-    requestAnimationFrame(raf)
 
     // Scroll listener for navbar
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     // Loading timeout
     const timer = setTimeout(() => {
@@ -636,7 +666,8 @@ export default function LandingPage() {
     return () => {
       window.removeEventListener('scroll', handleScroll)
       clearTimeout(timer)
-      lenis.destroy()
+      if (rafId) cancelAnimationFrame(rafId)
+      if (lenis) lenis.destroy()
     }
   }, [])
   
@@ -1427,7 +1458,7 @@ export default function LandingPage() {
       {/* Mobile Bottom Navigation - App Style */}
       <nav className="fixed bottom-0 left-0 right-0 z-[100] lg:hidden">
         <div className="bg-white/90 backdrop-blur-2xl border-t border-zinc-200/50 shadow-[0_-4px_30px_rgba(0,0,0,0.08)]">
-          <div className="flex items-center justify-around px-2 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+          <div className="grid grid-cols-5 items-start px-1 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
             {[
               { label: 'Início', href: '#home', icon: Home },
               { label: 'Suppis Integra', href: '#suppis-integra', icon: Layers },
@@ -1441,14 +1472,14 @@ export default function LandingPage() {
                   key={item.label}
                   href={item.href}
                   {...(item.isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  className={`flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-xl transition-all duration-200 active:scale-95 ${
+                  className={`flex flex-col items-center justify-start gap-0.5 px-1 py-1.5 rounded-xl transition-all duration-200 active:scale-95 min-w-0 ${
                     item.isExternal
                       ? 'text-[#4A583E]'
                       : 'text-zinc-500 hover:text-[#4A583E]'
                   }`}
                 >
-                  <Icon className={`w-5 h-5 ${item.isExternal ? 'text-[#4A583E]' : ''}`} />
-                  <span className={`text-[10px] font-semibold tracking-wide ${item.isExternal ? 'text-[#4A583E]' : ''}`}>
+                  <Icon className={`w-5 h-5 shrink-0 ${item.isExternal ? 'text-[#4A583E]' : ''}`} />
+                  <span className={`text-[9px] font-semibold tracking-wide text-center leading-tight ${item.isExternal ? 'text-[#4A583E]' : ''}`}>
                     {item.label}
                   </span>
                 </a>

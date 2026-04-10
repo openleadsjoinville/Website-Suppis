@@ -20,15 +20,19 @@ export function QuotePopup() {
     useEffect(() => {
       const handleMouseLeave = (e: MouseEvent) => {
         if (e.clientY <= 0) {
-          const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v20_final')
-          if (!hasSeenPopup) {
-            setIsOpen(true)
+          try {
+            const hasSeenPopup = localStorage.getItem('hasSeenQuotePopup_v20_final')
+            if (!hasSeenPopup) {
+              setIsOpen(true)
+            }
+          } catch {
+            // localStorage unavailable (Safari private mode)
           }
         }
       }
-  
+
       document.addEventListener('mouseleave', handleMouseLeave)
-  
+
       return () => {
         document.removeEventListener('mouseleave', handleMouseLeave)
       }
@@ -36,7 +40,11 @@ export function QuotePopup() {
 
   const handleClose = () => {
     setIsOpen(false)
-    localStorage.setItem('hasSeenQuotePopup_v20_final', 'true')
+    try {
+      localStorage.setItem('hasSeenQuotePopup_v20_final', 'true')
+    } catch {
+      // localStorage unavailable (Safari private mode)
+    }
   }
 
   return (
