@@ -1308,7 +1308,7 @@ function LandingPageContent() {
             </h2>
           </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[90rem] mx-auto">
             {[
               { 
                 title: "Do piso ao teto, interiores completos.", 
@@ -1368,7 +1368,7 @@ function LandingPageContent() {
         <div className="absolute inset-x-0 top-0 bottom-32 bg-[#F5F2ED] rounded-t-[100px] md:rounded-t-[250px] rounded-b-[100px] md:rounded-b-[200px] shadow-2xl" />
         
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-[90rem] mx-auto">
             <div className="text-center mb-20">
               <span className="text-[#4A583E] font-medium uppercase tracking-[0.4em] text-[10px] mb-6 block">Depoimentos</span>
               <h2 className="text-4xl md:text-6xl font-medium text-[#4A583E] tracking-tighter leading-tight mb-10">
