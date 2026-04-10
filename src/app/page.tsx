@@ -802,7 +802,7 @@ function LandingPageContent() {
       </div>
 
       {/* Hero Section - Immersive with Curve Bottom */}
-      <section id="home" className="relative h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24 bg-black">
+      <section id="home" className="relative h-[75vh] lg:h-screen flex items-center overflow-hidden [@media(max-width:1024px)_and_(orientation:landscape)]:h-auto [@media(max-width:1024px)_and_(orientation:landscape)]:min-h-screen [@media(max-width:1024px)_and_(orientation:landscape)]:py-24 bg-black">
         <HeroVideo />
         <div className="absolute inset-0 bg-black/50 z-[1]" />
         
@@ -820,7 +820,7 @@ function LandingPageContent() {
           y={yHeroRight}
         />
 
-        <div className="container mx-auto px-4 relative z-10 md:pl-28 -mt-16 lg:mt-0 [@media(max-width:1024px)_and_(orientation:landscape)]:pt-12">
+        <div className="container mx-auto px-4 relative z-10 md:pl-28 mt-8 lg:mt-0 [@media(max-width:1024px)_and_(orientation:landscape)]:pt-12">
           <div className="max-w-4xl">
             <motion.div
               initial="hidden"
@@ -869,7 +869,7 @@ function LandingPageContent() {
       </section>
 
       {/* Section 1: Intro - Refined & Delicate */}
-      <section className="py-32 bg-[#faf9f6] relative z-20 -mt-px overflow-hidden">
+      <section className="pt-12 pb-32 lg:py-32 bg-[#faf9f6] relative z-20 -mt-px overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-24 items-center">
             <div className="relative">
