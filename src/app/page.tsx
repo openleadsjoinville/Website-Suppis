@@ -27,7 +27,9 @@ import {
   Layers,
   Briefcase,
   Award,
-  Phone
+  Phone,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
 
 // Constants
@@ -113,6 +115,38 @@ const StarIcon = ({ filled }: { filled: boolean }) => (
   </svg>
 )
 
+const ReviewCard = ({ review, i }: { review: { author: string; avatar: string; rating: number; relativeTime: string; text: string }; i: number }) => (
+  <motion.div
+    key={i}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, margin: "-50px" }}
+    variants={fadeIn}
+    custom={i}
+    className="bg-white p-10 rounded-[3rem] shadow-sm border border-black/[0.02] flex flex-col justify-between"
+  >
+    <div>
+      <div className="flex gap-0.5 mb-4">
+        {[1, 2, 3, 4, 5].map(s => (
+          <StarIcon key={s} filled={s <= review.rating} />
+        ))}
+      </div>
+      <p className="text-[#4A583E] text-lg font-light italic leading-relaxed mb-8">
+        &ldquo;{review.text}&rdquo;
+      </p>
+    </div>
+    <div className="flex items-center gap-4">
+      <div className="w-14 h-14 rounded-full overflow-hidden grayscale">
+        <img src={review.avatar} alt={review.author} width={56} height={56} className="w-full h-full object-cover" />
+      </div>
+      <div>
+        <p className="text-[#4A583E] font-medium text-sm uppercase tracking-wide">{review.author}</p>
+        <p className="text-zinc-400 text-[9px] uppercase tracking-[0.2em] mt-1">{review.relativeTime}</p>
+      </div>
+    </div>
+  </motion.div>
+)
+
 const GoogleReviews = () => {
   const [reviews, setReviews] = useState<{
     rating: number
@@ -126,6 +160,8 @@ const GoogleReviews = () => {
       text: string
     }[]
   } | null>(null)
+  const [showAll, setShowAll] = useState(false)
+  const [carouselPage, setCarouselPage] = useState(0)
 
   useEffect(() => {
     fetch('/api/reviews')
@@ -154,6 +190,11 @@ const GoogleReviews = () => {
     )
   }
 
+  const visibleMobileReviews = showAll ? reviews.reviews : reviews.reviews.slice(0, 3)
+  const hasMore = reviews.reviews.length > 3
+  const maxPage = Math.max(0, reviews.reviews.length - 3)
+  const desktopReviews = reviews.reviews.slice(carouselPage, carouselPage + 3)
+
   return (
     <>
       <div className="flex items-center justify-center gap-3 mb-12">
@@ -172,38 +213,64 @@ const GoogleReviews = () => {
         <span className="text-zinc-400 text-xs">({reviews.totalReviews} avaliações)</span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {reviews.reviews.slice(0, 3).map((review, i) => (
-          <motion.div
-            key={i}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeIn}
-            custom={i}
-            className="bg-white p-10 rounded-[3rem] shadow-sm border border-black/[0.02] flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex gap-0.5 mb-4">
-                {[1, 2, 3, 4, 5].map(s => (
-                  <StarIcon key={s} filled={s <= review.rating} />
-                ))}
-              </div>
-              <p className="text-[#4A583E] text-lg font-light italic leading-relaxed mb-8">
-                &ldquo;{review.text}&rdquo;
-              </p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full overflow-hidden grayscale">
-                <img src={review.avatar} alt={review.author} width={56} height={56} className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <p className="text-[#4A583E] font-medium text-sm uppercase tracking-wide">{review.author}</p>
-                <p className="text-zinc-400 text-[9px] uppercase tracking-[0.2em] mt-1">{review.relativeTime}</p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+      {/* Desktop: carousel with arrows */}
+      <div className="hidden md:flex items-center gap-4">
+        <button
+          onClick={() => setCarouselPage(p => Math.max(0, p - 1))}
+          disabled={carouselPage <= 0}
+          className="flex-shrink-0 w-12 h-12 rounded-full border border-[#4A583E]/20 flex items-center justify-center text-[#4A583E] hover:bg-[#4A583E] hover:text-white transition-all duration-300 disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-[#4A583E] disabled:cursor-not-allowed"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <div className="grid grid-cols-3 gap-8 flex-1 min-w-0">
+          {desktopReviews.map((review, i) => (
+            <ReviewCard key={carouselPage + i} review={review} i={i} />
+          ))}
+        </div>
+
+        <button
+          onClick={() => setCarouselPage(p => Math.min(maxPage, p + 1))}
+          disabled={carouselPage >= maxPage}
+          className="flex-shrink-0 w-12 h-12 rounded-full border border-[#4A583E]/20 flex items-center justify-center text-[#4A583E] hover:bg-[#4A583E] hover:text-white transition-all duration-300 disabled:opacity-20 disabled:hover:bg-transparent disabled:hover:text-[#4A583E] disabled:cursor-not-allowed"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Desktop: page dots */}
+      {maxPage > 0 && (
+        <div className="hidden md:flex items-center justify-center gap-2 mt-8">
+          {Array.from({ length: maxPage + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCarouselPage(i)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                i === carouselPage ? 'bg-[#4A583E] w-6' : 'bg-[#4A583E]/20'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Mobile: stacked cards with button below */}
+      <div className="md:hidden">
+        <div className="grid grid-cols-1 gap-8">
+          {visibleMobileReviews.map((review, i) => (
+            <ReviewCard key={i} review={review} i={i} />
+          ))}
+        </div>
+        {hasMore && (
+          <div className="flex justify-center mt-8">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="bg-[#4A583E] hover:bg-[#3D4932] text-white px-8 py-4 rounded-full text-[12px] uppercase tracking-[0.15em] font-bold shadow-xl transition-all duration-300 active:scale-95"
+            >
+              {showAll ? 'Ver menos depoimentos' : 'Ver mais depoimentos'}
+              <ArrowRight className={`inline ml-2 w-4 h-4 transition-transform duration-300 ${showAll ? 'rotate-[-90deg]' : 'rotate-90'}`} />
+            </button>
+          </div>
+        )}
       </div>
     </>
   )
