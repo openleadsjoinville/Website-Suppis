@@ -1069,7 +1069,7 @@ function LandingPageContent() {
             >
                 <div className="space-y-6">
                   <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-[#4A583E] tracking-tighter leading-tight max-w-[90%] md:max-w-none">
-                    Entendemos que executar um projeto de interiores pode ser um pesadelo: atrasos, frustrações e falta de planejamento.
+                    Entendemos que executar um projeto de interiores pode ser um problema: atrasos, frustrações e falta de planejamento.
                   </h2>
                 <p className="text-zinc-500 text-xl leading-relaxed font-light">
                   Você merece um parceiro que cuida de tudo, do primeiro traço a chave na mão.
