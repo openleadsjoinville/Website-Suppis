@@ -60,7 +60,7 @@ const jsonLd = {
       logo: LOGO_URL,
       image: LOGO_URL,
       description: "Especialistas em projeto de interiores e marcenaria com execução integrada. Sofisticação e gestão inteligente para seu lar.",
-      telephone: "+5547999247199",
+      telephone: "+5547997623154",
       priceRange: "$$$",
       address: {
         "@type": "PostalAddress",
