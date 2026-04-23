@@ -12,16 +12,41 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://suppis.com.br"
+const LOGO_URL = `${SITE_URL}/android-chrome-512x512.png`
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Suppis Soluções de Interiores - O seu imóvel nas mãos certas",
   description: "Especialistas em projeto de interiores e marcenaria com execução integrada.",
-    icons: {
-      icon: "/favicon.svg",
-    },
+  icons: {
+    icon: [
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.png",
+  },
+  openGraph: {
+    title: "Suppis Soluções de Interiores - O seu imóvel nas mãos certas",
+    description: "Especialistas em projeto de interiores e marcenaria com execução integrada.",
+    url: SITE_URL,
+    siteName: "Suppis Soluções de Interiores",
+    images: [
+      { url: "/android-chrome-512x512.png", width: 512, height: 512, alt: "Suppis" },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Suppis Soluções de Interiores",
+    description: "Especialistas em projeto de interiores e marcenaria com execução integrada.",
+    images: ["/android-chrome-512x512.png"],
+  },
 };
-
-const SITE_URL = "https://suppis.com.br"
-const LOGO_URL = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/Logo-Suppis-Fundo-transparente-1766487680528.png"
 
 const jsonLd = {
   "@context": "https://schema.org",
