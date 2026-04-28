@@ -148,7 +148,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })(window, document, "clarity", "script", "w9jivw0udy");` }} />
         {/* End Microsoft Clarity */}
         {/* Tintim Pixel */}
-        <script dangerouslySetInnerHTML={{ __html: `(function(window, document, script) { if (!window.tt) { window.tt = window.tt || {}; c = document.getElementsByTagName('head')[0]; k = document.createElement('script'); k.async = 1; k.src = script; c.appendChild(k); } window.tt.accountCode = '0cdc7886-686e-4429-b608-0e476b585a71'; })(window, document, '//s.tintim.app/static/core/tintim-1.0.js');` }} />
+        <script dangerouslySetInnerHTML={{ __html: `try{(function(window, document, script) { if (!window.tt) { window.tt = window.tt || {}; var c = document.getElementsByTagName('head')[0]; var k = document.createElement('script'); k.async = 1; k.src = script; c.appendChild(k); } window.tt.accountCode = '0cdc7886-686e-4429-b608-0e476b585a71'; })(window, document, '//s.tintim.app/static/core/tintim-1.0.js');}catch(e){}` }} />
         {/* End Tintim Pixel */}
         {/* Schema.org JSON-LD */}
         <script
