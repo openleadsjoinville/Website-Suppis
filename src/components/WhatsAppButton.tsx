@@ -89,7 +89,7 @@ export function WhatsAppButton() {
       </AnimatePresence>
 
       <motion.a
-        href="https://wa.me/5547997623154?text=Olá!%20Gostaria%20de%20tirar%20algumas%20dúvidas%20sobre%20os%20serviços%20da%20Suppis."
+        href="https://tintim.link/whatsapp/0cdc7886-686e-4429-b608-0e476b585a71/3841903f-4548-448d-97dd-c86e2f1ca15e"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}

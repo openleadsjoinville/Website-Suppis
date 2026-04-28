@@ -135,7 +135,7 @@ export default function RootLayout({
       <head>
         <meta
           httpEquiv="Content-Security-Policy"
-          content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://*.supabase.co https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://*.clarity.ms https://*.supabase.co https://maps.googleapis.com; frame-src https://www.googletagmanager.com https://www.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://*.supabase.co"
+          content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://s.tintim.app https://*.tintim.app; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://*.supabase.co https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com https://*.tintim.app; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://*.clarity.ms https://*.supabase.co https://maps.googleapis.com https://*.tintim.app; frame-src https://www.googletagmanager.com https://www.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://*.supabase.co"
         />
         {/* Google Tag Manager */}
         <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -151,6 +151,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "w9jivw0udy");` }} />
         {/* End Microsoft Clarity */}
+        {/* Tintim Pixel */}
+        <script dangerouslySetInnerHTML={{ __html: `(function(window, document, script) { if (!window.tt) { window.tt = window.tt || {}; c = document.getElementsByTagName('head')[0]; k = document.createElement('script'); k.async = 1; k.src = script; c.appendChild(k); } window.tt.accountCode = '0cdc7886-686e-4429-b608-0e476b585a71'; })(window, document, '//s.tintim.app/static/core/tintim-1.0.js');` }} />
+        {/* End Tintim Pixel */}
         {/* Schema.org JSON-LD */}
         <script
           type="application/ld+json"
