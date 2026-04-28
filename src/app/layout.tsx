@@ -133,6 +133,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://*.clarity.ms; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://*.supabase.co https://*.googleapis.com https://*.gstatic.com https://*.google.com https://*.googleusercontent.com; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net https://*.clarity.ms https://*.supabase.co https://maps.googleapis.com; frame-src https://www.googletagmanager.com https://www.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; media-src 'self' https://*.supabase.co"
+        />
         {/* Google Tag Manager */}
         <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
